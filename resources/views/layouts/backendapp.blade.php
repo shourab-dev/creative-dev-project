@@ -17,82 +17,94 @@
 <!-- END: Head -->
 
 <body class="py-5">
-    <x-jet-banner />
+
     <!-- BEGIN: Mobile Menu -->
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-bar">
-            <a href="" class="flex mr-auto">
-                <span>{{ str()->upper(env('APP_NAME')) }}</span>
+            <a href="{{ route('dashboard') }}" class="flex mr-auto text-white text-xl">
+                {{-- <span>{{ str()->upper(env('APP_NAME')) }}</span> --}}
+                <img src="{{ asset('img/light logo.webp') }}" alt="logo" class="w-12 h-12">
             </a>
             <a href="javascript:;" id="mobile-menu-toggler">
                 <i data-lucide="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i>
             </a>
         </div>
         <ul class="border-t border-white/[0.08] py-5 hidden">
+            {{-- Dashboard--}}
             <li>
-                <a href="javascript:;" class="menu menu--active">
+                <a href="{{ route('dashboard') }}"
+                    class="menu {{ request()->routeIs('dashboard') ? 'menu--active' : '' }}">
                     <div class="menu__icon">
                         <i data-lucide="home"></i>
                     </div>
                     <div class="menu__title">
                         Dashboard
-                        <i data-lucide="chevron-down" class="menu__sub-icon transform rotate-180"></i>
+
                     </div>
                 </a>
 
             </li>
+            {{-- File Manager --}}
             <li>
-                <a href="javascript:;" class="menu menu--active">
+                <a href="{{ route('filemanager') }}"
+                    class="menu {{ request()->routeIs('filemanager') ? 'menu--active' : '' }}">
                     <div class="menu__icon">
-                        <i data-lucide="home"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-hard-drive">
+                            <line x1="22" y1="12" x2="2" y2="12"></line>
+                            <path
+                                d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
+                            </path>
+                            <line x1="6" y1="16" x2="6.01" y2="16"></line>
+                            <line x1="10" y1="16" x2="10.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <div class="menu__title"> File Manager </div>
+                </a>
+            </li>
+            {{-- Banner --}}
+            <li>
+                <a href="javascript:;" class="menu {{ request()->routeIs('banner*') ? 'menu--active' : '' }}">
+                    <div class="menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-credit-card">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
                     </div>
                     <div class="menu__title">
                         Banner
-                        <i data-lucide="chevron-down" class="menu__sub-icon transform rotate-180"></i>
+                        <div
+                            class="menu__sub-icon transform  {{ request()->routeIs('banner*') ? 'rotate-180' : 'rotate-0' }}">
+                            <i data-lucide="chevron-down"></i>
+                        </div>
                     </div>
                 </a>
-                <ul class="menu__sub-open">
+                <ul class=" {{ request()->routeIs('banner*') ? 'menu__sub-open' : '' }}">
+
                     <li>
-                        <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-1"
-                            class="menu menu--active">
+                        <a href="{{ route('banner') }}" class="menu">
                             <div class="menu__icon">
                                 <i data-lucide="activity"></i>
                             </div>
                             <div class="menu__title">
-                                Overview 1
+                                Banners
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-2" class="menu">
+                        <a href="https://rubick.left4code.com/page/menu/light/dashboard-overview-3" class="menu">
                             <div class="menu__icon">
                                 <i data-lucide="activity"></i>
                             </div>
                             <div class="menu__title">
-                                Overview 2
+                                Trash Banners
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-3" class="menu">
-                            <div class="menu__icon">
-                                <i data-lucide="activity"></i>
-                            </div>
-                            <div class="menu__title">
-                                Overview 3
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-4" class="menu">
-                            <div class="menu__icon">
-                                <i data-lucide="activity"></i>
-                            </div>
-                            <div class="menu__title">
-                                Overview 4
-                            </div>
-                        </a>
-                    </li>
+
                 </ul>
             </li>
 
@@ -102,14 +114,15 @@
     <div class="flex">
         <!-- BEGIN: Side Menu -->
         <nav class="side-nav">
-            <a href="" class="intro-x flex items-center pl-5 pt-4">
-
-                <span class="hidden xl:block text-white text-lg ml-3">
+            <a href="{{ route('dashboard') }}" class="intro-x flex items-center pl-5  md:pl-0 pt-4">
+                <img src="{{ asset('img/light logo.webp') }}" alt="logo" class="w-10 h-10"> <span
+                    class="hidden xl:block text-white text-lg ml-3">
                     {{ str()->upper(env('APP_NAME')) }}
                 </span>
             </a>
             <div class="side-nav__devider my-6"></div>
             <ul>
+                {{-- dashboard --}}
                 <li>
                     <a href="{{ route('dashboard') }}"
                         class="side-menu  {{ request()->routeIs('dashboard') ? 'side-menu--active' : '' }}">
@@ -121,6 +134,7 @@
                         </div>
                     </a>
                 </li>
+                {{-- file manager --}}
                 <li>
                     <a href="{{ route('filemanager') }}"
                         class="side-menu {{ request()->routeIs('filemanager') ? 'side-menu--active' : '' }}">
@@ -137,6 +151,7 @@
                         <div class="side-menu__title"> File Manager </div>
                     </a>
                 </li>
+                {{-- banner --}}
                 <li>
                     <a href="javascript:;"
                         class="side-menu {{ request()->routeIs('banner*') ? 'side-menu--active' : '' }}">
@@ -159,8 +174,7 @@
                     <ul class=" {{ request()->routeIs('banner*') ? 'side-menu__sub-open' : '' }}">
 
                         <li>
-                            <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-2"
-                                class="side-menu">
+                            <a href="{{ route('banner') }}" class="side-menu">
                                 <div class="side-menu__icon">
                                     <i data-lucide="activity"></i>
                                 </div>
