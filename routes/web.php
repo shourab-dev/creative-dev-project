@@ -26,3 +26,19 @@ Route::middleware([
         return view('backend.dashboard');
     })->name('dashboard');
 });
+
+// File manager
+Route::GET('/file-manager', function () {
+    return view('backend.file.fileManager');
+})->name('filemanager');
+
+// File manager ends
+
+
+// BANNER 
+
+Route::GET('/banner', function () {
+    return view('backend.banner.banners');
+})->name('banner');
+
+// BANNER ends

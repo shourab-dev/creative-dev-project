@@ -39,6 +39,18 @@
                         <i data-lucide="chevron-down" class="menu__sub-icon transform rotate-180"></i>
                     </div>
                 </a>
+
+            </li>
+            <li>
+                <a href="javascript:;" class="menu menu--active">
+                    <div class="menu__icon">
+                        <i data-lucide="home"></i>
+                    </div>
+                    <div class="menu__title">
+                        Banner
+                        <i data-lucide="chevron-down" class="menu__sub-icon transform rotate-180"></i>
+                    </div>
+                </a>
                 <ul class="menu__sub-open">
                     <li>
                         <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-1"
@@ -99,29 +111,53 @@
             <div class="side-nav__devider my-6"></div>
             <ul>
                 <li>
-                    <a href="javascript:;" class="side-menu side-menu--active">
+                    <a href="{{ route('dashboard') }}"
+                        class="side-menu  {{ request()->routeIs('dashboard') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">
                             <i data-lucide="home"></i>
                         </div>
                         <div class="side-menu__title">
                             Dashboard
-                            <div class="side-menu__sub-icon transform rotate-180">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('filemanager') }}"
+                        class="side-menu {{ request()->routeIs('filemanager') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-hard-drive">
+                                <line x1="22" y1="12" x2="2" y2="12"></line>
+                                <path
+                                    d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
+                                </path>
+                                <line x1="6" y1="16" x2="6.01" y2="16"></line>
+                                <line x1="10" y1="16" x2="10.01" y2="16"></line>
+                            </svg> </div>
+                        <div class="side-menu__title"> File Manager </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;"
+                        class="side-menu {{ request()->routeIs('banner*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-credit-card">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title">
+                            Banner
+                            <div
+                                class="side-menu__sub-icon transform  {{ request()->routeIs('banner*') ? 'rotate-180' : 'rotate-0' }}">
                                 <i data-lucide="chevron-down"></i>
                             </div>
                         </div>
                     </a>
-                    <ul class="side-menu__sub-open">
-                        <li>
-                            <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-1"
-                                class="side-menu side-menu--active">
-                                <div class="side-menu__icon">
-                                    <i data-lucide="activity"></i>
-                                </div>
-                                <div class="side-menu__title">
-                                    Overview 1
-                                </div>
-                            </a>
-                        </li>
+                    <ul class=" {{ request()->routeIs('banner*') ? 'side-menu__sub-open' : '' }}">
+
                         <li>
                             <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-2"
                                 class="side-menu">
@@ -129,7 +165,7 @@
                                     <i data-lucide="activity"></i>
                                 </div>
                                 <div class="side-menu__title">
-                                    Overview 2
+                                    Banners
                                 </div>
                             </a>
                         </li>
@@ -140,21 +176,11 @@
                                     <i data-lucide="activity"></i>
                                 </div>
                                 <div class="side-menu__title">
-                                    Overview 3
+                                    Trash Banners
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="https://rubick.left4code.com/page/side-menu/light/dashboard-overview-4"
-                                class="side-menu">
-                                <div class="side-menu__icon">
-                                    <i data-lucide="activity"></i>
-                                </div>
-                                <div class="side-menu__title">
-                                    Overview 4
-                                </div>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
 
@@ -168,8 +194,8 @@
                 <!-- BEGIN: Breadcrumb -->
                 <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">{{ env('APP_NAME') }}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+
+
                     </ol>
                 </nav>
                 <!-- END: Breadcrumb -->
@@ -306,8 +332,9 @@
                     <div class="dropdown-menu w-56">
                         <ul class="dropdown-content bg-primary text-white">
                             <li class="p-2">
-                                <div class="font-medium">Angelina Jolie</div>
-                                <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">DevOps Engineer</div>
+                                <div class="font-medium">{{ str()->ucfirst(Auth::user()->name) }}</div>
+                                <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">
+                                    DevOps Engineer</div>
                             </li>
                             <li>
                                 <hr class="dropdown-divider border-white/[0.08]">
