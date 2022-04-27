@@ -10,6 +10,13 @@ class Banner extends Component
 {
     protected $listeners = ['BannerSuccess'];
 
+
+    public function deleteBanner($id)
+    {
+        $banner = BannerModel::find($id)->delete();
+        session()->flash('message', 'Banner Deleted Successfully');
+    }
+
     public function BannerSuccess()
     {
         session()->flash('message', 'Photo Inserted Successfully');

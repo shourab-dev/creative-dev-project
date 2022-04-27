@@ -8,12 +8,24 @@
     <x-input placeholder="Banner Detail" wire:model.lazy="bannerDetail" />
     <x-input placeholder="Banner Button" wire:model.lazy="bannerButton" />
     <x-input placeholder="Banner Link" wire:model.lazy="bannerLink" />
-    <x-file-input label="Banner Image *" wire:model.lazy="bannerImage"
-        error="{{ $errors->get('bannerImage') ? true : null }}" />
-
     @error('bannerImage')
-    <span class="text-danger">{{ $message }}</span>
+    <span class="block text-danger">{{ $message }}</span>
     @enderror
+    <span>Choose An Image</span>
+    <div class="grid grid-cols-4 relative gap-2 h-[15rem] overflow-y-auto">
+        @foreach ($files as $file)
+
+        <div class="image col-span-1 my-2 relative">
+            <label>
+                <input type="radio" value="{{ $file->link }}" class="absolute top-2 left-1" wire:model="bannerImage"
+                    name="bannerImg">
+                <img src="{{ $file->link }}" alt="" class="h-[5rem] object-cover">
+            </label>
+        </div>
+        @endforeach
+    </div>
+
+
     <button class="w-full bg-blue-700 py-3 text-white rounded shadow" wire:click="store">Add Banner</button>
 
 </div>

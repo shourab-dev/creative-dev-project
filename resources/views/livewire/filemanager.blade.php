@@ -54,6 +54,7 @@
 
 
         </div>
+        {{ $files->links() }}
         <!-- END: Directory & Files -->
 
     </div>
