@@ -407,6 +407,7 @@
     @livewireScripts
     <script src="{{ asset('backend/js/app.js') }}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
+    @stack('js')
     <!-- END: JS Assets-->
 
 </body>
