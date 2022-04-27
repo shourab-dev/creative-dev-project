@@ -387,9 +387,9 @@
 
 
     <!-- BEGIN: JS Assets-->
-
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @livewire('livewire-ui-modal')
     @stack('modals')
-
     @livewireScripts
     <script src="{{ asset('backend/js/app.js') }}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
