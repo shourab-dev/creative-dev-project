@@ -12,8 +12,8 @@
     <span class="block text-danger">{{ $message }}</span>
     @enderror
     <span>Choose An Image</span>
-    <div class="grid grid-cols-4 relative gap-2 h-[15rem] overflow-y-auto">
-        @foreach ($files as $file)
+    <div class="grid grid-cols-4 relative gap-2 max-h-[15rem] overflow-y-auto">
+        @forelse ($files as $file)
 
         <div class="image col-span-1 my-2 relative">
             <label>
@@ -22,7 +22,9 @@
                 <img src="{{ $file->link }}" alt="" class="h-[5rem] object-cover">
             </label>
         </div>
-        @endforeach
+        @empty
+        <p class="col-span-4 my-2">No Images found in file Manager</p>
+        @endforelse
     </div>
 
 

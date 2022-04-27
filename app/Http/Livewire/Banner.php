@@ -8,8 +8,17 @@ use Livewire\Component;
 
 class Banner extends Component
 {
-    protected $listeners = ['BannerSuccess'];
+    protected $listeners = ['BannerSuccess', 'deleteBanner'];
 
+    public function confirmDelete($id)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Are You Sure?',
+            'text' => 'This file will be added in your (Trash)!',
+            'id' => $id,
+        ]);
+    }
 
     public function deleteBanner($id)
     {

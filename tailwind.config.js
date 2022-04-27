@@ -20,5 +20,4 @@ module.exports = {
         require("@tailwindcss/forms"),
         require("@tailwindcss/typography"),
     ],
-    important: true,
 };

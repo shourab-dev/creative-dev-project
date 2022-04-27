@@ -30,7 +30,7 @@ Route::middleware([
 // File manager
 Route::GET('/file-manager', function () {
     return view('backend.file.fileManager');
-})->name('filemanager');
+})->name('filemanager')->middleware('auth');
 
 // File manager ends
 
@@ -39,6 +39,15 @@ Route::GET('/file-manager', function () {
 
 Route::GET('/banner', function () {
     return view('backend.banner.banners');
-})->name('banner');
+})->name('banner')->middleware('auth');
+Route::GET('/banner/trash', function () {
+    return view('backend.banner.bannerTrash');
+})->name('banner.trash')->middleware('auth');
 
 // BANNER ends
+
+
+// Department
+Route::GET('/department', function () {
+    return view('backend.department.department');
+})->name('department')->middleware('auth');

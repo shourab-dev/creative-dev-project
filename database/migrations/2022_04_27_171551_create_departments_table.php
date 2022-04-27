@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('detail')->nullable();
-            $table->string('button')->nullable();
-            $table->string('link')->nullable();
-            $table->string('image');
-            $table->integer('status')->default(true);
-            $table->string('added_by');
+            $table->string('name');
+            $table->boolean('status')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('departments');
     }
 };

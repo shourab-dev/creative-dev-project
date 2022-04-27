@@ -1,6 +1,7 @@
 <x-app-layout>
-    <x-intro info="Banners Tab" />
-    @livewire('banner')
+    <x-intro info="Trash Banners" />
+
+    @livewire('banner-trash')
     @push('js')
     <script src="{{ asset('backend/js/sweetalert2@11.js') }}"></script>
     <script>
@@ -15,7 +16,7 @@
             confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
             if (result.isConfirmed) {
-             window.livewire.emit('deleteBanner', event.detail.id);
+             window.livewire.emit('forceDeleteBanner', event.detail.id);
           
             }
             })

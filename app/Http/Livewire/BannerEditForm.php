@@ -3,10 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\Banner;
-use App\Models\FileManager;
 use Livewire\Component;
+use App\Models\FileManager;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
+
 
 class BannerEditForm extends ModalComponent
 {
@@ -24,6 +25,20 @@ class BannerEditForm extends ModalComponent
         $this->detail = $item->detail;
         $this->button = $item->button;
         $this->link = $item->link;
+        $this->bannerImage = $item->image;
+    }
+
+    public function updateBanner($id)
+    {
+        $item = Banner::find($id);
+        $item->title = $this->title;
+        $item->detail = $this->detail;
+        $item->button = $this->button;
+        $item->link = $this->link;
+        $item->image = $this->bannerImage;
+        $item->save();
+        $this->emit('BannerSuccess');
+        $this->closeModal();
     }
 
     public function render()
