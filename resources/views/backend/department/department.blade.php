@@ -1,4 +1,13 @@
 <x-app-layout>
-    <x-intro info="Departments" />
+
     @livewire('department')
+
+
+    
+
+    @push('js')
+    <script>
+        // alert('there');
+    </script>
+    @endpush
 </x-app-layout>

@@ -8,6 +8,13 @@ use Livewire\Component;
 class Department extends Component
 {
 
+    protected $listeners = ['success'];
+
+    public function success()
+    {
+        session()->flash('message', 'Department Name Changed successfully');
+    }
+
     public function changeStatus($id)
     {
         $item = ModelsDepartment::find($id);
