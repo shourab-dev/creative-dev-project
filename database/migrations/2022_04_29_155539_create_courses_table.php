@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('department_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
+            $table->string('slug');
             $table->longText('detail');
             $table->string('thumbnail');
             $table->string('image')->nullable();

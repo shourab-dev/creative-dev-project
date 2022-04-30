@@ -12,6 +12,7 @@ class Course extends Model
     protected $fillable = [
         'department_id',
         'title',
+        'slug',
         'detail',
         'thumbnail',
         'image',
@@ -21,4 +22,10 @@ class Course extends Model
         'basic',
         'carrer',
     ];
+
+
+    public function features()
+    {
+        return $this->hasMany(Feature::class);
+    }
 }

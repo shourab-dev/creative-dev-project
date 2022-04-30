@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('backend/css/app.css') }}" />
+    @stack('css')
+
     @livewireStyles
     <!-- END: CSS Assets-->
 </head>
@@ -126,6 +128,61 @@
                     <div class="menu__title"> Departments </div>
                 </a>
             </li>
+            {{-- Courses --}}
+            <li>
+                <a href="javascript:;" class="menu {{ request()->routeIs('courses*') ? 'menu--active' : '' }}">
+                    <div class="menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            icon-name="layout" data-lucide="layout" class="lucide lucide-layout">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                    </div>
+                    <div class="menu__title">
+                        Courses
+                        <div
+                            class="menu__sub-icon transform  {{ request()->routeIs('courses*') ? 'rotate-180' : 'rotate-0' }}">
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class=" {{ request()->routeIs('courses*') ? 'menu__sub-open' : '' }}">
+
+                    <li>
+                        <a href="{{ route('courses') }}" class="menu">
+                            <div class="menu__icon">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <div class="menu__title">
+                                Add Courses
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.index') }}" class="menu">
+                            <div class="menu__icon">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <div class="menu__title">
+                                All Courses
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.trash') }}" class="menu">
+                            <div class="menu__icon">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <div class="menu__title">
+                                Trash Courses
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
 
         </ul>
     </div>
@@ -237,6 +294,64 @@
                         <div class="side-menu__title"> Departments </div>
                     </a>
                 </li>
+                {{-- Courses --}}
+                <li>
+                    <a href="javascript:;"
+                        class="side-menu {{ request()->routeIs('courses*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" icon-name="layout" data-lucide="layout"
+                                class="lucide lucide-layout">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title">
+                            Courses
+                            <div
+                                class="side-menu__sub-icon transform  {{ request()->routeIs('courses*') ? 'rotate-180' : 'rotate-0' }}">
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class=" {{ request()->routeIs('courses*') ? 'side-menu__sub-open' : '' }}">
+
+                        <li>
+                            <a href="{{ route('courses') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Add Course
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('courses.index') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    All Courses
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('courses.trash') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Trash Courses
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
 
             </ul>
         </nav>
@@ -445,8 +560,10 @@
     @livewire('livewire-ui-modal')
     @stack('modals')
     @livewireScripts
+
     <script src="{{ asset('backend/js/app.js') }}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
+
     @stack('js')
     <!-- END: JS Assets-->
 

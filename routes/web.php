@@ -51,3 +51,20 @@ Route::GET('/banner/trash', function () {
 Route::GET('/department', function () {
     return view('backend.department.department');
 })->name('department')->middleware('auth');
+
+
+// Courses
+
+Route::GET('/courses', function () {
+    return view('backend.courses.courseCreate');
+})->name('courses')->middleware('auth');
+
+
+Route::GET('/courses/all', function () {
+    return view('backend.courses.courseCreate');
+})->name('courses.index')->middleware('auth');
+
+
+Route::GET('/courses/trash', function () {
+    return view('backend.courses.courseCreate');
+})->name('courses.trash')->middleware('auth');
