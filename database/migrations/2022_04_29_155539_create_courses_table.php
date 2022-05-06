@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('department_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->longText('detail');
             $table->string('thumbnail');
             $table->string('image')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('softwares');
             $table->string('basic');
             $table->string('carrer');
+            $table->boolean('status')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

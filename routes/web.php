@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\BannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,10 +61,8 @@ Route::GET('/courses', function () {
 })->name('courses')->middleware('auth');
 
 
-Route::GET('/courses/all', function () {
-    return view('backend.courses.courseCreate');
-})->name('courses.index')->middleware('auth');
-
+Route::GET('/courses/all', [BannerController::class, 'index'])->name('courses.index')->middleware('auth');
+Route::GET('/course/status/{slug}', [BannerController::class, 'status'])->name('course.status');
 
 Route::GET('/courses/trash', function () {
     return view('backend.courses.courseCreate');
