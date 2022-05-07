@@ -1,6 +1,6 @@
 <label class="my-3 block">
   <span class="text-gray-700 font-semibold mb-1 inline-block">{{ $label }}</span>
-  <input type="file" {{ $attributes }} class="file:mr-4 
+  <input name="{{ $name }}" type="file" {{ $attributes }} class="file:mr-4 
             file:py-2
             file:px-4 
             file:rounded-full 

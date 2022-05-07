@@ -10,17 +10,19 @@ class FileInput extends Component
     public $iteration;
     public $label;
     public $error;
+    public $name;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($multiple = false, $iteration = 1, $label = null, $error = null)
+    public function __construct($multiple = false, $iteration = 1, $label = null, $error = null, $name = null)
     {
         $this->multiple = $multiple;
         $this->iteration = $iteration;
         $this->label = $label;
         $this->error = $error;
+        $this->name = $name;
     }
 
     /**

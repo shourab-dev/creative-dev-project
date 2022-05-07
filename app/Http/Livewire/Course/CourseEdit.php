@@ -32,6 +32,7 @@ class CourseEdit extends Component
     public $basic;
     public $opportunity;
 
+    public $feature_img;
 
 
     public function mount()
@@ -112,7 +113,7 @@ class CourseEdit extends Component
 
     public function setFeatureImage($link)
     {
-        $this->featureImg = $link['link'];
+        $this->feature_img = $link['link'];
     }
 
     public function setMarketPlace($marketPlace)
@@ -123,7 +124,4 @@ class CourseEdit extends Component
     {
         $this->selectSoftware = $software;
     }
-
-
-    
 }

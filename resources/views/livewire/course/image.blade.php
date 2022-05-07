@@ -6,7 +6,7 @@
         @elseif ($type == 'image')
         <div class="btn btn-primary" wire:click="setImage">Select</div>
         @elseif ($type == 'featureImg')
-        <div class="btn btn-primary" wire:click="setFeatureImage">Select fea</div>
+        <div class="btn btn-primary" wire:click="setFeatureImage">Select</div>
         @endif
     </div>
     <hr class="mb-4">
