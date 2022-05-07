@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\backend\BannerController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backend\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,8 +62,10 @@ Route::GET('/courses', function () {
 })->name('courses')->middleware('auth');
 
 
-Route::GET('/courses/all', [BannerController::class, 'index'])->name('courses.index')->middleware('auth');
-Route::GET('/course/status/{slug}', [BannerController::class, 'status'])->name('course.status');
+Route::GET('/courses/all', [CourseController::class, 'index'])->name('courses.index')->middleware('auth');
+Route::GET('/course/status/{slug}', [CourseController::class, 'status'])->name('course.status');
+Route::GET('/course/edit/{slug}', [CourseController::class, 'edit'])->name('course.edit');
+Route::PUT('/couse/feature/update/{id}', [CourseController::class, 'test'])->name('course.feature.update');
 
 Route::GET('/courses/trash', function () {
     return view('backend.courses.courseCreate');

@@ -4,9 +4,10 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class BannerController extends Controller
+class CourseController extends Controller
 {
     public function __construct()
     {
@@ -31,5 +32,19 @@ class BannerController extends Controller
         }
         $course->save();
         return back();
+    }
+
+
+    public function edit($slug)
+    {
+
+        $course = Course::where('slug', $slug)->with('features')->first();
+        return view('backend.courses.courseEdit', compact('course'));
+    }
+
+
+    public function test(Request $request)
+    {
+        dump($request->all());
     }
 }

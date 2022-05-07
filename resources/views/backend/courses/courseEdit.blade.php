@@ -2,9 +2,5 @@
     @push('css')
     <link rel="stylesheet" href="{{ asset('backend/css/summernote-lite.css') }}">
     @endpush
-
-
-    @livewire('course.create-course')
-
-
+    @livewire('course.course-edit', ['course' => $course])
 </x-app-layout>

@@ -1,0 +1,172 @@
+<div>
+    <div class="flex justify-between align-middle my-3">
+        <x-intro info="Add Course" />
+        <button class="btn btn-primary intro-y" wire:click="editCourse">Save Course</button>
+    </div>
+    <hr>
+    @if (session()->has('message'))
+    <span class="bg-green-200 text-green-700 block py-3 px-2">
+        {{ session('message') }}
+    </span>
+    @endif
+    <div class="grid md:grid-cols-3 gap-4">
+        <div>
+            <x-input wire:model.debounce.300ms="title" placeholder="Course Title" />
+            @error('title')
+            <span class="text-red-600">{{ $message }}</span>
+            @enderror
+        </div>
+        <x-input wire:model="slug" placeholder="Slug" />
+
+
+        <div>
+            <select class="h-[3rem] my-3 w-[100%]" wire:model="department_id">
+                <option value="" selected>Select Department --- </option>
+                @forelse ($departments as $department)
+                <option value="{{ $department->id }}">{{ $department->name }}</option>
+                @empty
+                <option disabled selected>No Department Found!</option>
+                @endforelse
+            </select>
+            @error('department_id')
+            <span class="text-red-600">{{ $message }}</span>
+            @enderror
+        </div>
+
+    </div>
+
+
+
+    <div class="grid md:grid-cols-2 mt-3 gap-2">
+        <div>
+            @if ($thumbnail)
+            <img src="{{ $thumbnail }}" alt="" class="w-2/5 object-cover rounded">
+            @endif
+            <x-file-input label="Thumbnail Image" wire:model="thumbnail"
+                wire:click.prevent="$emit('openModal', 'course.image', {{ json_encode(['name' => 'thumbnail']) }})" />
+            @error('thumbnail')
+            <span class="text-red-600">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            @if ($image)
+            <img src="{{ $image }}" alt="" class="w-2/5 rounded">
+            @endif
+            <x-file-input label="Course Image" wire:model="image"
+                wire:click.prevent="$emit('openModal', 'course.image', {{ json_encode(['name' => 'image']) }})" />
+            @error('image')
+            <span class="text-red-600">{{ $message }}</span>
+            @enderror
+        </div>
+
+    </div>
+
+    <x-input wire:model.lazy="iframe" placeholder="Iframe Link (Not Required!)" />
+
+
+
+    <label for="detail" wire:ignore>
+        Course Detail
+        <textarea name="detail" id="detail" class="summernote">{{ $detail }}</textarea>
+        @error('detail')
+        <span class="text-red-600">{{ $message }}</span>
+        @enderror
+    </label>
+
+    <div class="grid md:grid-cols-3 gap-4">
+        <div class="basic">
+            <x-input placeholder="Prerequisites" wire:model.lazy="basic" />
+            @error('basic')
+            <span class="text-red-600">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="marketplace my-4">
+            <button class="btn btn-primary" wire:click="$emit('openModal', 'course.market-place')">Add Market Places
+                +</button>
+            @error('selectMarketPlace')
+            <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            @if ($selectMarketPlace)
+            <span class="mx-3">
+                Items Added</span>
+            @endif
+        </div>
+        <div class="software my-4">
+            <button class="btn btn-primary" wire:click="$emit('openModal', 'course.softwares')">Add SoftWares
+                +</button>
+            @error('selectSoftware')
+            <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            @if ($selectSoftware)
+            <span class="mx-3">
+                Items Added</span>
+            @endif
+        </div>
+    </div>
+
+
+    <label for="detail" wire:ignore>
+        Course Oppurtunity
+        <textarea name="opportunity" id="opportunity" class="opportunity">{{ $opportunity }}</textarea>
+        @error('opportunity')
+        <span class="text-red-600">{{ $message }}</span>
+        @enderror
+    </label>
+
+
+
+    {{-- feature part --}}
+
+    <div class="grid md:grid-cols-2">
+        @foreach ($course->features as $feature)
+        <div class="feature">
+
+            <form method="POST" action="{{ route('course.feature.update', $feature->id) }}">
+                @csrf
+                @method('PUT')
+                @if ($feature->feature_image)
+                <img src="{{ $feature->feature_image }}" alt="">
+                @endif
+                <input type="text" name="title">
+                <button>Submit</button>
+            </form>
+
+        </div>
+        @endforeach
+    </div>
+
+
+
+</div>
+
+@push('js')
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script src="{{ asset('backend/js/summernote-lite.js') }}"></script>
+
+<script>
+    $('#detail').summernote({
+                height: 250,
+                focus:true,
+                dialogsInBody: true,
+                callbacks: {
+                onChange: function(contents) {
+                // console.log('onChange:', contents);
+                @this.set('detail', contents);
+                }
+                }
+            });
+        $('#opportunity').summernote({
+            height: 250,
+            focus:true,
+            dialogsInBody: true,
+            callbacks: {
+            onChange: function(contents) {
+            // console.log('onChange:', contents);
+            @this.set('opportunity', contents);
+            }
+            }
+            });
+       
+</script>
+@endpush
