@@ -37,8 +37,13 @@
                         </a>
                     </td>
                     <td class="w-[20%]">
-                        <div class="grid grid-cols-2">
-                            <a class="text-purple-600 flex align-items-center me-3" href="javascript:;">
+                        
+                            <a class="text-blue-600 flex my-3"
+                                href="{{ route('course.edit', $course->slug) }}">
+                                + Add More Features
+                            </a>
+                            <a class="text-purple-600 flex my-3 "
+                                href="{{ route('course.edit', $course->slug) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-check-square w-4 h-4 me-1">
@@ -46,7 +51,7 @@
                                     <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                                 </svg> Edit
                             </a>
-                            <a class="text-red-600 flex align-items-center text-theme-6" href="javascript:;">
+                            <a class="text-red-600 flex my-3 text-theme-6" href="javascript:;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-trash-2 w-4 h-4 me-1">
@@ -58,7 +63,7 @@
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg> Delete
                             </a>
-                        </div>
+                        
                     </td>
                 </tr>
                 @empty
