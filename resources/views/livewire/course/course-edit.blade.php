@@ -1,7 +1,13 @@
 <div>
     <div class="flex justify-between align-middle my-3">
         <x-intro info="Edit {{ $course->title }} Course" />
-        <button class="btn btn-primary intro-y" wire:click="editCourse">Save Course</button>
+        <div>
+            <button class="btn btn-primary"
+                wire:click="$emit('openModal', 'course.add-features', {{ json_encode(['courseId' => $course->id]) }})">Add
+                Features
+                +</button>
+            <button class="btn btn-primary intro-y" wire:click="editCourse">Save Course</button>
+        </div>
     </div>
     <hr>
     @if (session()->has('message'))
@@ -122,7 +128,9 @@
 
 
     {{-- feature part --}}
-
+    <hr class="mt-5">
+    <x-intro info="Feature Part" />
+    <hr>
     <div class="grid md:grid-cols-2  sm:gap-2 md:gap-[5rem] mt-10">
         @foreach ($course->features as $feature)
         <div class="feature">
@@ -198,11 +206,13 @@
             });
 
 
-            $('.summernote').summernote({
+        $('.summernote').summernote({
             height: 250,
             focus:true,
             dialogsInBody: true,
-            });
+        });
+
+        
        
 </script>
 @endpush

@@ -170,16 +170,7 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('courses.trash') }}" class="menu">
-                            <div class="menu__icon">
-                                <i data-lucide="activity"></i>
-                            </div>
-                            <div class="menu__title">
-                                Trash Courses
-                            </div>
-                        </a>
-                    </li>
+                  
 
                 </ul>
             </li>
@@ -338,16 +329,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('courses.trash') }}" class="side-menu">
-                                <div class="side-menu__icon">
-                                    <i data-lucide="activity"></i>
-                                </div>
-                                <div class="side-menu__title">
-                                    Trash Courses
-                                </div>
-                            </a>
-                        </li>
+                       
 
                     </ul>
                 </li>

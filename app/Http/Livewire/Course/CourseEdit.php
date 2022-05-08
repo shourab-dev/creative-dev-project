@@ -15,7 +15,8 @@ class CourseEdit extends Component
         'software' => 'setSoftware',
         'thumbnail' => 'setThumbnail',
         'course-img' => 'setImage',
-        'feature-img' => 'setFeatureImage'
+        'feature-img' => 'setFeatureImage',
+        'successFeature' => 'successFeature',
     ];
 
     public $course;
@@ -123,5 +124,9 @@ class CourseEdit extends Component
     public function setSoftware($software)
     {
         $this->selectSoftware = $software;
+    }
+    public function successFeature()
+    {
+        session()->flash('message','Feature Added Successfully');
     }
 }
