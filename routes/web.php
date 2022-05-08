@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -32,7 +33,7 @@ Route::middleware([
 // File manager
 Route::GET('/file-manager', function () {
     return view('backend.file.fileManager');
-})->name('filemanager')->middleware('auth');
+})->name('filemanager')->middleware(['auth', 'can:file management']);
 
 // File manager ends
 
@@ -41,10 +42,10 @@ Route::GET('/file-manager', function () {
 
 Route::GET('/banner', function () {
     return view('backend.banner.banners');
-})->name('banner')->middleware('auth');
+})->name('banner')->middleware('auth', 'can:add banner');
 Route::GET('/banner/trash', function () {
     return view('backend.banner.bannerTrash');
-})->name('banner.trash')->middleware('auth');
+})->name('banner.trash')->middleware('auth', 'can:trash banner');
 
 // BANNER ends
 
@@ -52,21 +53,19 @@ Route::GET('/banner/trash', function () {
 // Department
 Route::GET('/department', function () {
     return view('backend.department.department');
-})->name('department')->middleware('auth');
+})->name('department')->middleware('auth', 'can:department management');
 
 
 // Courses
 
 Route::GET('/courses', function () {
     return view('backend.courses.courseCreate');
-})->name('courses')->middleware('auth');
+})->name('courses')->middleware('auth', 'can:add course');
 
 
-Route::GET('/courses/all', [CourseController::class, 'index'])->name('courses.index')->middleware('auth');
-Route::GET('/course/status/{slug}', [CourseController::class, 'status'])->name('course.status');
-Route::GET('/course/edit/{slug}', [CourseController::class, 'edit'])->name('course.edit');
-Route::PUT('/couse/feature/update/{id}', [CourseController::class, 'test'])->name('course.feature.update');
+Route::GET('/courses/all', [CourseController::class, 'index'])->name('courses.index')->middleware('auth', 'can:edit course');
+Route::GET('/course/status/{slug}', [CourseController::class, 'status'])->name('course.status')->middleware('auth', 'can:edit course');
+Route::GET('/course/edit/{slug}', [CourseController::class, 'edit'])->name('course.edit')->middleware('auth', 'can:edit course');
+Route::PUT('/couse/feature/update/{id}', [CourseController::class, 'test'])->name('course.feature.update')->middleware('auth', 'can:add course');
 
-Route::GET('/courses/trash', function () {
-    return view('backend.courses.courseCreate');
-})->name('courses.trash')->middleware('auth');
+

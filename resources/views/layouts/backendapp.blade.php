@@ -170,7 +170,7 @@
                             </div>
                         </a>
                     </li>
-                  
+
 
                 </ul>
             </li>
@@ -201,7 +201,66 @@
                         </div>
                     </a>
                 </li>
+                {{-- User management --}}
+                @can('user management')
+
+                <li>
+                    <a href="javascript:;"
+                        class="side-menu {{ request()->routeIs('user*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-credit-card">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title">
+                            Manage Users
+                            <div
+                                class="side-menu__sub-icon transform  {{ request()->routeIs('user*') ? 'rotate-180' : 'rotate-0' }}">
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class=" {{ request()->routeIs('user*') ? 'side-menu__sub-open' : '' }}">
+
+                        <li>
+                            <a href="{{ route('banner') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Add Users
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('banner') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Role Managements
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('banner.trash') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    All Users
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                @endcan
                 {{-- file manager --}}
+                @can('file management')
                 <li>
                     <a href="{{ route('filemanager') }}"
                         class="side-menu {{ request()->routeIs('filemanager') ? 'side-menu--active' : '' }}">
@@ -218,6 +277,7 @@
                         <div class="side-menu__title"> File Manager </div>
                     </a>
                 </li>
+                @endcan
                 {{-- banner --}}
                 <li>
                     <a href="javascript:;"
@@ -286,6 +346,9 @@
                     </a>
                 </li>
                 {{-- Courses --}}
+                @canany(['add course','edit course'])
+
+
                 <li>
                     <a href="javascript:;"
                         class="side-menu {{ request()->routeIs('courses*') ? 'side-menu--active' : '' }}">
@@ -308,6 +371,8 @@
                         </div>
                     </a>
                     <ul class=" {{ request()->routeIs('courses*') ? 'side-menu__sub-open' : '' }}">
+                        @can('add course')
+
 
                         <li>
                             <a href="{{ route('courses') }}" class="side-menu">
@@ -319,6 +384,8 @@
                                 </div>
                             </a>
                         </li>
+                        @endcan
+                        @can('edit course')
                         <li>
                             <a href="{{ route('courses.index') }}" class="side-menu">
                                 <div class="side-menu__icon">
@@ -329,10 +396,11 @@
                                 </div>
                             </a>
                         </li>
-                       
+                        @endcan
 
                     </ul>
                 </li>
+                @endcan
 
 
             </ul>
@@ -484,8 +552,8 @@
                         <ul class="dropdown-content bg-primary text-white">
                             <li class="p-2">
                                 <div class="font-medium">{{ str()->ucfirst(Auth::user()->name) }}</div>
-                                <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">
-                                    DevOps Engineer</div>
+                                <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500 capitalize">
+                                    {{ Auth::user()->getRoleNames()[0] }}</div>
                             </li>
                             <li>
                                 <hr class="dropdown-divider border-white/[0.08]">

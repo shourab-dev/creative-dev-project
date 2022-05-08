@@ -38,15 +38,19 @@
                             class="w-full  h-[15rem] object-cover object-center rounded-xl" title="Banner">
                     </td>
                     <td class="w-[10%]">{{ $banner->title }}</td>
-                    <td class="w-[5%]">Shourab
+                    <td class="w-[5%]">
+                        {{ $banner->added_by }}
                         <br>
                         <span>{{ Carbon\Carbon::parse($banner->created_at)->format('d/m/y') }}</span>
                     </td>
                     <td class="w-[5%]">
+                        @can('edit banner')
                         <x-status-button status="{{ $banner->status }}" wire:click="updateStatus({{ $banner->id }})" />
+                        @endcan
                     </td>
                     <td class="w-[20%]">
                         <div class="grid grid-cols-2">
+                            @can('edit banner')
                             <a wire:click.prevent="$emit('openModal', 'banner-edit-form' , {{ json_encode(['banner_id'=> $banner->id]) }})"
                                 class="text-purple-600 flex align-items-center me-3" href="javascript:;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -56,6 +60,8 @@
                                     <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                                 </svg> Edit
                             </a>
+                            @endcan
+                            @can('delete banner')
                             <a wire:click.prevent="confirmDelete({{ $banner->id }})"
                                 class="text-red-600 flex align-items-center text-theme-6" href="javascript:;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -69,6 +75,7 @@
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg> Delete
                             </a>
+                            @endcan
                         </div>
                     </td>
                 </tr>
