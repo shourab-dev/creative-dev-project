@@ -15,7 +15,8 @@ class CourseEdit extends Component
         'software' => 'setSoftware',
         'thumbnail' => 'setThumbnail',
         'course-img' => 'setImage',
-        'feature-img' => 'setFeatureImage'
+        'feature-img' => 'setFeatureImage',
+        'successFeature' => 'successFeature',
     ];
 
     public $course;
@@ -32,6 +33,7 @@ class CourseEdit extends Component
     public $basic;
     public $opportunity;
 
+    public $feature_img;
 
 
     public function mount()
@@ -112,7 +114,7 @@ class CourseEdit extends Component
 
     public function setFeatureImage($link)
     {
-        $this->featureImg = $link['link'];
+        $this->feature_img = $link['link'];
     }
 
     public function setMarketPlace($marketPlace)
@@ -123,7 +125,8 @@ class CourseEdit extends Component
     {
         $this->selectSoftware = $software;
     }
-
-
-    
+    public function successFeature()
+    {
+        session()->flash('message','Feature Added Successfully');
+    }
 }

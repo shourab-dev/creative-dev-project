@@ -81,26 +81,34 @@
             @enderror
         </div>
         <div class="marketplace my-4">
+            @if ($selectMarketPlace)
+            <div class="grid grid-cols-6 my-2">
+                @foreach (json_decode($selectMarketPlace)->marketPlace as $marketPlace)
+                <img src="{{ $marketPlace }}" alt="">
+                @endforeach
+            </div>
+            @endif
             <button class="btn btn-primary" wire:click="$emit('openModal', 'course.market-place')">Add Market Places
                 +</button>
             @error('selectMarketPlace')
             <span class="text-red-600">{{ $message }}</span>
             @enderror
-            @if ($selectMarketPlace)
-            <span class="mx-3">
-                Items Added</span>
-            @endif
+
         </div>
         <div class="software my-4">
+            @if ($selectSoftware)
+            <div class="grid grid-cols-6 my-2">
+                @foreach (json_decode($selectSoftware)->software as $software)
+                <img src="{{ $software }}" alt="">
+                @endforeach
+            </div>
+            @endif
             <button class="btn btn-primary" wire:click="$emit('openModal', 'course.softwares')">Add SoftWares
                 +</button>
             @error('selectSoftware')
             <span class="text-red-600">{{ $message }}</span>
             @enderror
-            @if ($selectSoftware)
-            <span class="mx-3">
-                Items Added</span>
-            @endif
+
         </div>
     </div>
 

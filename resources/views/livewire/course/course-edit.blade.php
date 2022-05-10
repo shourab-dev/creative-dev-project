@@ -1,7 +1,13 @@
 <div>
     <div class="flex justify-between align-middle my-3">
-        <x-intro info="Add Course" />
-        <button class="btn btn-primary intro-y" wire:click="editCourse">Save Course</button>
+        <x-intro info="Edit {{ $course->title }} Course" />
+        <div>
+            <button class="btn btn-primary"
+                wire:click="$emit('openModal', 'course.add-features', {{ json_encode(['courseId' => $course->id]) }})">Add
+                Features
+                +</button>
+            <button class="btn btn-primary intro-y" wire:click="editCourse">Save Course</button>
+        </div>
     </div>
     <hr>
     @if (session()->has('message'))
@@ -81,26 +87,32 @@
             @enderror
         </div>
         <div class="marketplace my-4">
+            <div class="grid grid-cols-6 my-2">
+                @foreach (json_decode($selectMarketPlace)->marketPlace as $marketPlace)
+                <img src="{{ $marketPlace }}" alt="">
+                @endforeach
+            </div>
             <button class="btn btn-primary" wire:click="$emit('openModal', 'course.market-place')">Add Market Places
                 +</button>
             @error('selectMarketPlace')
             <span class="text-red-600">{{ $message }}</span>
             @enderror
-            @if ($selectMarketPlace)
-            <span class="mx-3">
-                Items Added</span>
-            @endif
+
+
+
         </div>
         <div class="software my-4">
+            <div class="grid grid-cols-6 my-2">
+                @foreach (json_decode($selectSoftware)->software as $software)
+                <img src="{{ $software }}" alt="">
+                @endforeach
+            </div>
             <button class="btn btn-primary" wire:click="$emit('openModal', 'course.softwares')">Add SoftWares
                 +</button>
             @error('selectSoftware')
             <span class="text-red-600">{{ $message }}</span>
             @enderror
-            @if ($selectSoftware)
-            <span class="mx-3">
-                Items Added</span>
-            @endif
+
         </div>
     </div>
 
@@ -116,8 +128,10 @@
 
 
     {{-- feature part --}}
-
-    <div class="grid md:grid-cols-2">
+    <hr class="mt-5">
+    <x-intro info="Feature Part" />
+    <hr>
+    <div class="grid md:grid-cols-2  sm:gap-2 md:gap-[5rem] mt-10">
         @foreach ($course->features as $feature)
         <div class="feature">
 
@@ -125,10 +139,33 @@
                 @csrf
                 @method('PUT')
                 @if ($feature->feature_image)
-                <img src="{{ $feature->feature_image }}" alt="">
+                <img src="{{ $feature->feature_image }}" alt="" class="mx-auto">
                 @endif
-                <input type="text" name="title">
-                <button>Submit</button>
+
+                <x-file-input label="Feature Image" wire:model="feature_img"
+                    wire:click.prevent="$emit('openModal', 'course.image', {{ json_encode(['name' => 'featureImg']) }})" />
+                <x-input type="hidden" value="{{ $feature_img ? $feature_img :  $feature->feature_image }}"
+                    name="feature_img" />
+                <x-input name="feature_title" placeholder="Feature Title" value="{{ $feature->title }}" />
+                @error('feature_title')
+                <span class="text-red-400">{{ $message }}</span>
+                @enderror
+                <div wire:ignore><textarea name="feature_detail" class="summernote">{{ $feature->details }}</textarea>
+                </div>
+                @error('feature_detail')
+                <span class="text-red-400">{{ $message }}</span>
+                @enderror
+                <div class="mt-3">
+
+                    <div class="mt-2">
+                        <div class="form-check form-switch">
+                            <input id="status{{ $feature->id }}" class="form-check-input" type="checkbox" name="status"
+                                {{ $feature->status == true ? 'checked' : '' }}>
+                            <label class="form-check-label p-2 text-lg" for="status{{ $feature->id }}">Status</label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary float-right my-3">Save Changes</button>
             </form>
 
         </div>
@@ -167,6 +204,15 @@
             }
             }
             });
+
+
+        $('.summernote').summernote({
+            height: 250,
+            focus:true,
+            dialogsInBody: true,
+        });
+
+        
        
 </script>
 @endpush

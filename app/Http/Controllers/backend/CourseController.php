@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Department;
+use App\Models\Feature;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -43,8 +44,26 @@ class CourseController extends Controller
     }
 
 
-    public function test(Request $request)
+    public function test(Request $request, $id)
     {
-        dump($request->all());
+
+        $request->validate([
+            'feature_title' => 'required',
+            'feature_detail' => 'required',
+        ]);
+
+
+        $feature = Feature::find($id);
+        $feature->title = $request->feature_title;
+        $feature->details = $request->feature_detail;
+        $feature->feature_image = $request->feature_img;
+        if ($request->status) {
+
+            $feature->status = true;
+        } else {
+            $feature->status = false;
+        }
+        $feature->save();
+        return back();
     }
 }

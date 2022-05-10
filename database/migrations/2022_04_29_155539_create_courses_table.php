@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->string('image')->nullable();
             $table->string('iframe')->nullable();
-            $table->string('marketplace');
-            $table->string('softwares');
+            $table->json('marketplace');
+            $table->json('softwares');
             $table->string('basic');
-            $table->string('carrer');
+            $table->longText('carrer');
             $table->boolean('status')->default(true);
             $table->softDeletes();
             $table->timestamps();
