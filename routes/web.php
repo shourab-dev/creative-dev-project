@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\CourseController;
+use App\Http\Controllers\SuccessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,7 @@ Route::GET('/course/edit/{slug}', [CourseController::class, 'edit'])->name('cour
 Route::PUT('/couse/feature/update/{id}', [CourseController::class, 'test'])->name('course.feature.update')->middleware('auth', 'can:add course');
 
 
+
+
+// SUCCESS STORY
+Route::GET('/success-story', [SuccessController::class, 'index'])->name('success.story')->middleware('auth', 'can:add story');

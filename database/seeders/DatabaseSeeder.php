@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SuccessDescription;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 RoleSeeder::class,
                 PermissionSeeder::class,
+                SuccessDescriptionSeeder::class,
             ]
         );
     }

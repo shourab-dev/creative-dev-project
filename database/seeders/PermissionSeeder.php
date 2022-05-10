@@ -27,7 +27,9 @@ class PermissionSeeder extends Seeder
             'trash banner',
             'department management',
             'add course',
-            'edit course'
+            'edit course',
+            'add story',
+            'manage story',
         ];
         foreach ($permissions as $permission) {
             Permission::create([

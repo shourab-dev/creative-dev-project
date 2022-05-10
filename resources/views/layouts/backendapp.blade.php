@@ -47,6 +47,7 @@
 
             </li>
             {{-- File Manager --}}
+            @can('file management')
             <li>
                 <a href="{{ route('filemanager') }}"
                     class="menu {{ request()->routeIs('filemanager') ? 'menu--active' : '' }}">
@@ -65,6 +66,9 @@
                     <div class="menu__title"> File Manager </div>
                 </a>
             </li>
+            @endcan
+            @canany(['add banner', 'trash banner', 'edit banner'])
+
             {{-- Banner --}}
             <li>
                 <a href="javascript:;" class="menu {{ request()->routeIs('banner*') ? 'menu--active' : '' }}">
@@ -85,6 +89,7 @@
                     </div>
                 </a>
                 <ul class=" {{ request()->routeIs('banner*') ? 'menu__sub-open' : '' }}">
+                    @canany(['add banner', 'edit banner', 'delete banner'])
 
                     <li>
                         <a href="{{ route('banner') }}" class="menu">
@@ -96,6 +101,9 @@
                             </div>
                         </a>
                     </li>
+                    @endcan
+                    @can('trash banner')
+
                     <li>
                         <a href="{{ route('banner.trash') }}" class="menu">
                             <div class="menu__icon">
@@ -106,10 +114,13 @@
                             </div>
                         </a>
                     </li>
-
+                    @endcan
                 </ul>
             </li>
+            @endcan
             {{-- Department --}}
+            @can('department management')
+
             <li>
                 <a href="{{ route('department') }}"
                     class="menu {{ request()->routeIs('department') ? 'menu--active' : '' }}">
@@ -128,6 +139,8 @@
                     <div class="menu__title"> Departments </div>
                 </a>
             </li>
+            @endcan
+            @canany(['add course','edit course'])
             {{-- Courses --}}
             <li>
                 <a href="javascript:;" class="menu {{ request()->routeIs('courses*') ? 'menu--active' : '' }}">
@@ -174,7 +187,29 @@
 
                 </ul>
             </li>
+            @endcan
+            {{-- success stories --}}
+            @can('manage story')
 
+            <li>
+                <a href="{{ route('success.story') }}"
+                    class="menu {{ request()->routeIs('success.story') ? 'menu--active' : '' }}">
+                    <div class="menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-hard-drive">
+                            <line x1="22" y1="12" x2="2" y2="12"></line>
+                            <path
+                                d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
+                            </path>
+                            <line x1="6" y1="16" x2="6.01" y2="16"></line>
+                            <line x1="10" y1="16" x2="10.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <div class="menu__title"> Success Stories </div>
+                </a>
+            </li>
+            @endcan
         </ul>
     </div>
     <!-- END: Mobile Menu -->
@@ -278,6 +313,7 @@
                     </a>
                 </li>
                 @endcan
+                @canany(['add banner', 'trash banner', 'edit banner'])
                 {{-- banner --}}
                 <li>
                     <a href="javascript:;"
@@ -323,7 +359,9 @@
 
                     </ul>
                 </li>
+                @endcan
                 {{-- Department --}}
+                @can('department management')
                 <li>
                     <a href="{{ route('department') }}"
                         class="side-menu {{ request()->routeIs('department') ? 'side-menu--active' : '' }}">
@@ -345,10 +383,9 @@
                         <div class="side-menu__title"> Departments </div>
                     </a>
                 </li>
+                @endcan
                 {{-- Courses --}}
                 @canany(['add course','edit course'])
-
-
                 <li>
                     <a href="javascript:;"
                         class="side-menu {{ request()->routeIs('courses*') ? 'side-menu--active' : '' }}">
@@ -401,7 +438,29 @@
                     </ul>
                 </li>
                 @endcan
-
+                @can('manage story')
+                <li>
+                    <a href="{{ route('success.story') }}"
+                        class="side-menu {{ request()->routeIs('success.story') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" icon-name="slack" data-lucide="slack"
+                                class="lucide lucide-slack block mx-auto">
+                                <rect x="13" y="2" width="3" height="8" rx="1.5"></rect>
+                                <path d="M19 8.5V10h1.5A1.5 1.5 0 1019 8.5"></path>
+                                <rect x="8" y="14" width="3" height="8" rx="1.5"></rect>
+                                <path d="M5 15.5V14H3.5A1.5 1.5 0 105 15.5"></path>
+                                <rect x="14" y="13" width="8" height="3" rx="1.5"></rect>
+                                <path d="M15.5 19H14v1.5a1.5 1.5 0 101.5-1.5"></path>
+                                <rect x="2" y="8" width="8" height="3" rx="1.5"></rect>
+                                <path d="M8.5 5H10V3.5A1.5 1.5 0 108.5 5"></path>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title"> Success Stories </div>
+                    </a>
+                </li>
+                @endcan
 
             </ul>
         </nav>

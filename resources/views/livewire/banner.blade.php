@@ -2,6 +2,8 @@
     @if (session()->has('message'))
     <span class="w-full block py-3 px-2 bg-green-300 mb-3 text-green-700">{{ session('message') }}</span>
     @endif
+    @can('add banner')
+
     <div class="flex justify-end  md:mb-10 sm:mb-5">
         <button class="btn btn-primary" wire:click="$emit('openModal', 'banner-form')">Add Banner Items
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -12,6 +14,7 @@
             </svg>
         </button>
     </div>
+    @endcan
 
 
     <hr>
