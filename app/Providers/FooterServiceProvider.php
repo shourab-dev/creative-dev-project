@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Footer;
+use App\Models\Portfolio;
 use Illuminate\Support\ServiceProvider;
 
 class FooterServiceProvider extends ServiceProvider
@@ -25,7 +26,7 @@ class FooterServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('layouts.frontendapp', function ($view) {
-            $view->with('footer', Footer::first());
+            $view->with('footer', Footer::first())->with('portfolio', Portfolio::first());
         });
     }
 }

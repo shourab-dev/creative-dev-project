@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
                 PermissionSeeder::class,
                 SuccessDescriptionSeeder::class,
                 HeaderSeeder::class,
+                PortfolioSeeder::class,
             ]
         );
     }

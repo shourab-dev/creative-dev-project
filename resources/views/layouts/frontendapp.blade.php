@@ -174,9 +174,11 @@
             </div>
         </div>
         <div class="copyright">
-            <span class="py-3 d-block"><a href="https://www.facebook.com/FaisalAhmed.Shourab" target="__blank"
-                    class="text-dark"><i class="bi bi-heart text-danger"></i> Developed By MD.Shourab</a></span>
-            <p>Copyright © 2022 Creative IT Institute Chattogram</p>
+            <span class="py-3 d-block">
+                <a href="{{ $portfolio->link }}" target="__blank" class="text-dark">
+                    {!! $portfolio->text !!}
+                </a></span>
+            <p>{{ $footer['copyright'] }}</p>
         </div>
     </footer>
 
