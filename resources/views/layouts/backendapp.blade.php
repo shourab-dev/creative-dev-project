@@ -553,7 +553,7 @@
                         @endcan
                         @can('manage footer')
                         <li>
-                            <a href="{{ route('courses.index') }}" class="side-menu">
+                            <a href="{{ route('customize.footer') }}" class="side-menu">
                                 <div class="side-menu__icon">
                                     <i data-lucide="activity"></i>
                                 </div>

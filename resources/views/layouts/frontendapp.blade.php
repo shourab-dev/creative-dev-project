@@ -139,8 +139,7 @@
                 <div class="col-lg-4 location">
                     <h4>Address</h4>
                     <address>
-                        9 No, Kapasgola Road (4th Floor), Chawk Bazar, Telpotti More,
-                        Chattogram 4203, Bangladesh
+                        {{ $footer['address'] }}
                     </address>
                 </div>
 
