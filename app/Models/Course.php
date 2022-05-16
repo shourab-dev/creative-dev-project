@@ -28,4 +28,9 @@ class Course extends Model
     {
         return $this->hasMany(Feature::class);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

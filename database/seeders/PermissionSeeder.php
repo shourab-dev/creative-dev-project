@@ -30,6 +30,8 @@ class PermissionSeeder extends Seeder
             'edit course',
             'add story',
             'manage story',
+            'manage header',
+            'manage footer',
         ];
         foreach ($permissions as $permission) {
             Permission::create([

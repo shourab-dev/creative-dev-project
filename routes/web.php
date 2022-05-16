@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\CourseController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\SuccessController;
 
 /*
@@ -16,9 +17,7 @@ use App\Http\Controllers\SuccessController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 
 Route::middleware([
@@ -74,3 +73,10 @@ Route::PUT('/couse/feature/update/{id}', [CourseController::class, 'test'])->nam
 
 // SUCCESS STORY
 Route::GET('/success-story', [SuccessController::class, 'index'])->name('success.story')->middleware('auth', 'can:add story');
+
+
+// CUSTOMIZE WEBSITE [HEADER, FOOTER]
+Route::prefix('customize/')->name('customize.')->group(function () {
+    Route::view('header', 'backend.customize.header')->name('header');
+    Route::view('footer', 'backend.customize.footer')->name('footer');
+});

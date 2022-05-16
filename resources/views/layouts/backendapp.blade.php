@@ -140,8 +140,8 @@
                 </a>
             </li>
             @endcan
-            @canany(['add course','edit course'])
             {{-- Courses --}}
+            @canany(['add course','edit course'])
             <li>
                 <a href="javascript:;" class="menu {{ request()->routeIs('courses*') ? 'menu--active' : '' }}">
                     <div class="menu__icon">
@@ -162,7 +162,7 @@
                     </div>
                 </a>
                 <ul class=" {{ request()->routeIs('courses*') ? 'menu__sub-open' : '' }}">
-
+                    @can('add course')
                     <li>
                         <a href="{{ route('courses') }}" class="menu">
                             <div class="menu__icon">
@@ -173,6 +173,8 @@
                             </div>
                         </a>
                     </li>
+                    @endcan
+                    @can('edit course')
                     <li>
                         <a href="{{ route('courses.index') }}" class="menu">
                             <div class="menu__icon">
@@ -183,6 +185,7 @@
                             </div>
                         </a>
                     </li>
+                    @endcan
 
 
                 </ul>
@@ -208,6 +211,57 @@
                     </div>
                     <div class="menu__title"> Success Stories </div>
                 </a>
+            </li>
+            @endcan
+            @canany(['manage header','manage footer'])
+            <li>
+                <a href="javascript:;" class="menu {{ request()->routeIs('customize*') ? 'menu--active' : '' }}">
+                    <div class="menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            icon-name="layout" data-lucide="layout" class="lucide lucide-layout">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                    </div>
+                    <div class="menu__title">
+                        Courses
+                        <div
+                            class="menu__sub-icon transform  {{ request()->routeIs('customize*') ? 'rotate-180' : 'rotate-0' }}">
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class=" {{ request()->routeIs('customize*') ? 'menu__sub-open' : '' }}">
+                    @can('manage header')
+
+                    <li>
+                        <a href="{{ route('customize.header') }}" class="menu">
+                            <div class="menu__icon">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <div class="menu__title">
+                                Header
+                            </div>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('manage footer')
+
+                    <li>
+                        <a href="{{ route('customize.footer') }}" class="menu">
+                            <div class="menu__icon">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <div class="menu__title">
+                                Footer
+                            </div>
+                        </a>
+                    </li>
+                    @endcan
+
+                </ul>
             </li>
             @endcan
         </ul>
@@ -459,6 +513,58 @@
                         </div>
                         <div class="side-menu__title"> Success Stories </div>
                     </a>
+                </li>
+                @endcan
+                @canany(['manage header', 'manage footer'])
+                <li>
+                    <a href="javascript:;"
+                        class="side-menu {{ request()->routeIs('customize*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" icon-name="layout" data-lucide="layout"
+                                class="lucide lucide-layout">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title">
+                            Customize Website
+                            <div
+                                class="side-menu__sub-icon transform  {{ request()->routeIs('customize*') ? 'rotate-180' : 'rotate-0' }}">
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class=" {{ request()->routeIs('customize*') ? 'side-menu__sub-open' : '' }}">
+                        @can('manage header')
+
+                        <li>
+                            <a href="{{ route('customize.header') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Header
+                                </div>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('manage footer')
+                        <li>
+                            <a href="{{ route('courses.index') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Footer
+                                </div>
+                            </a>
+                        </li>
+                        @endcan
+
+                    </ul>
                 </li>
                 @endcan
 

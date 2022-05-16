@@ -1,0 +1,151 @@
+@media (max-width: 768px) {
+  .activeLogo {
+    display: none !important;
+  }
+  .navbar-collapse {
+    min-height: 400px;
+    height: auto;
+    max-height: 100vh;
+    overflow: auto;
+  }
+  #seminar .intro h2::after {
+    width: 30% !important;
+  }
+  @-webkit-keyframes fixedNav {
+    from {
+      opacity: 0;
+      -webkit-transform: translateY(-100%);
+              transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+  @keyframes fixedNav {
+    from {
+      opacity: 0;
+      -webkit-transform: translateY(-100%);
+              transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+  #banner .slider_cnt {
+    min-height: 300px;
+    background-position: 80% center !important;
+  }
+  #about .abstract_img {
+    display: none;
+  }
+  #courses h2 {
+    font-size: 2.4rem;
+  }
+  #courses h2::after {
+    top: 25px;
+  }
+  #courses::before {
+    display: none;
+  }
+  #faculties .faculties_filter .filter_buttons,
+  #courses .course_filter .filter_buttons {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  #faculties .faculties_filter .filter_buttons button {
+    width: 30%;
+    margin: 10px 10px 0 0;
+  }
+  #courses .course_filter .filter_buttons button.mixitup-control-active::after,
+  #courses .course_filter .filter_buttons button:hover::after {
+    -webkit-transform: translate(-50%, -50%) scale(11.4);
+            transform: translate(-50%, -50%) scale(11.4);
+  }
+  #courses .course_filter .filterable_container .course_text {
+    padding: 40px 36px;
+  }
+  #blogView .blog_img {
+    height: 22rem;
+  }
+  #blogView .blog_img .overlay {
+    padding: 0px 20px 30px;
+  }
+}
+
+@media (min-width: 576px) {
+  #seminar .seminar_model .card .card-body {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  #blogView .blog_component {
+    -ms-grid-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1fr;
+  }
+  #blogLandingSection .gridLayout {
+    -ms-grid-columns: 2fr 1fr 1fr;
+        grid-template-columns: 2fr 1fr 1fr;
+  }
+  #blogLandingSection .gridLayout .activeBlogCard {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1/span 2;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #blogLandingSection .gridLayout {
+    -ms-grid-columns: 2fr 2fr;
+        grid-template-columns: 2fr 2fr;
+  }
+  #blogLandingSection .gridLayout .activeBlogCard {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1/span 2;
+  }
+}
+
+@media (max-width: 991px) {
+  .creative_navbar .smallDeviceSearchBar > i {
+    margin-right: 25px;
+    font-size: 25px !important;
+    position: relative;
+  }
+  .creative_navbar .smallDeviceSearchBar > i ~ form {
+    position: absolute;
+    margin-top: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(47, 47, 47, 0.339);
+    height: 100vh;
+    padding: 10px 20px;
+  }
+  .creative_navbar .smallDeviceSearchBar > i ~ form input {
+    height: 50px;
+    text-indent: 20px;
+    width: 100%;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 1px solid #ddd;
+    outline: none;
+  }
+  .creative_navbar .smallDeviceSearchBar > i ~ form input:focus {
+    border: 1px solid #3995ff;
+    -webkit-box-shadow: rgba(40, 176, 255, 0.24) 0px 3px 8px;
+            box-shadow: rgba(40, 176, 255, 0.24) 0px 3px 8px;
+  }
+  .creative_navbar .smallDeviceSearchBar button {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-radius: 0;
+    border: 1px solid black;
+  }
+  .creative_navbar .smallDeviceSearchBar i {
+    font-size: 30px;
+  }
+}
