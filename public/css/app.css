@@ -1046,6 +1046,10 @@ select {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
 }
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -1062,9 +1066,17 @@ select {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
-.my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1165,6 +1177,9 @@ select {
 .mt-0 {
   margin-top: 0px;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .ml-0\.5 {
   margin-left: 0.125rem;
 }
@@ -1179,9 +1194,6 @@ select {
 }
 .mb-\[20px\] {
   margin-bottom: 20px;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 .mb-10 {
   margin-bottom: 2.5rem;
@@ -1270,6 +1282,36 @@ select {
 .min-h-screen {
   min-height: 100vh;
 }
+.min-h-0 {
+  min-height: 0px;
+}
+.min-h-\[\] {
+  min-height: ;
+}
+.min-h-\[2\] {
+  min-height: 2;
+}
+.min-h-\[25\] {
+  min-height: 25;
+}
+.min-h-\[25re\] {
+  min-height: 25re;
+}
+.min-h-\[25rem\] {
+  min-height: 25rem;
+}
+.min-h-\[5rem\] {
+  min-height: 5rem;
+}
+.min-h-\[15rem\] {
+  min-height: 15rem;
+}
+.min-h-\[rem\] {
+  min-height: rem;
+}
+.min-h-\[10rem\] {
+  min-height: 10rem;
+}
 .w-5 {
   width: 1.25rem;
 }
@@ -1353,6 +1395,15 @@ select {
 }
 .w-4\/5 {
   width: 80%;
+}
+.w-\[50\%\] {
+  width: 50%;
+}
+.w-\[\%\] {
+  width: %;
+}
+.w-\[90\%\] {
+  width: 90%;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1530,6 +1581,9 @@ select {
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
+.justify-self-center {
+  justify-self: center;
+}
 .overflow-auto {
   overflow: auto;
 }
@@ -1570,6 +1624,9 @@ select {
 }
 .rounded-none {
   border-radius: 0px;
+}
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 .rounded-l-md {
   border-top-left-radius: 0.375rem;
@@ -1716,6 +1773,18 @@ select {
 .bg-red-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+.bg-cyan-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(103 232 249 / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;

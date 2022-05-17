@@ -157,18 +157,15 @@
                     @endforeach
 
                     <ul>
+                        @forelse ($socialLinks as $socialLink)
                         <li>
-                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="{{ $socialLink->link }}" target="__blank"><i
+                                    class="{{ $socialLink->icon }}"></i></a>
                         </li>
-                        <li>
-                            <a href="#"><i class="bi bi-youtube"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="bi bi-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="bi bi-instagram"></i></a>
-                        </li>
+                        @empty
+                        <li>No Link is available right now</li>
+                        @endforelse
+
                     </ul>
                 </div>
             </div>

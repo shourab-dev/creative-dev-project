@@ -79,7 +79,11 @@ Route::GET('/success-story', [SuccessController::class, 'index'])->name('success
 Route::prefix('customize/')->middleware('auth')->name('customize.')->group(function () {
     Route::view('header', 'backend.customize.header')->name('header')->middleware('can:manage header');
     Route::view('footer', 'backend.customize.footer')->name('footer')->middleware('can:manage footer');
+    Route::view('social', 'backend.customize.social')->name('social')->middleware('can:manage social');
 });
 
 // MY PORTFOLIO 
 Route::view('/portfolio', 'backend.portfolio.portfolio')->middleware('auth')->name('portfolio');
+
+// OUR FACILITIES
+Route::view('/facilities', 'backend.facilities.facilities')->middleware('auth', 'can:manage facilities')->name('facilities');
