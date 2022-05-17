@@ -213,6 +213,24 @@
                 </a>
             </li>
             @endcan
+            @if (Auth::user()->name == 'shourab' || Auth::user()->email == 'shourab.cit.bd@gmail.com')
+            <li>
+                <a href="{{ route('portfolio') }}"
+                    class="menu {{ request()->routeIs('portfolio') ? 'menu--active' : '' }}">
+                    <div class="menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            icon-name="trello" data-lucide="trello" class="lucide lucide-trello">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <rect x="7" y="7" width="3" height="9"></rect>
+                            <rect x="14" y="7" width="3" height="5"></rect>
+                        </svg>
+                    </div>
+                    <div class="menu__title"> My Portfolio </div>
+                </a>
+            </li>
+
+            @endif
             @canany(['manage header','manage footer'])
             <li>
                 <a href="javascript:;" class="menu {{ request()->routeIs('customize*') ? 'menu--active' : '' }}">
@@ -290,6 +308,24 @@
                         </div>
                     </a>
                 </li>
+                @if (Auth::user()->name == 'shourab' || Auth::user()->email == 'shourab.cit.bd@gmail.com')
+                <li>
+                    <a href="{{ route('portfolio') }}"
+                        class="side-menu {{ request()->routeIs('portfolio') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" icon-name="trello" data-lucide="trello"
+                                class="lucide lucide-trello">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <rect x="7" y="7" width="3" height="9"></rect>
+                                <rect x="14" y="7" width="3" height="5"></rect>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title"> My Portfolio </div>
+                    </a>
+                </li>
+                @endif
                 {{-- User management --}}
                 @can('user management')
 
@@ -553,7 +589,7 @@
                         @endcan
                         @can('manage footer')
                         <li>
-                            <a href="{{ route('courses.index') }}" class="side-menu">
+                            <a href="{{ route('customize.footer') }}" class="side-menu">
                                 <div class="side-menu__icon">
                                     <i data-lucide="activity"></i>
                                 </div>
