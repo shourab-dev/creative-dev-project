@@ -1,3 +1,3 @@
 <x-app-layout>
-    hellow
+    @livewire('contact.contacts')
 </x-app-layout>

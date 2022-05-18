@@ -1,10 +1,11 @@
 <?php
 
 
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\backend\CourseController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\SuccessController;
 
 /*
 |--------------------------------------------------------------------------
