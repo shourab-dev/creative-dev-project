@@ -87,3 +87,6 @@ Route::view('/portfolio', 'backend.portfolio.portfolio')->middleware('auth')->na
 
 // OUR FACILITIES
 Route::view('/facilities', 'backend.facilities.facilities')->middleware('auth', 'can:manage facilities')->name('facilities');
+
+// COUNCILING 
+Route::view('/counciling', 'backend.counciling.counciling')->name('counciling')->middleware('auth', 'can:counciling');

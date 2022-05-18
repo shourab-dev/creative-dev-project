@@ -123,7 +123,7 @@
       <div class="seminar_model">
         <div class="card">
           <div class="logo">
-            <img src="./image/logo.webp" alt="" />
+            <img src="" alt="" />
           </div>
           <div class="card-header px-2">
             <p class="h5">Join Seminar</p>
@@ -304,78 +304,17 @@
       </div>
       <div class="facilities_cards" data-aos="fade-up">
         <div class="row">
+          @foreach ($facilities as $facility)
           <div class="col-lg-4 col-md-6 text-center text-lg-start">
             <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
+              <img src="{{ $facility->image }}" alt="{{ $facility->title }}" />
+              <h3>{{ $facility->title }}</h3>
               <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
+                {{ $facility->detail }}
               </p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
