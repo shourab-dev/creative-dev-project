@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\backend\CourseController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\SeminarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,11 @@ use App\Http\Controllers\Frontend\FrontendController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
+
+
+
+
+
 
 
 
@@ -96,3 +102,7 @@ Route::POST('/counciling/store', [ContactController::class, 'storeContact'])->na
 
 // SEMINAR & WORKSHOP ROUTE
 Route::view('/seminar', 'backend.seminar.seminar')->name('seminar')->middleware('auth', 'can:manage seminar');
+// SEMINAR CONTACT SAVE FROM FRONTEND
+Route::POST('/seminar/join', [SeminarController::class, 'saveLeeds'])->name('seminar.join')->middleware('guest');
+
+

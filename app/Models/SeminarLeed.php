@@ -16,6 +16,11 @@ class SeminarLeed extends Model
         'email',
         'address',
     ];
+    protected $hidden = [
+        'seminar_id',
+        'created_at',
+        'updated_at',
+    ];
 
     public function seminar()
     {

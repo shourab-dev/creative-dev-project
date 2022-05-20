@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creative It</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" sizes="32x32" href="http://127.0.0.1:8000/frontend/image/fab_icon.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Courgette&family=DM+Sans:wght@700&family=Encode+Sans:wght@300;400&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;800&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;700&family=Roboto&display=swap"
         rel="stylesheet" />
