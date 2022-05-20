@@ -20,6 +20,8 @@ use App\Http\Controllers\Frontend\FrontendController;
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 
+
+// BACKEND ALL ROUTES
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -91,3 +93,6 @@ Route::view('/facilities', 'backend.facilities.facilities')->middleware('auth', 
 // COUNCILING 
 Route::view('/counciling', 'backend.counciling.counciling')->name('counciling')->middleware('auth', 'can:counciling');
 Route::POST('/counciling/store', [ContactController::class, 'storeContact'])->name('counciling.save')->middleware('guest');
+
+// SEMINAR & WORKSHOP ROUTE
+Route::view('/seminar', 'backend.seminar.seminar')->name('seminar')->middleware('auth', 'can:manage seminar');

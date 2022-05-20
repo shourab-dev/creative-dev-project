@@ -8,6 +8,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Facilities;
+use App\Models\Seminar;
 
 class FrontendController extends Controller
 {
@@ -22,13 +23,17 @@ class FrontendController extends Controller
         // course
         $courses = Course::with(['department' => function ($query) {
             $query->select('id', 'name');
-        }])->where('status', true)->get();
+        }])->select('id', 'department_id', 'title', 'slug', 'detail', 'thumbnail', 'status')->where('status', true)->get();
         // course end
+        // SEMINAR 
+        $seminars = Seminar::orderBy('date', 'ASC')->get();
+        // SEMINAR 
+
         // facilities
         $facilities = Facilities::limit(9)->select('id', 'image', 'title', 'detail')->toBase()->get();
 
         // dd($facilities);
 
-        return view('frontend.index', compact('banners', 'departments', 'courses', 'facilities'));
+        return view('frontend.index', compact('banners', 'departments', 'courses', 'seminars', 'facilities'));
     }
 }

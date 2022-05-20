@@ -147,9 +147,9 @@
               <div class="form-group">
                 <label for="course">Select Seminar: -</label>
                 <select name="course" id="course" class="form-control">
-                  <option value="1">Web Design</option>
-                  <option value="2">graphics Design</option>
-                  <option value="3">digital Design</option>
+                  @foreach ($seminars as $seminar)
+                  <option value="{{ $seminar->id }}">{{ $seminar->name }}</option>
+                  @endforeach
                 </select>
               </div>
               <div class="form-group">
@@ -177,14 +177,18 @@
               <th>Time</th>
               <th>Action</th>
             </tr>
+            @foreach ($seminars as $seminar)
             <tr>
-              <td>Web Design and Development workshop</td>
-              <td>25 Apr 2022, Monday</td>
-              <td>3.00 pm</td>
+              <td>{{ $seminar->name }}</td>
+              25 May 2022, Wednesday
+              <td>{{ Carbon\Carbon::parse($seminar->date)->format('d M Y, D') }}</td>
+              <td>{{ Carbon\Carbon::parse($seminar->time)->format('g:i A') }}</td>
               <td>
-                <a href="#" data-id="1" class="join__seminar__btn">Join Now</a>
+                <a href="#" data-id="{{ $seminar->id }}" class="join__seminar__btn">Join Now</a>
               </td>
             </tr>
+            @endforeach
+
           </table>
         </div>
       </div>

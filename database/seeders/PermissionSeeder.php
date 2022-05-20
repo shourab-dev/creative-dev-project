@@ -34,7 +34,8 @@ class PermissionSeeder extends Seeder
             'manage footer',
             'manage social',
             'manage facilities',
-            'counciling'
+            'counciling',
+            'manage seminar'
         ];
         foreach ($permissions as $permission) {
             Permission::create([
