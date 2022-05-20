@@ -32,7 +32,7 @@ class ContactsExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMap
 
             $query->whereBetween('created_at', [Carbon::parse($this->fromDate), Carbon::parse($this->toDate)->addDay()]);
         }
-        return $query;
+        return $query->latest();
     }
     public function query()
     {

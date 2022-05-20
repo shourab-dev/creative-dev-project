@@ -1,4 +1,5 @@
 <x-frontend-app>
+
   <!-- BANNER SECTION  -->
   @if (count($banners) > 0)
   <section id="banner">
@@ -271,9 +272,10 @@
               Get A Free <br />
               <span>Counselling</span>
             </h2>
-            <form action="" method="POST">
+            <form action="{{ route('counciling.save') }}" method="POST">
+              @csrf
               <input type="text" class="form-control" placeholder="Enter Your Name" name="name" data-aos="fade-up" />
-              <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="number"
+              <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="phone"
                 data-aos="fade-up" data-aos-delay="200" />
               <input type="text" class="form-control" placeholder="Enter Your Email Address" name="email"
                 data-aos="fade-up" data-aos-delay="300" />
@@ -281,6 +283,11 @@
                 Submit
               </button>
             </form>
+            @if (session()->has('success'))
+            <p class="px-2 py-2 my-2" style="background: lightgreen;color: rgb(12, 37, 12);">
+              {{ session('success') }}
+            </p>
+            @endif
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
@@ -294,6 +301,8 @@
   </section>
   <!-- CONTACT SECTION  ENDS -->
   <!-- OUR FACILITIES SECTION STARTS -->
+  @if (count($facilities) > 0)
+
   <section id="facilities">
     <div class="container">
       <div class="intro mb-5">
@@ -319,5 +328,6 @@
       </div>
     </div>
   </section>
+  @endif
   <!-- OUR FACILITIES SECTION ENDS -->
 </x-frontend-app>

@@ -31,7 +31,7 @@ class Contacts extends Component
 
             $query->whereBetween('created_at', [Carbon::parse($this->fromDate), Carbon::parse($this->toDate)->addDay()]);
         }
-        return $query->paginate(20);
+        return $query->latest()->paginate(20);
     }
     public function render()
     {

@@ -1,7 +1,6 @@
 <?php
 
-
-
+use App\Http\Controllers\backend\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\backend\CourseController;
@@ -91,3 +90,4 @@ Route::view('/facilities', 'backend.facilities.facilities')->middleware('auth', 
 
 // COUNCILING 
 Route::view('/counciling', 'backend.counciling.counciling')->name('counciling')->middleware('auth', 'can:counciling');
+Route::POST('/counciling/store', [ContactController::class, 'storeContact'])->name('counciling.save')->middleware('guest');
