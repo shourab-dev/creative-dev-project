@@ -1,4 +1,5 @@
 <x-frontend-app>
+
   <!-- BANNER SECTION  -->
   @if (count($banners) > 0)
   <section id="banner">
@@ -123,7 +124,7 @@
       <div class="seminar_model">
         <div class="card">
           <div class="logo">
-            <img src="./image/logo.webp" alt="" />
+            <img src="" alt="" />
           </div>
           <div class="card-header px-2">
             <p class="h5">Join Seminar</p>
@@ -146,9 +147,9 @@
               <div class="form-group">
                 <label for="course">Select Seminar: -</label>
                 <select name="course" id="course" class="form-control">
-                  <option value="1">Web Design</option>
-                  <option value="2">graphics Design</option>
-                  <option value="3">digital Design</option>
+                  @foreach ($seminars as $seminar)
+                  <option value="{{ $seminar->id }}">{{ $seminar->name }}</option>
+                  @endforeach
                 </select>
               </div>
               <div class="form-group">
@@ -176,14 +177,18 @@
               <th>Time</th>
               <th>Action</th>
             </tr>
+            @foreach ($seminars as $seminar)
             <tr>
-              <td>Web Design and Development workshop</td>
-              <td>25 Apr 2022, Monday</td>
-              <td>3.00 pm</td>
+              <td>{{ $seminar->name }}</td>
+              25 May 2022, Wednesday
+              <td>{{ Carbon\Carbon::parse($seminar->date)->format('d M Y, D') }}</td>
+              <td>{{ Carbon\Carbon::parse($seminar->time)->format('g:i A') }}</td>
               <td>
-                <a href="#" data-id="1" class="join__seminar__btn">Join Now</a>
+                <a href="#" data-id="{{ $seminar->id }}" class="join__seminar__btn">Join Now</a>
               </td>
             </tr>
+            @endforeach
+
           </table>
         </div>
       </div>
@@ -271,9 +276,10 @@
               Get A Free <br />
               <span>Counselling</span>
             </h2>
-            <form action="" method="POST">
+            <form action="{{ route('counciling.save') }}" method="POST">
+              @csrf
               <input type="text" class="form-control" placeholder="Enter Your Name" name="name" data-aos="fade-up" />
-              <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="number"
+              <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="phone"
                 data-aos="fade-up" data-aos-delay="200" />
               <input type="text" class="form-control" placeholder="Enter Your Email Address" name="email"
                 data-aos="fade-up" data-aos-delay="300" />
@@ -281,6 +287,11 @@
                 Submit
               </button>
             </form>
+            @if (session()->has('success'))
+            <p class="px-2 py-2 my-2" style="background: lightgreen;color: rgb(12, 37, 12);">
+              {{ session('success') }}
+            </p>
+            @endif
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
@@ -294,6 +305,8 @@
   </section>
   <!-- CONTACT SECTION  ENDS -->
   <!-- OUR FACILITIES SECTION STARTS -->
+  @if (count($facilities) > 0)
+
   <section id="facilities">
     <div class="container">
       <div class="intro mb-5">
@@ -304,81 +317,21 @@
       </div>
       <div class="facilities_cards" data-aos="fade-up">
         <div class="row">
+          @foreach ($facilities as $facility)
           <div class="col-lg-4 col-md-6 text-center text-lg-start">
             <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
+              <img src="{{ $facility->image }}" alt="{{ $facility->title }}" />
+              <h3>{{ $facility->title }}</h3>
               <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
+                {{ $facility->detail }}
               </p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center text-lg-start">
-            <div class="facility_card">
-              <img src="./image/facilities.png" alt="" />
-              <h3>24/7 Online Support</h3>
-              <p>
-                24/7 Online Support- We always listen to our students. Any
-                time they are in a problem, our team is always online for
-                providing support to them. Even at night, we are online for
-                your projects ongoing.
-              </p>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
   </section>
+  @endif
   <!-- OUR FACILITIES SECTION ENDS -->
 </x-frontend-app>
