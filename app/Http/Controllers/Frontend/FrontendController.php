@@ -26,12 +26,12 @@ class FrontendController extends Controller
         }])->select('id', 'department_id', 'title', 'slug', 'detail', 'thumbnail', 'status')->where('status', true)->get();
         // course end
         // SEMINAR 
-        $seminars = Seminar::orderBy('date', 'ASC')->get();
+        $seminars = Seminar::orderBy('date', 'ASC')->where('status', true)->get();
         // SEMINAR 
 
         // facilities
         $facilities = Facilities::limit(9)->select('id', 'image', 'title', 'detail')->toBase()->get();
-
+        
         // dd($facilities);
 
         return view('frontend.index', compact('banners', 'departments', 'courses', 'seminars', 'facilities'));

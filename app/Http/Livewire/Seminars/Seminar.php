@@ -2,15 +2,18 @@
 
 namespace App\Http\Livewire\Seminars;
 
-use App\Models\Seminar as ModelsSeminar;
 use Livewire\Component;
+use Illuminate\Support\Carbon;
+use App\Exports\SeminarLeedsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Seminar as ModelsSeminar;
 
 class Seminar extends Component
 {
-    protected $listeners = ['successUpdate', 'successSave'];
+    protected $listeners = ['successUpdate', 'successSave', 'backupLeeds' => 'exportLeeds'];
     public function render()
     {
-        return view('livewire.seminars.seminar', ['seminars' => ModelsSeminar::with('leeds')->latest()->get(['id', 'name', 'date','status'])]);
+        return view('livewire.seminars.seminar', ['seminars' => ModelsSeminar::with('leeds')->orderBy('date', 'ASC')->get(['id', 'name', 'date', 'status'])]);
     }
     public function changeStatus($seminar_Id)
     {
@@ -33,5 +36,15 @@ class Seminar extends Component
     public function successSave()
     {
         session()->flash('message', 'Seminar Added Successfuly');
+    }
+
+    public function exportLeeds($seminarId, $name = 'Leeds')
+    {
+        return Excel::download(new SeminarLeedsExport($seminarId, $name), $name . ' leeds ' . Carbon::today()->format('d-m-y M') . '.xlsx');
+    }
+
+    public function deleteLeeds($seminarId, $name = 'Leeds')
+    {
+        ModelsSeminar::find($seminarId)->delete();
     }
 }

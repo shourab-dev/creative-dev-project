@@ -40,6 +40,6 @@ class Contacts extends Component
 
     public function download()
     {
-        return Excel::download(new ContactsExport($this->fromDate, $this->toDate), 'counciling-leeds.xlsx');
+        return Excel::download(new ContactsExport($this->fromDate, $this->toDate), "counciling-leeds-" . Carbon::today()->format('d-m-Y M') . ".xlsx");
     }
 }

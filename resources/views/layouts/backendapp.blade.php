@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <link href="https://rubick.left4code.com/dist/images/logo.svg" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 

@@ -1,5 +1,18 @@
 <x-frontend-app>
+  @if (session()->has('success'))
+  <div class="toast show position-fixed" style="bottom: 4rem; right:3rem; z-index:99" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-header">
+      <img src="http://127.0.0.1:8000/frontend/image/fab_icon.png" class="rounded me-2" alt="...">
+      <strong class="me-auto">{{ env('APP_NAME') }}</strong>
 
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      {!! session('success') !!}
+    </div>
+  </div>
+  @endif
   <!-- BANNER SECTION  -->
   @if (count($banners) > 0)
   <section id="banner">
@@ -119,34 +132,37 @@
   @endif
   <!-- COURSES SECTION ENDS -->
   <!-- SEMINAR SECTION STARTS -->
+  @if (count($seminars) > 0)
+
   <section id="seminar">
     <div class="container">
       <div class="seminar_model">
         <div class="card">
           <div class="logo">
-            <img src="" alt="" />
+            <img src="http://127.0.0.1:8000/frontend/image/logo.webp" loading="lazy" alt="" />
           </div>
           <div class="card-header px-2">
             <p class="h5">Join Seminar</p>
             <span class="float-end close__modal position-absolute"><i class="bi bi-x-lg"></i></span>
           </div>
           <div class="card-body">
-            <form action="">
+            <form action="{{ route('seminar.join') }}" method="POST">
+              @csrf
               <div class="form-group">
                 <label for="name">Name: -</label>
-                <input type="text" class="form-control" id="name" />
+                <input required type="text" class="form-control" id="name" name="name" />
               </div>
               <div class="form-group">
                 <label for="phone">Phone: -</label>
-                <input type="number" class="form-control" id="phone" />
+                <input required type="number" class="form-control" id="phone" name="phone" />
               </div>
               <div class="form-group">
                 <label for="email">Email: -</label>
-                <input type="email" class="form-control" id="email" />
+                <input required type="email" class="form-control" id="email" name="email" />
               </div>
               <div class="form-group">
                 <label for="course">Select Seminar: -</label>
-                <select name="course" id="course" class="form-control">
+                <select name="seminar_id" id="course" class="form-control">
                   @foreach ($seminars as $seminar)
                   <option value="{{ $seminar->id }}">{{ $seminar->name }}</option>
                   @endforeach
@@ -154,7 +170,7 @@
               </div>
               <div class="form-group">
                 <label for="address">Address: -</label>
-                <textarea name="address" id="address" class="form-control"></textarea>
+                <textarea required name="address" id="address" class="form-control"></textarea>
               </div>
               <button>Join Seminar</button>
             </form>
@@ -180,7 +196,6 @@
             @foreach ($seminars as $seminar)
             <tr>
               <td>{{ $seminar->name }}</td>
-              25 May 2022, Wednesday
               <td>{{ Carbon\Carbon::parse($seminar->date)->format('d M Y, D') }}</td>
               <td>{{ Carbon\Carbon::parse($seminar->time)->format('g:i A') }}</td>
               <td>
@@ -194,6 +209,7 @@
       </div>
     </div>
   </section>
+  @endif
   <!-- SEMINAR SECTION ENDS -->
 
   <!-- Blog STORIES STARTS HERE -->
@@ -279,19 +295,24 @@
             <form action="{{ route('counciling.save') }}" method="POST">
               @csrf
               <input type="text" class="form-control" placeholder="Enter Your Name" name="name" data-aos="fade-up" />
+              @error('name')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
               <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="phone"
                 data-aos="fade-up" data-aos-delay="200" />
+              @error('phone')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
               <input type="text" class="form-control" placeholder="Enter Your Email Address" name="email"
                 data-aos="fade-up" data-aos-delay="300" />
+              @error('email')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
               <button type="submit" data-aos="fade-up" data-aos-delay="400">
                 Submit
               </button>
             </form>
-            @if (session()->has('success'))
-            <p class="px-2 py-2 my-2" style="background: lightgreen;color: rgb(12, 37, 12);">
-              {{ session('success') }}
-            </p>
-            @endif
+           
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">

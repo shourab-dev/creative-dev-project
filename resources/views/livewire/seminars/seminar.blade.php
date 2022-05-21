@@ -1,4 +1,9 @@
 <div>
+    <div wire:loading class="fixed inset-0 bg-gray-800 text-white z-[999]">
+        <div class="w-full h-[100%] grid place-items-center">
+            <h3 class="text-4xl">Processing....</h3>
+        </div>
+    </div>
     <div class="flex justify-between my-3">
         <x-intro info="Seminar & Workshop" />
         <button class="btn btn-primary" wire:click="$emit('openModal', 'seminars.seminar-form')">
@@ -20,16 +25,18 @@
                     <div class="inline-flex rounded-md overflow-hidden shadow-sm absolute z-50 top-2 right-5"
                         role="group">
                         <button wire:click="changeStatus({{ $seminar->id }})" type="button"
-                            class="py-2 px-2 text-sm font-medium text-blue-900 bg-white rounded-l-lg border border-blue-200  hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                            class="py-2 px-2 text-sm font-medium text-blue-900 bg-white rounded-l-lg border border-blue-200  hover:text-blue-700 ">
                             {{ $seminar->status == 0 ? "De-activated" : "Activated" }}
                         </button>
                         <button type="button" class="py-2 px-2 text-sm font-medium btn-primary"
                             wire:click="$emit('openModal', 'seminars.seminar-form', {{ json_encode(['seminarId'=> $seminar->id ]) }})">
-                            Edit
+                            Edit Seminar
                         </button>
-                        <button type="button" class="py-2 px-2 text-sm font-medium btn-danger">
-                            Messages
+                        <button wire:click="deleteLeeds({{ $seminar->id }}, '{{ $seminar->name }}')" type="button"
+                            class="py-2 px-2 text-sm font-medium btn-danger">
+                            Delete Seminar
                         </button>
+
                     </div>
                     <h2 class="accordion-header" id="seminar{{ $seminar->id }}">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -37,10 +44,12 @@
                             aria-controls="collapseOne">
                             {{ $seminar->name }} &nbsp; &nbsp; &nbsp; {{
                             Carbon\Carbon::parse($seminar->date)->format('d/m/Y - M') }}
+                            &nbsp; &nbsp; &nbsp; Total Leeds: {{ count($seminar->leeds) }}
                         </button>
                     </h2>
-                    <div id="seminar__{{ $seminar->id }}" class="accordion-collapse collapse overflow-auto "
-                        aria-labelledby="headingOne" data-bs-parent="#seminar{{ $seminar->id }}">
+                    <div id="seminar__{{ $seminar->id }}"
+                        class="accordion-collapse max-h-[30rem] collapse overflow-auto " aria-labelledby="headingOne"
+                        data-bs-parent="#seminar{{ $seminar->id }}">
                         <div class="accordion-body text-center">
 
                             <table class="table  mt-5 relative">
@@ -54,7 +63,9 @@
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>Address
-                                        <a href="#" title="Download"
+                                        <a href="#"
+                                            wire:click.prevent="exportLeeds({{ $seminar->id }},'{{ $seminar->name }}')"
+                                            title="Download"
                                             class="absolute right-2 p-1 bg-white text-blue-800 top-2 rounded-md"><svg
                                                 class="ml-auto" xmlns="http://www.w3.org/2000/svg" width="24"
                                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -88,6 +99,7 @@
                                 </tr>
                                 @endforelse
                             </table>
+
                         </div>
                     </div>
                 </div>
