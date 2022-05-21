@@ -1,9 +1,5 @@
 <div>
-    <div wire:loading class="fixed inset-0 bg-gray-800 text-white z-[999]">
-        <div class="w-full h-[100%] grid place-items-center">
-            <h3 class="text-4xl">Processing....</h3>
-        </div>
-    </div>
+
     <div class="flex justify-between my-3">
         <x-intro info="Seminar & Workshop" />
         <button class="btn btn-primary" wire:click="$emit('openModal', 'seminars.seminar-form')">
@@ -16,7 +12,7 @@
     @endif
 
     {{-- accordian part --}}
-    <div class="parent flex  mt-10">
+    <div class="parent flex  mt-10  mb-5">
         <div class="w-[100%]">
             <div class="accordion" id="accordionExample">
                 @foreach ($seminars as $seminar)
@@ -32,8 +28,8 @@
                             wire:click="$emit('openModal', 'seminars.seminar-form', {{ json_encode(['seminarId'=> $seminar->id ]) }})">
                             Edit Seminar
                         </button>
-                        <button wire:click="deleteLeeds({{ $seminar->id }}, '{{ $seminar->name }}')" type="button"
-                            class="py-2 px-2 text-sm font-medium btn-danger">
+                        <button wire:click="downloadBackUpLeeds({{ $seminar->id }}, '{{ $seminar->name }}')"
+                            type="button" class="py-2 px-2 text-sm font-medium btn-danger">
                             Delete Seminar
                         </button>
 
@@ -105,9 +101,10 @@
                 </div>
                 @endforeach
             </div>
-        </div>
 
+        </div>
     </div>
+    {{ $seminars->links() }}
 
     {{-- accordian part --}}
 
@@ -119,5 +116,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
+    @push('js')
+    <script src="{{ asset('backend/js/sweetalert2@11.js') }}"></script>
+    <script>
+        window.addEventListener('swal:confirm', event=> {
+                Swal.fire({
+                title: event.detail.title,
+                text: event.detail.text,
+                icon: event.detail.type,
+                showCloseButton: true,
+                confirmButtonColor: '#1E40AF',
+                confirmButtonText: 'Backup Leeds',
+                showDenyButton: true,
+                denyButtonText:"Delete without Backup",
+                denyButtonColor: '#E02626',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                 window.livewire.emit('exportLeeds', event.detail.id, event.detail.name);
+                } else if(result.isDenied){
+                    window.livewire.emit('confirmDelete', event.detail.id);
+                }
+                })
+            });
+    </script>
+
+    @endpush
     @endpush
 </div>

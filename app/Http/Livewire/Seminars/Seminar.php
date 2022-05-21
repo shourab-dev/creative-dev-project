@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Seminars;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 use App\Exports\SeminarLeedsExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -10,10 +11,11 @@ use App\Models\Seminar as ModelsSeminar;
 
 class Seminar extends Component
 {
-    protected $listeners = ['successUpdate', 'successSave', 'backupLeeds' => 'exportLeeds'];
+    use WithPagination;
+    protected $listeners = ['successUpdate', 'successSave', 'exportLeeds', 'confirmDelete'];
     public function render()
     {
-        return view('livewire.seminars.seminar', ['seminars' => ModelsSeminar::with('leeds')->orderBy('date', 'ASC')->get(['id', 'name', 'date', 'status'])]);
+        return view('livewire.seminars.seminar', ['seminars' => ModelsSeminar::with('leeds')->orderBy('date', 'ASC')->select('id', 'name', 'date', 'status')->paginate(5)]);
     }
     public function changeStatus($seminar_Id)
     {
@@ -43,7 +45,17 @@ class Seminar extends Component
         return Excel::download(new SeminarLeedsExport($seminarId, $name), $name . ' leeds ' . Carbon::today()->format('d-m-y M') . '.xlsx');
     }
 
-    public function deleteLeeds($seminarId, $name = 'Leeds')
+    public function downloadBackUpLeeds($seminarId, $name = 'Leeds')
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Are You Sure?',
+            'text' => 'Download a backup file in your Local Computer.',
+            'id' => $seminarId,
+            'name' => $name,
+        ]);
+    }
+    public function confirmDelete($seminarId)
     {
         ModelsSeminar::find($seminarId)->delete();
     }
