@@ -687,7 +687,19 @@
                             </a>
                         </li>
                         @endcan
+                        @can('manage header')
 
+                        <li>
+                            <a href="{{ route('customize.modal') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Promo Modal & Preloader
+                                </div>
+                            </a>
+                        </li>
+                        @endcan
 
 
 
@@ -733,6 +745,47 @@
 
                 </li>
                 @endcan
+                @can('edit about')
+                <li>
+                    <a href="{{ route('about.edit') }}"
+                        class="side-menu {{ request()->routeIs('about.edit') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-award d-block mx-auto">
+                                <circle cx="12" cy="8" r="7"></circle>
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title">
+                            About Us
+                        </div>
+                    </a>
+
+                </li>
+                @endcan
+                @can('manage faculties')
+                <li>
+                    <a href="{{ route('faculty.manage') }}"
+                        class="side-menu {{ request()->routeIs('faculty.manage') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-camera d-block mx-auto">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                </path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title">
+                            Faculty Profile
+                        </div>
+                    </a>
+
+                </li>
+                @endcan
+
 
 
             </ul>

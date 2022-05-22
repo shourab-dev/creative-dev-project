@@ -210,7 +210,7 @@ header {
     font-weight: 500;
 }
 
-header::after {
+/* header::after {
     content: "";
     position: absolute;
     z-index: -1;
@@ -219,7 +219,7 @@ header::after {
     background: url(http://127.0.0.1:5500/image/abstract_3d_object/bgHeroImage.webp);
     background-position: center;
     background-size: cover;
-}
+} */
 
 header .logo img {
     display: block;
@@ -792,7 +792,8 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 #courses .course_filter .filterable_container .course_img {
     border-radius: 10px;
     overflow: hidden;
-    background-image: -webkit-gradient(
+    padding: 0;
+    /* background-image: -webkit-gradient(
         linear,
         left top,
         right top,
@@ -800,7 +801,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
         color-stop(#c471ed),
         to(#f64f59)
     );
-    background-image: linear-gradient(to right, #af4ee9, #c471ed, #f64f59);
+    background-image: linear-gradient(to right, #af4ee9, #c471ed, #f64f59); */
 }
 
 #courses .course_filter .filterable_container .course_img img {
@@ -814,17 +815,20 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 }
 
 #courses .course_filter .filterable_container .course_text {
-    padding: 30px 15px;
+    padding: 30px 20px;
+    text-align: justify;
 }
 
 #courses .course_filter .filterable_container .course_text h3 {
     font-size: 1.5rem;
     color: #222222;
+    margin: 0;
 }
 
 #courses .course_filter .filterable_container .course_text p {
     font-size: 1rem;
     color: #2c2c2c;
+    margin: 20px 0;
 }
 
 #courses .course_filter .filterable_container .course_text a {
@@ -833,6 +837,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     padding: 10px 15px;
     -webkit-transition: 0.25s ease-in-out;
     transition: 0.25s ease-in-out;
+    display: inline-block;
 }
 
 #courses .course_filter .filterable_container .course_text a:hover {
@@ -1953,8 +1958,8 @@ footer .copyright span a {
     .filter_buttons
     button.mixitup-control-active::after,
 #faculties .faculties_filter .filter_buttons button:hover::after {
-    -webkit-transform: translate(-50%, -50%) scale(8.4);
-    transform: translate(-50%, -50%) scale(8.4);
+    -webkit-transform: translate(-50%, -50%) scale(13);
+    transform: translate(-50%, -50%) scale(13);
 }
 
 #faculties .filterable_container {

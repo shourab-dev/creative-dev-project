@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\FileManager;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
+use Illuminate\Support\Facades\Cache;
 
 
 class BannerEditForm extends ModalComponent
@@ -37,6 +38,7 @@ class BannerEditForm extends ModalComponent
         $item->link = $this->link;
         $item->image = $this->bannerImage;
         $item->save();
+        Cache::forget('bannerCache');
         $this->emit('BannerSuccess');
         $this->closeModal();
     }

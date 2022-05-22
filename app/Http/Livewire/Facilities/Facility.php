@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Facilities;
 
-use App\Models\Facilities;
 use Livewire\Component;
+use App\Models\Facilities;
+use Illuminate\Support\Facades\Cache;
 
 class Facility extends Component
 {
@@ -29,7 +30,9 @@ class Facility extends Component
         $newFacility->title = $this->facilityTitle;
         $newFacility->detail = $this->facilityDetail;
         $newFacility->save();
+        Cache::forget('facilityCache');
         $this->reset();
+
         session()->flash('message', 'New Facility Has Been Added');
     }
 

@@ -39,7 +39,7 @@ class CourseEdit extends Component
     public function mount()
     {
 
-        $this->departments = Department::get();
+        $this->departments = Department::where('status', true)->get();
         $this->title = $this->course->title;
         $this->slug = $this->course->slug;
         $this->thumbnail = $this->course->thumbnail;
@@ -127,6 +127,6 @@ class CourseEdit extends Component
     }
     public function successFeature()
     {
-        session()->flash('message','Feature Added Successfully');
+        session()->flash('message', 'Feature Added Successfully');
     }
 }

@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
+use Database\Seeders\AboutSeeder;
 use App\Models\SuccessDescription;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +26,8 @@ class DatabaseSeeder extends Seeder
                 HeaderSeeder::class,
                 PortfolioSeeder::class,
                 ContactSeeder::class,
+                AboutSeeder::class,
+                CustomizeSeeder::class,
             ]
         );
     }

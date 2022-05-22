@@ -15,26 +15,18 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/aos.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/slick.css')}}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css')}}" />
+    @stack('frontendCss')
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css')}}" />
 </head>
 
 <body id="scrollBar">
-    <!-- PRELOADER  -->
-    {{-- <div class="preloader">
-        <div class="preloader_cnt">
-            <div class="preloader_img">
-                <img src="./image/logo.webp" alt="" />
-            </div>
-            <div class="preloader_text">Creative It</div>
-        </div>
-    </div> --}}
-    <!-- PRELOADER ENDED -->
+
     <!-- HEADER -->
     <header class="d-lg-block d-none">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 logo">
-                    <a href="{{ url('/') }}"><img src="{{ $header['logo'] }}" alt="" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset($header['logo'])  }}" alt="" /></a>
                 </div>
                 <div class="col-lg-7">
                     <div class="row align-items-center">
@@ -78,13 +70,13 @@
     <!-- NAVBAR SECTION -->
     <div class="fixedLogo text-center py-3 d-none">
         <a href="{{ url('/') }}">
-            <img src="{{ $header['logo'] }}" alt="{{ env('APP_NAME') }}" />
+            <img src="{{ asset($header['logo']) }}" alt="{{ config('app.name') }}" />
         </a>
     </div>
     <nav class="navbar navbar-expand-lg py-3 py-lg-0 creative_navbar">
         <div class="container">
             <a class="navbar-brand d-block d-lg-none" href="#">
-                <img src="./image/logo (2).png" alt="" class="img-fluid" style="height: 50px" />
+                <img src="{{ asset($header['logo']) }}" alt="" class="img-fluid" style="height: 50px" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mycustomNav"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,19 +85,21 @@
             <div class="collapse navbar-collapse p-3 p-lg-0 mt-3 m-lg-0" id="mycustomNav">
                 <ul class="navbar-nav d-lg-flex justify-content-lg-between">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page"
+                            href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="about.html">About Us</a>
+                        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('about') }}">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('frontend.success.story') ? 'active' : '' }}"
+                            aria-current="page" href="{{ route('frontend.success.story') }}">Success
+                            Stories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="courses.html">Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="success.html">Success Stories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="faculties.html">Our Faculties</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('faculties.view') }}">Our Faculties</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="blog.html">Blog</a>
@@ -130,8 +124,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="logo">
-                        <img src="{{ $footer['logo'] }}" alt="{{ env('APP_NAME') }}" />
-                        <h4>{{ env('APP_NAME') }}</h4>
+                        <img src="{{ asset($footer['logo']) }}" alt="{{ config('app.name') }}" />
+                        <h4>{{ config('app.name') }}</h4>
                         <p>{{ $footer['moto'] }}</p>
                     </div>
                 </div>
@@ -187,7 +181,7 @@
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
 
     <script src="{{ asset('frontend/js/app.js')}}"></script>
-    <script></script>
+    @stack('frontendJs')
 </body>
 
 </html>

@@ -39,7 +39,7 @@ class CreateCourse extends Component
 
     public function render()
     {
-        return view('livewire.course.create-course', ['departments' => Department::latest()->toBase()->get()]);
+        return view('livewire.course.create-course', ['departments' => Department::latest()->where('status', true)->toBase()->get()]);
     }
 
     public function saveCourse()

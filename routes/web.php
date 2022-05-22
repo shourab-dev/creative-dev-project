@@ -19,9 +19,10 @@ use App\Http\Controllers\SeminarController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
-
-
-
+Route::GET('/about', [FrontendController::class, 'about'])->name('about');
+Route::GET('/success-stories', [FrontendController::class, 'successStory'])->name('frontend.success.story');
+Route::GET('/course/{slug}', [FrontendController::class, 'courseView'])->name('course.view');
+Route::GET('/our-faculties', [FrontendController::class, 'faculties'])->name('faculties.view');
 
 
 
@@ -88,6 +89,7 @@ Route::prefix('customize/')->middleware('auth')->name('customize.')->group(funct
     Route::view('header', 'backend.customize.header')->name('header')->middleware('can:manage header');
     Route::view('footer', 'backend.customize.footer')->name('footer')->middleware('can:manage footer');
     Route::view('social', 'backend.customize.social')->name('social')->middleware('can:manage social');
+    Route::view('promo-modal', 'backend.customize.modal')->name('modal')->middleware('can:manage header');
 });
 
 // MY PORTFOLIO 
@@ -105,4 +107,8 @@ Route::view('/seminar', 'backend.seminar.seminar')->name('seminar')->middleware(
 // SEMINAR CONTACT SAVE FROM FRONTEND
 Route::POST('/seminar/join', [SeminarController::class, 'saveLeeds'])->name('seminar.join')->middleware('guest');
 
+// Route BACKEND ABOUT US
+Route::view('/about-edit', 'backend.about.about-edit')->name('about.edit')->middleware('auth', 'can:edit about');
 
+// ROUTE FOR FACULTY
+Route::view('/dashboard/faculties', 'backend.faculty.faculty')->name('faculty.manage')->middleware('auth', 'can:manage faculties');
