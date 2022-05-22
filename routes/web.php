@@ -19,8 +19,9 @@ use App\Http\Controllers\SeminarController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
-
-
+Route::GET('/about', [FrontendController::class, 'about'])->name('about');
+Route::GET('/success-stories', [FrontendController::class, 'successStory'])->name('frontend.success.story');
+Route::GET('/course/{slug}', [FrontendController::class, 'courseView'])->name('course.view');
 
 
 
@@ -105,4 +106,8 @@ Route::view('/seminar', 'backend.seminar.seminar')->name('seminar')->middleware(
 // SEMINAR CONTACT SAVE FROM FRONTEND
 Route::POST('/seminar/join', [SeminarController::class, 'saveLeeds'])->name('seminar.join')->middleware('guest');
 
+// Route BACKEND ABOUT US
+Route::view('/about-edit', 'backend.about.about-edit')->name('about.edit')->middleware('auth', 'can:edit about');
 
+// ROUTE FOR FACULTY
+Route::view('/dashboard/faculties', 'backend.faculty.faculty')->name('faculty.manage')->middleware('auth', 'can:manage faculties');

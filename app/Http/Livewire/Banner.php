@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Banner as BannerModel;
 use Livewire\Component;
+use App\Models\Banner as BannerModel;
+use Illuminate\Support\Facades\Cache;
 
 
 class Banner extends Component
@@ -23,6 +24,7 @@ class Banner extends Component
     public function deleteBanner($id)
     {
         $banner = BannerModel::find($id)->delete();
+        Cache::forget('bannerCache');
         session()->flash('message', 'Banner Deleted Successfully');
     }
 
@@ -40,6 +42,7 @@ class Banner extends Component
             $banner->status = false;
         }
         $banner->save();
+        Cache::forget('bannerCache');
     }
 
     public function render()

@@ -3,11 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\FileManager;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Banner as BannerModel;
-use App\Models\FileManager;
+use Illuminate\Support\Facades\Cache;
 
 class BannerForm extends ModalComponent
 {
@@ -34,6 +35,7 @@ class BannerForm extends ModalComponent
         $banner->image = $this->bannerImage;
         $banner->added_by = Auth::user()->name;
         $banner->save();
+        Cache::forget('bannerCache');
         $this->reset('bannerTitle');
         $this->reset('bannerDetail');
         $this->reset('bannerButton');

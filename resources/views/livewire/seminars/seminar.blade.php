@@ -28,10 +28,13 @@
                             wire:click="$emit('openModal', 'seminars.seminar-form', {{ json_encode(['seminarId'=> $seminar->id ]) }})">
                             Edit Seminar
                         </button>
+                        @can('delete seminar')
+
                         <button wire:click="downloadBackUpLeeds({{ $seminar->id }}, '{{ $seminar->name }}')"
                             type="button" class="py-2 px-2 text-sm font-medium btn-danger">
                             Delete Seminar
                         </button>
+                        @endcan
 
                     </div>
                     <h2 class="accordion-header" id="seminar{{ $seminar->id }}">

@@ -4,14 +4,16 @@ namespace App\Http\Livewire;
 
 use App\Models\Banner;
 use Livewire\Component;
+use Illuminate\Support\Facades\Cache;
 
 class BannerTrash extends Component
 {
     protected $listeners = ['forceDeleteBanner'];
-    
+
     public function restoreBanner($id)
     {
         Banner::onlyTrashed()->find($id)->restore();
+        Cache::forget('bannerCache');
 
         session()->flash('message', 'Banner Item has been restored');
     }
@@ -27,6 +29,7 @@ class BannerTrash extends Component
     public function forceDeleteBanner($id)
     {
         Banner::onlyTrashed()->find($id)->forceDelete();
+        Cache::forget('bannerCache');
 
         session()->flash('message', 'Banner Item has been permanently Deleted');
     }

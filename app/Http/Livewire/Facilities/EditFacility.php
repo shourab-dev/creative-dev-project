@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Facilities;
 
-use App\Models\Facilities;
 use Livewire\Component;
+use App\Models\Facilities;
 use LivewireUI\Modal\ModalComponent;
+use Illuminate\Support\Facades\Cache;
 
 class EditFacility extends ModalComponent
 {
@@ -39,6 +40,8 @@ class EditFacility extends ModalComponent
         $facility->title = $this->editTitle;
         $facility->detail = $this->editDetail;
         $facility->save();
+        Cache::forget('facilityCache');
+
         $this->emit('success');
         $this->closeModal();
     }

@@ -39,16 +39,16 @@
   <!-- ABOUT SECTION STARTS -->
   <section id="about">
     <div class="abstract_img">
-      <img class="balls" src="{{ asset('frontend/image/abstract_3d_object/balls.webp') }}" alt="balls"
+      <img class="balls" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/balls.webp') }}" alt="balls"
         data-aos="fade-up" data-aos-delay="300" />
-      <img class="line" src="{{ asset('frontend/image/abstract_3d_object/line.webp') }}" alt="line" data-aos="fade-up"
-        data-aos-delay="300" />
-      <img class="line" src="{{ asset('frontend/image/abstract_3d_object/line.webp') }}" alt="line" data-aos-delay="300"
-        data-aos="fade-up" />
-      <img class="spiral" src="{{ asset('frontend/image/abstract_3d_object/spiral.webp') }}" alt="spiral"
+      <img class="line" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/line.webp') }}" alt="line"
+        data-aos="fade-up" data-aos-delay="300" />
+      <img class="line" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/line.webp') }}" alt="line"
         data-aos-delay="300" data-aos="fade-up" />
-      <img class="sprial2" src="{{ asset('frontend/image/abstract_3d_object/spiral2.webp') }}" alt="spiral"
-        data-aos="fade-down" data-aos-delay="300" />
+      <img class="spiral" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/spiral.webp') }}" alt="spiral"
+        data-aos-delay="300" data-aos="fade-up" />
+      <img class="sprial2" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/spiral2.webp') }}"
+        alt="spiral" data-aos="fade-down" data-aos-delay="300" />
     </div>
     <div class="container">
       <h1>
@@ -110,14 +110,14 @@
               <div class="mix {{ str()->slug($course->department->name) }} course_card">
                 <div class="row mx-0 align-items-stretch">
                   <div class="course_img col-md-5">
-                    <img src="{{ $course->thumbnail }}" alt="" />
+                    <img src="{{ $course->thumbnail }}" alt="{{ $course->title }}" loading="lazy" />
                   </div>
                   <div class="col-md-7 course_text">
                     <h3 class="text-capitalize">{{ $course->title }}</h3>
                     <p>
-                      {!! str()->substr($course->detail, 0 , 185,). '....'!!}
+                      {!! str()->substr($course->detail, 0 , 150,). '....'!!}
                     </p>
-                    <a href="{{ $course->slug }}">View Details</a>
+                    <a href="{{ route('course.view', $course->slug) }}">View Details</a>
                   </div>
                 </div>
               </div>
@@ -224,7 +224,7 @@
           <a href="blogView.html">
             <div class="success_card">
               <div class="card_img">
-                <img src="./image/feature_card_img.webp" alt="" />
+                <img src="./image/feature_card_img.webp" alt="" loading="lazy" />
               </div>
               <div class="card_text">
                 <h3>Feature BLog Title</h3>
@@ -243,7 +243,7 @@
           <a href="blogView.html">
             <div class="success_card">
               <div class="card_img">
-                <img src="./image/feature_card_img.webp" alt="" />
+                <img src="./image/feature_card_img.webp" alt="" loading="lazy" />
               </div>
               <div class="card_text">
                 <h3>Feature BLog Title</h3>
@@ -312,13 +312,13 @@
                 Submit
               </button>
             </form>
-           
+
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
           <div class="contact_img" data-aos="fade-right" data-aos-delay="100">
-            <img src="{{ asset('frontend/image/abstract_3d_object/contactBG.webp') }}" alt="contact img"
-              class="img-fluid" />
+            <img loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/contactBG.webp') }}" alt="contact img"
+              class="img-fluid" loading="lazy" />
           </div>
         </div>
       </div>
@@ -341,7 +341,7 @@
           @foreach ($facilities as $facility)
           <div class="col-lg-4 col-md-6 text-center text-lg-start">
             <div class="facility_card">
-              <img src="{{ $facility->image }}" alt="{{ $facility->title }}" />
+              <img src="{{ $facility->image }}" alt="{{ $facility->title }}" loading="lazy" />
               <h3>{{ $facility->title }}</h3>
               <p>
                 {{ $facility->detail }}
