@@ -23,7 +23,8 @@
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-bar">
             <a href="{{ route('dashboard') }}" class="flex mr-auto text-white text-xl">
-                {{-- <span>{{ str()->upper(env('APP_NAME')) }}</span> --}}
+                <span>{{ str()->upper(config('app.name
+                    ')) }}</span>
                 <img src="{{ asset('img/light logo.webp') }}" alt="logo" class="w-12 h-12">
             </a>
             <a href="javascript:;" id="mobile-menu-toggler">
@@ -353,7 +354,7 @@
             <a href="{{ route('dashboard') }}" class="intro-x flex items-center pl-5  md:pl-0 pt-4">
                 <img src="{{ asset('img/light logo.webp') }}" alt="logo" class="w-10 h-10"> <span
                     class="hidden xl:block text-white text-lg ml-3">
-                    {{ str()->upper(env('APP_NAME')) }}
+                    {{ str()->upper(config('app.name')) }}
                 </span>
             </a>
             <div class="side-nav__devider my-6"></div>
@@ -425,7 +426,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('banner') }}" class="side-menu">
+                            <a href="{{ route('user.role.management') }}" class="side-menu">
                                 <div class="side-menu__icon">
                                     <i data-lucide="activity"></i>
                                 </div>

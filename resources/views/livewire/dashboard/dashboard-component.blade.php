@@ -1,8 +1,11 @@
 <div>
+    <h1 class="text-xl mt-3 text-center ">Welcome to {{ str()->headline(config('app.name')) }} <span
+            class="text-blue-800">{{ str()->headline(Auth::user()->name) }}</span>
+    </h1>
     <div class="col-span-12 2xl:col-span-9">
         <div class="grid grid-cols-12 gap-6">
             <!-- BEGIN: General Report -->
-            <div class="col-span-12 mt-8">
+            <div class="col-span-12 mt-6">
                 <div class="intro-y flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">General Report</h2>
                     <a href="" class="ml-auto flex items-center text-primary">
@@ -10,7 +13,7 @@
                     </a>
                 </div>
                 <div class="grid grid-cols-12 gap-6 mt-5">
-                    @foreach ($seminarList as $seminarData)
+                    @forelse ($seminarList as $seminarData)
                     <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
@@ -20,10 +23,14 @@
                                 <div class="text-3xl font-medium leading-8 mt-6">{{ $seminarData->leeds_count }} <span
                                         class="text-lg">Leads</span></div>
                                 <div class="text-base text-slate-500 mt-1">{{ $seminarData->name }}</div>
+                                <div class="text-base text-slate-500 mt-1">{{
+                                    \Carbon\Carbon::parse($seminarData->date)->format('d-m-y D') }}</div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <p class="col-span-2">No Seminar Found!</p>
+                    @endforelse
                 </div>
 
             </div>
@@ -35,8 +42,11 @@
             <!-- END: General Report -->
 
         </div>
-        @if ($seminars)
-        <section class="current mt-10">
+        @can('manage seminar')
+
+        @if (count($seminars) > 0)
+        
+        <section class="current mt-20">
             <h2 class="intro-y text-lg font-medium">This Week Seminar's Leeds</h2>
 
 
@@ -121,9 +131,10 @@
             </div>
         </section>
         @endif
+        @endcan
+        @can('counciling')
 
-
-        <section class="mt-10">
+        <section class="mt-20">
             <div class="flex justify-between  items-center">
                 <h2 class="text-lg intro-y font-medium">{{ \Carbon\Carbon::now()->monthName }} Month All Contact Leeds
                 </h2>
@@ -180,6 +191,7 @@
 
             </div>
         </section>
+        @endcan
     </div>
 
 

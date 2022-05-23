@@ -112,3 +112,11 @@ Route::view('/about-edit', 'backend.about.about-edit')->name('about.edit')->midd
 
 // ROUTE FOR FACULTY
 Route::view('/dashboard/faculties', 'backend.faculty.faculty')->name('faculty.manage')->middleware('auth', 'can:manage faculties');
+
+
+
+// ROUTE FOR USER MANAGEMENT
+Route::middleware('auth', 'can:user management')->prefix('user/')->name('user.')->group(function () {
+
+    Route::view('/role-management', 'backend.user.manageRole')->name('role.management');
+});
