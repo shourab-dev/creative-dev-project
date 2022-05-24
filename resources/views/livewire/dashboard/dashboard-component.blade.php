@@ -5,20 +5,7 @@
 
    
 
-    {{Auth::guard('web')->user()->name}}
-    @can('manage story')
-    {{ true }}
-    @endcan
-    {{-- @if(auth()->user()->can('manage story'))
-    {{ auth()->user()->can('manage story') }}
-    @else
-    {{ dd(auth()->user()->permissions()) }}
-    @endif --}}
-
-    @role('user')
-    asdasdf
-    @endrole
-
+  
     <div class="col-span-12 2xl:col-span-9">
         <div class="grid grid-cols-12 gap-6">
             <!-- BEGIN: General Report -->

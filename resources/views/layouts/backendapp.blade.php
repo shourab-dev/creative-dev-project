@@ -416,7 +416,7 @@
                     <ul class=" {{ request()->routeIs('user*') ? 'side-menu__sub-open' : '' }}">
 
                         <li>
-                            <a href="{{ route('banner') }}" class="side-menu">
+                            <a href="{{ route('user.store') }}" class="side-menu">
                                 <div class="side-menu__icon">
                                     <i data-lucide="activity"></i>
                                 </div>
@@ -436,7 +436,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('banner.trash') }}" class="side-menu">
+                            <a href="{{ route('user.all') }}" class="side-menu">
                                 <div class="side-menu__icon">
                                     <i data-lucide="activity"></i>
                                 </div>
@@ -501,6 +501,8 @@
                                 </div>
                             </a>
                         </li>
+                        @can('trash banner')
+
                         <li>
                             <a href="{{ route('banner.trash') }}" class="side-menu">
                                 <div class="side-menu__icon">
@@ -511,7 +513,7 @@
                                 </div>
                             </a>
                         </li>
-
+                        @endcan
                     </ul>
                 </li>
                 @endcan

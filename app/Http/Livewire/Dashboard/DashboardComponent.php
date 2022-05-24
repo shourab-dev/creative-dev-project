@@ -21,7 +21,7 @@ class DashboardComponent extends Component
     public function mount()
     {
 
-        // dd(Role::with('permissions')->where('name', 'user')->first());
+
         $seminar = Seminar::select('id', 'name', 'status', 'date')->where('status', true)->withCount(['leeds' => function ($q) {
             $q->whereMonth('created_at', Carbon::now()->month);
         }])->whereMonth('date', Carbon::now()->month)->get();
