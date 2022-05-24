@@ -18,8 +18,8 @@ class Portfolio extends Component
     public function updatePortfolio()
     {
         $portfolio = ModelsPortfolio::first();
-        $this->text = $portfolio->text;
-        $this->link = $portfolio->link;
+        $portfolio->text = $this->text;
+        $portfolio->link = $this->link;
         $portfolio->save();
         session()->flash('message', 'Portfolio Updated!');
     }

@@ -15,7 +15,7 @@ class ContactsExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMap
     public $fromDate;
     public $toDate;
     public $index;
-    public function __construct($fromDate, $toDate)
+    public function __construct($fromDate = null, $toDate = null)
     {
         $this->fromDate = $fromDate;
         $this->toDate = $toDate;

@@ -3,24 +3,61 @@
 namespace App\Http\Livewire\Dashboard;
 
 use Carbon\Carbon;
+use App\Models\Contact;
 use App\Models\Seminar;
+
 use Livewire\Component;
+use App\Exports\ContactsExport;
+use Spatie\Permission\Models\Role;
+use App\Exports\SeminarLeedsExport;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardComponent extends Component
 {
+    public $seminarList;
+    public $seminars;
+    public $currentContact;
     public function mount()
     {
-        $seminar = Seminar::withCount(['leeds' => function ($q) {
+
+        // dd(Role::with('permissions')->where('name', 'user')->first());
+        $seminar = Seminar::select('id', 'name', 'status', 'date')->where('status', true)->withCount(['leeds' => function ($q) {
             $q->whereMonth('created_at', Carbon::now()->month);
-        }])->withCount(['leeds as oldLeeds_count' => function ($q) {
-            $q->whereMonth('created_at', Carbon::now()->subMonth()->month);
         }])->whereMonth('date', Carbon::now()->month)->get();
 
-        // dd(Carbon::now()->subMonth()->month);
-        // dd($seminar);   
+        $this->seminarList = $seminar;
+
+        // TODAYS SEMINAR'S LEEDS
+        $currentSeminar  = Seminar::with('leeds')->whereBetween('date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('status', true)->orderBy('date', 'ASC')->get();
+        // dd($currentSeminar);
+        if ($currentSeminar != null) {
+            $this->seminars = $currentSeminar;
+        }
+
+        // CURRENT MONTH ALL CONTACT LEEDS
+        $currentLeeds = Contact::whereMonth('created_at', Carbon::now()->month)->latest()->get();
+
+        $this->currentContact = $currentLeeds;
+
+
+        // dd($currentLeeds);
     }
     public function render()
     {
         return view('livewire.dashboard.dashboard-component');
+    }
+
+
+
+    public function exportLeeds($seminarId, $name = 'Leeds')
+    {
+        return Excel::download(new SeminarLeedsExport($seminarId, $name), $name . ' leeds ' . Carbon::today()->format('d-m-y M') . '.xlsx');
+    }
+
+
+    public function download()
+    {
+        return Excel::download(new ContactsExport(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()), "counciling-leeds-" . Carbon::today()->format('d-m-Y M') . ".xlsx");
     }
 }
