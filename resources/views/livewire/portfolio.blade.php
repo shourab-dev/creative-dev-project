@@ -8,6 +8,7 @@
     <span class="text-green-700 bg-green-200 py-3 px-2 block w-full">{{ session('message') }}</span>
     @endif
     <div class="md:grid md:grid-cols-2 gap-5">
+   
         <x-input placeholder="Credit Text" wire:model.lazy="text" />
         <x-input placeholder="My Portfolio Link" wire:model.lazy="link" />
     </div>

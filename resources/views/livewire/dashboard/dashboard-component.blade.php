@@ -2,6 +2,23 @@
     <h1 class="text-xl mt-3 text-center ">Welcome to {{ str()->headline(config('app.name')) }} <span
             class="text-blue-800">{{ str()->headline(Auth::user()->name) }}</span>
     </h1>
+
+   
+
+    {{Auth::guard('web')->user()->name}}
+    @can('manage story')
+    {{ true }}
+    @endcan
+    {{-- @if(auth()->user()->can('manage story'))
+    {{ auth()->user()->can('manage story') }}
+    @else
+    {{ dd(auth()->user()->permissions()) }}
+    @endif --}}
+
+    @role('user')
+    asdasdf
+    @endrole
+
     <div class="col-span-12 2xl:col-span-9">
         <div class="grid grid-cols-12 gap-6">
             <!-- BEGIN: General Report -->
@@ -45,7 +62,7 @@
         @can('manage seminar')
 
         @if (count($seminars) > 0)
-        
+
         <section class="current mt-20">
             <h2 class="intro-y text-lg font-medium">This Week Seminar's Leeds</h2>
 

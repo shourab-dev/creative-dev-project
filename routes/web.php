@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\backend\CourseController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Role\RoleManagementController;
 use App\Http\Controllers\SeminarController;
 
 /*
@@ -118,5 +119,10 @@ Route::view('/dashboard/faculties', 'backend.faculty.faculty')->name('faculty.ma
 // ROUTE FOR USER MANAGEMENT
 Route::middleware('auth', 'can:user management')->prefix('user/')->name('user.')->group(function () {
 
-    Route::view('/role-management', 'backend.user.manageRole')->name('role.management');
+    Route::GET('/role-management', [RoleManagementController::class, 'index'])->name('role.management');
+    Route::GET('/role-management/update/{id}', [RoleManagementController::class, 'editRole'])->name('role.management.update');
+    Route::PUT('/role-management/update/{id}', [RoleManagementController::class, 'updateRole'])->name('role.management.updated');
+    Route::POST('/role-management', [RoleManagementController::class, 'storeRole'])->name('role.management.store');
+
+    // Route::GET('/role-management/permission/{id}', [RoleManagementController::class, 'updatePermission'])->name('permission.update');
 });
