@@ -10,7 +10,9 @@ use Livewire\Component;
 use App\Exports\ContactsExport;
 use Spatie\Permission\Models\Role;
 use App\Exports\SeminarLeedsExport;
+use App\Mail\LeedMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardComponent extends Component
@@ -39,9 +41,6 @@ class DashboardComponent extends Component
         $currentLeeds = Contact::whereMonth('created_at', Carbon::now()->month)->latest()->get();
 
         $this->currentContact = $currentLeeds;
-
-
-        // dd($currentLeeds);
     }
     public function render()
     {
