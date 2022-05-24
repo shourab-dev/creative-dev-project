@@ -17,7 +17,7 @@ class DashboardComponent extends Component
         }])->whereMonth('date', Carbon::now()->month)->get();
 
         // dd(Carbon::now()->subMonth()->month);
-        dd($seminar);   
+        // dd($seminar);   
     }
     public function render()
     {
