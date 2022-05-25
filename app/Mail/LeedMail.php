@@ -29,6 +29,11 @@ class LeedMail extends Mailable
      */
     public function build()
     {
-        return $this->view('Email.LeedMail')->attach($this->fileName);
+        $mail = $this->view('Email.LeedMail')->subject("Tomorrow's Seminar's Leeds");
+        foreach ($this->fileName as $file) {
+
+            $mail->attach($file);
+        }
+        return $mail;
     }
 }

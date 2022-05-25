@@ -35,7 +35,7 @@ class SendLeed extends Command
     public function handle()
     {
 
-        $todaySeminar = Seminar::with('leeds')->whereDate('date', Carbon::now())->where('status', true)->orderBy('date', 'ASC')->select('id', 'name', 'date', 'status')->get();
+        $todaySeminar = Seminar::with('leeds')->whereDate('date', Carbon::tomorrow())->where('status', true)->orderBy('date', 'ASC')->select('id', 'name', 'date', 'status')->get();
 
         if (count($todaySeminar) > 0) {
 
@@ -44,14 +44,17 @@ class SendLeed extends Command
                     $query->where('name', 'manage seminar');
                 });
             })->pluck('email')->toArray();
+            $filePath = [];
             foreach ($todaySeminar as $seminar) {
 
                 Excel::store(new SeminarLeedsExport($seminar->id, $seminar->name), "export/$seminar->name seminar-leeds.xlsx", 'public');
-                $filePath = public_path("/storage/export/$seminar->name seminar-leeds.xlsx");
+                $filePath[] = public_path("/storage/export/$seminar->name seminar-leeds.xlsx");
             }
             foreach ($userMails as $email) {
                 Mail::to($email)->send(new LeedMail($filePath));
             }
+
+           
         }
     }
 }

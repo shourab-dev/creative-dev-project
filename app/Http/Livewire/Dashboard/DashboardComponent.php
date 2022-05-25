@@ -21,7 +21,6 @@ class DashboardComponent extends Component
     public $currentContact;
     public function mount()
     {
-      
         $seminar = Seminar::select('id', 'name', 'status', 'date')->where('status', true)->withCount(['leeds' => function ($q) {
             $q->whereMonth('created_at', Carbon::now()->month);
         }])->whereMonth('date', Carbon::now()->month)->get();
