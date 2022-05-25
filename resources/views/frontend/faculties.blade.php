@@ -1,4 +1,7 @@
 <x-frontend-app>
+  @push('title')
+  Faculties -
+  @endpush
   <section class="breadcrum">
     <h2>Our Faculties</h2>
     <p>

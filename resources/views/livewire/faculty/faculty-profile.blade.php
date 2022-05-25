@@ -15,9 +15,9 @@
     <span class="text-green-700 bg-green-200 py-3 px-2 block w-full">{{ session('message') }}</span>
     @endif
 
-    <div class="form_input">
+    <div class="form_input mt-3">
         @if ($facultyImg)
-        <img src="{{ $facultyImg }}" alt="">
+        <img src="{{ $facultyImg }}" alt="" class=" max-h-[250px]">
         @endif
         <x-file-input label="Faculty Profile Image"
             wire:click.prevent="$emit('openModal', 'course.image', {{ json_encode(['name' => 'image']) }})" />

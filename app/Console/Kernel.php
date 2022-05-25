@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('leedmail:send')->everyMinute();
+        $schedule->command('leedmail:send')->daily()->at('02:00');
     }
 
     /**

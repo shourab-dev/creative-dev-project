@@ -1285,11 +1285,20 @@ select {
 .h-32 {
   height: 8rem;
 }
+.h-2 {
+  height: 0.5rem;
+}
+.h-\[250px\] {
+  height: 250px;
+}
 .max-h-\[30rem\] {
   max-height: 30rem;
 }
 .max-h-\[15rem\] {
   max-height: 15rem;
+}
+.max-h-\[250px\] {
+  max-height: 250px;
 }
 .min-h-screen {
   min-height: 100vh;

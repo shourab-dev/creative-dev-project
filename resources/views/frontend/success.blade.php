@@ -1,4 +1,7 @@
 <x-frontend-app>
+  @push('title')
+  Success Stories -
+  @endpush
   <section class="breadcrum">
     <h2>Freelancing Success Stories</h2>
     <p>

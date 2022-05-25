@@ -1,4 +1,7 @@
 <x-frontend-app>
+  @push('title')
+  {{ $course->title }} -
+  @endpush
   <section class="breadcrum">
     <h2>Course Details</h2>
     <p>

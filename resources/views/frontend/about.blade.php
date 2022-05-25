@@ -1,5 +1,7 @@
 <x-frontend-app>
-
+  @push('title')
+  About Us -
+  @endpush
   <!-- breadcrum section starts -->
   <section class="breadcrum">
     <div class="container">

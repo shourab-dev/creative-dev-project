@@ -1,4 +1,7 @@
 <x-frontend-app>
+  @push('title')
+  Home -
+  @endpush
   {{-- PROMO MODAL --}}
   @if ($customize->promo_modal == true)
   @push('frontendCss')

@@ -5,7 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative It</title>
+    <meta name="description"
+        content="Develop your professional &amp; personal skills through Creative IT Institute. We provide Graphic Design, Web &amp; Software, Digital Marketing, Networking, Film &amp; Media, Robotics &amp; Automation Training etc affordable price. Call + 880 162 4666000">
+    <meta property="og:image" content="{{ asset('frontend/image/logo.webp') }}">
+    <link rel="canonical" href="{{ config('app.url') }}" />
+    <title> @stack('title') {{ config('app.name') }} - Best Leading It Institute in Bangladesh</title>
+    <meta name="keywords"
+        content="@stack('keyword') best institute, it institute, web design, graphics design, professional course, digital marketing, basic computer course, creative it, creative it institute" />
     <link rel="icon" type="image/png" sizes="32x32" href="http://127.0.0.1:8000/frontend/image/fab_icon.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Courgette&family=DM+Sans:wght@700&family=Encode+Sans:wght@300;400&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;800&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;700&family=Roboto&display=swap"
@@ -99,7 +105,8 @@
                             Stories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ route('faculties.view') }}">Our Faculties</a>
+                        <a class="nav-link {{ request()->routeIs('faculties.view') ? 'active' : '' }}"
+                            aria-current="page" href="{{ route('faculties.view') }}">Our Faculties</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="blog.html">Blog</a>
