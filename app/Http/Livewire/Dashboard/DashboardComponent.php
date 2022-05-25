@@ -3,14 +3,15 @@
 namespace App\Http\Livewire\Dashboard;
 
 use Carbon\Carbon;
+
+
 use App\Models\Contact;
 use App\Models\Seminar;
-
 use Livewire\Component;
 use App\Exports\ContactsExport;
-use Spatie\Permission\Models\Role;
+
 use App\Exports\SeminarLeedsExport;
-use Illuminate\Support\Facades\Auth;
+
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardComponent extends Component
@@ -20,8 +21,7 @@ class DashboardComponent extends Component
     public $currentContact;
     public function mount()
     {
-
-        // dd(Role::with('permissions')->where('name', 'user')->first());
+      
         $seminar = Seminar::select('id', 'name', 'status', 'date')->where('status', true)->withCount(['leeds' => function ($q) {
             $q->whereMonth('created_at', Carbon::now()->month);
         }])->whereMonth('date', Carbon::now()->month)->get();
@@ -39,9 +39,6 @@ class DashboardComponent extends Component
         $currentLeeds = Contact::whereMonth('created_at', Carbon::now()->month)->latest()->get();
 
         $this->currentContact = $currentLeeds;
-
-
-        // dd($currentLeeds);
     }
     public function render()
     {

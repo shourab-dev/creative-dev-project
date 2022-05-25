@@ -39,8 +39,9 @@ class RoleManagementController extends Controller
     {
         // dd($request->all());
         $role = Role::with('permissions')->find($id);
-        $role->name = $request->role;
+        $role->name = str()->lower($request->role);
         $role->permissions()->sync($request->permission);
+        $role->save();
         Artisan::call('cache:clear');
         return redirect()->route('user.role.management')->with('success', 'Role & Permission has been Updated');
     }

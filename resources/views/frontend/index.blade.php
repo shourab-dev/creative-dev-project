@@ -271,7 +271,7 @@
               <td>{{ Carbon\Carbon::parse($seminar->date)->format('d M Y, D') }}</td>
               <td>{{ Carbon\Carbon::parse($seminar->time)->format('g:i A') }}</td>
               <td>
-                <a href="#" data-id="{{ $seminar->id }}" class="join__seminar__btn">Join Now</a>
+                <a style="cursor: pointer" data-id="{{ $seminar->id }}" class="join__seminar__btn">Join Now</a>
               </td>
             </tr>
             @endforeach
