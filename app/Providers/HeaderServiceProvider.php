@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\BlogCategory;
 use App\Models\Header;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +27,9 @@ class HeaderServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.frontendapp', function ($view) {
             $view->with('header', Header::select('id', 'logo', 'phone', 'email')->first());
+        });
+        view()->composer('layouts.blogapp', function ($view) {
+            $view->with('header', Header::select('id', 'logo', 'phone', 'email')->first())->with('categories', BlogCategory::select('id', 'name', 'status')->toBase()->get());
         });
     }
 }

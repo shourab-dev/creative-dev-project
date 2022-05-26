@@ -32,5 +32,10 @@ class FooterServiceProvider extends ServiceProvider
         view()->composer('frontend.index', function ($view) {
             $view->with('footer', Footer::first());
         });
+
+
+        view()->composer('layouts.blogapp', function ($view) {
+            $view->with('footer', Footer::first())->with('portfolio', Portfolio::first())->with('socialLinks', SocialIcons::where('status', true)->toBase()->get());;
+        });
     }
 }

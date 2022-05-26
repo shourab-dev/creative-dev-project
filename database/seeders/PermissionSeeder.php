@@ -40,6 +40,11 @@ class PermissionSeeder extends Seeder
             'edit about',
             'manage faculties',
             'delete faculties',
+            'add blog',
+            'manage category',
+            'edit blog',
+            'approve blog',
+            'delete blog',
         ];
         foreach ($permissions as $permission) {
             Permission::create([

@@ -288,7 +288,7 @@
   <!-- SEMINAR SECTION ENDS -->
 
   <!-- Blog STORIES STARTS HERE -->
-  <section id="blog">
+  {{-- <section id="blog">
     <div class="container">
       <div class="intro mb-5">
         <h2 data-aos="fade-up">Our Blogs</h2>
@@ -355,7 +355,7 @@
       </div>
       <a href="#" class="view__more">View More <i class="bi bi-caret-right"></i></a>
     </div>
-  </section>
+  </section> --}}
   <!-- Blog STORIES ENDS HERE -->
   <!-- CONTACT SECTION STARTS HERE -->
   <section id="contact">

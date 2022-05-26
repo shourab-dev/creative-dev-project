@@ -1,4 +1,5 @@
 <div class="courseDescription">
+   
     <div class="flex justify-between align-middle my-3">
         <x-intro info="Add Course" />
         <button class="btn btn-primary intro-y" wire:click="saveCourse">Save Course</button>

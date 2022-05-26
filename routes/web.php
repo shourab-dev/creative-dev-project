@@ -4,6 +4,7 @@ use App\Http\Controllers\backend\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\backend\CourseController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Role\CustomRegisterController;
 use App\Http\Controllers\Role\RoleManagementController;
@@ -25,7 +26,8 @@ Route::GET('/about', [FrontendController::class, 'about'])->name('about');
 Route::GET('/success-stories', [FrontendController::class, 'successStory'])->name('frontend.success.story');
 Route::GET('/course/{slug}', [FrontendController::class, 'courseView'])->name('course.view');
 Route::GET('/our-faculties', [FrontendController::class, 'faculties'])->name('faculties.view');
-
+Route::GET('/blog', [BlogController::class, 'blogIndex'])->name('blog');
+Route::GET('our-blog/{category}/{slug}', [BlogController::class, 'blogView'])->name('blog.view');
 
 
 
@@ -40,6 +42,7 @@ Route::middleware([
         return view('backend.dashboard');
     })->name('dashboard');
 });
+
 
 // File manager
 Route::GET('/file-manager', function () {
@@ -129,4 +132,13 @@ Route::middleware('auth', 'can:user management')->prefix('user/')->name('user.')
     Route::POST('/update', [CustomRegisterController::class, 'updateRole'])->name('update.role');
 
     // Route::GET('/role-management/permission/{id}', [RoleManagementController::class, 'updatePermission'])->name('permission.update');
+});
+
+
+
+// ROUTE FOR BLOG CATEGORY
+Route::middleware('auth')->name('blog.')->prefix('blog-part/')->group(function () {
+    Route::view('/category', 'backend.blog.category')->middleware('can:manage category')->name('category');
+    Route::GET('/create', [BlogController::class, 'blogCreate'])->name('create')->middleware('can:add blog');
+    Route::GET('/approve', [BlogController::class, 'blogApprove'])->name('approve')->middleware('can:approve blog');
 });
