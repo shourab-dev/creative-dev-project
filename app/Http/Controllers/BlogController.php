@@ -34,4 +34,11 @@ class BlogController extends Controller
     {
         return view('backend.blog.approve');
     }
+
+
+    public function blogEdit()
+    {
+        $blogs = BlogPost::with('categories')->select('id', 'thumbnail', 'title', 'short_detail', 'status')->where('status', true)->get();
+        return view('backend.blog.blogEdit', compact('blogs'));
+    }
 }

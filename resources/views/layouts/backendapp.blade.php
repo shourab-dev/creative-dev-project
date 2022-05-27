@@ -847,6 +847,19 @@
                             </a>
                         </li>
                         @endcan
+                        @can('edit blog')
+                        <li>
+                            <a href="{{ route('blog.edit') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+
+                                    Edit Blog
+                                </div>
+                            </a>
+                        </li>
+                        @endcan
 
 
 

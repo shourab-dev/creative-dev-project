@@ -141,4 +141,5 @@ Route::middleware('auth')->name('blog.')->prefix('blog-part/')->group(function (
     Route::view('/category', 'backend.blog.category')->middleware('can:manage category')->name('category');
     Route::GET('/create', [BlogController::class, 'blogCreate'])->name('create')->middleware('can:add blog');
     Route::GET('/approve', [BlogController::class, 'blogApprove'])->name('approve')->middleware('can:approve blog');
+    Route::GET('/edit', [BlogController::class, 'blogEdit'])->name('edit')->middleware('can:edit blog');
 });

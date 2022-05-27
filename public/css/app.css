@@ -1055,6 +1055,10 @@ select {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -1067,13 +1071,13 @@ select {
   margin-left: 0px;
   margin-right: 0px;
 }
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+}
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 .my-5 {
   margin-top: 1.25rem;
@@ -1086,10 +1090,6 @@ select {
 .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-}
-.mx-3 {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1382,6 +1382,18 @@ select {
 .w-\[100\%\] {
   width: 100%;
 }
+.w-\[70\%\] {
+  width: 70%;
+}
+.w-\[40px\] {
+  width: 40px;
+}
+.w-\[100px\] {
+  width: 100px;
+}
+.w-\[30\%\] {
+  width: 30%;
+}
 .w-32 {
   width: 8rem;
 }
@@ -1402,54 +1414,6 @@ select {
 }
 .w-\[90\%\] {
   width: 90%;
-}
-.w-\[\] {
-  width: ;
-}
-.w-\[70\] {
-  width: 70;
-}
-.w-\[70\%\] {
-  width: 70%;
-}
-.w-\[50\] {
-  width: 50;
-}
-.w-\[50x\] {
-  width: 50x;
-}
-.w-\[50p\] {
-  width: 50p;
-}
-.w-\[50px\] {
-  width: 50px;
-}
-.w-\[5px\] {
-  width: 5px;
-}
-.w-\[px\] {
-  width: px;
-}
-.w-\[1px\] {
-  width: 1px;
-}
-.w-\[10px\] {
-  width: 10px;
-}
-.w-\[100px\] {
-  width: 100px;
-}
-.w-\[30\] {
-  width: 30;
-}
-.w-\[30\%\] {
-  width: 30%;
-}
-.w-\[40\] {
-  width: 40;
-}
-.w-\[40px\] {
-  width: 40px;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1762,10 +1726,6 @@ select {
 .border-gray-500 {
   --tw-border-opacity: 1;
   border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-.border-gray-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -2911,12 +2871,12 @@ select {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
   .md\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .md\:gap-6 {
