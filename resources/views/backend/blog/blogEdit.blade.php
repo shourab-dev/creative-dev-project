@@ -19,12 +19,42 @@
                 <td>{{ $blog->title }}</td>
                 <td>{{ $blog->short_detail }}</td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="{{ route('blog.edit.item' , $blog->id  ) }}" class="btn btn-sm btn-primary">Edit</a>
+                    <span data-id="{{ $blog->id }}" class="btn btn-sm btn-danger btn__delete">Delete</span>
+                    <form action="{{ route('blog.delete.item', $blog->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </td>
             </tr>
             @endforeach
 
         </table>
     </div>
+    @push('js')
+    <script src="{{ asset('backend/js/sweetalert2@11.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        let el = $('.btn__delete');
+        el.click(function(){
+            // let id = $(this).attr('data-id');
+            Swal.fire({
+                    title: "Delete",
+                    text: "Are you sure",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).next('form').submit();
+                    
+                    }
+                    })
+        });
+      
+    </script>
+    @endpush
 </x-app-layout>

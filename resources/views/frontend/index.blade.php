@@ -70,20 +70,25 @@
 
 
 
-
   @if (session()->has('success'))
-  <div class="toast show position-fixed" style="bottom: 4rem; right:3rem; z-index:99" role="alert" aria-live="assertive"
-    aria-atomic="true">
-    <div class="toast-header">
-      <img src="http://127.0.0.1:8000/frontend/image/fab_icon.png" class="rounded me-2" alt="...">
-      <strong class="me-auto">{{ env('APP_NAME') }}</strong>
-
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  <div class="toast show position-fixed shadow-lg" style="bottom: 4rem; right:3rem; z-index:99" role="alert"
+    aria-live="assertive" aria-atomic="true">
+    <div class="toast-header flex justify-content-between pe-4">
+      <img src="{{ asset('frontend/image/logo-toast.webp') }}" alt="">
+      <button type="button" class="btn-close " data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body">
-      {!! session('success') !!}
+    <div class="toast-body bg-white">
+      <div class="row align-items-center">
+        <div class="col-2" style="font-size:2.8rem; color:#00e961">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <div class="col-9">
+          {!! session('success') !!}
+        </div>
+      </div>
     </div>
   </div>
+
   @endif
   <!-- BANNER SECTION  -->
   @if (count($banners) > 0)
@@ -110,7 +115,7 @@
   <!-- BANNER SECTION END -->
   <!-- ABOUT SECTION STARTS -->
   <section id="about">
-    <div class="abstract_img">
+    {{-- <div class="abstract_img">
       <img class="balls" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/balls.webp') }}" alt="balls"
         data-aos="fade-up" data-aos-delay="300" />
       <img class="line" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/line.webp') }}" alt="line"
@@ -121,7 +126,7 @@
         data-aos-delay="300" data-aos="fade-up" />
       <img class="sprial2" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/spiral2.webp') }}"
         alt="spiral" data-aos="fade-down" data-aos-delay="300" />
-    </div>
+    </div> --}}
     <div class="container">
       <h1>
         Welcome to <span>Creative IT Institute</span>: Where IT Leaders are
@@ -171,7 +176,8 @@
           <button type="button" data-filter="all">All</button>
           @foreach ($departments as $department)
 
-          <button type="button" data-filter=".{{ str()->slug($department->name) }}">{{ $department->name }}</button>
+          <button type="button" data-filter=".{{ str()->slug($department->name) }}">{{
+            str()->headline($department->name) }}</button>
           @endforeach
 
         </div>

@@ -13,6 +13,7 @@ class BlogCreate extends Component
         'thumbnail' => 'setThumbnail',
         'feature-img' => 'setFeatureImage'
     ];
+    public $blogId;
 
     public $featureImg;
     public $thumbnail;
@@ -21,6 +22,21 @@ class BlogCreate extends Component
     public $keywords;
     public $shortDetail;
     public $categoryId = [];
+
+    public function mount()
+    {
+        if ($this->blogId) {
+            $blog = BlogPost::with('categories')->find($this->blogId);;
+            $this->featureImg = $blog->img;
+            $this->thumbnail = $blog->thumbnail;
+            $this->title = $blog->title;
+            $this->detail = $blog->detail;
+            $this->keywords = $blog->keywords;
+            $this->categoryId = $blog->categories->pluck('id')->toArray();
+            $this->shortDetail = $blog->short_detail;
+        }
+    }
+
     public function render()
     {
         return view('livewire.blog.blog-create', ['categories' => BlogCategory::toBase()->get()]);
@@ -39,8 +55,12 @@ class BlogCreate extends Component
         if (BlogPost::where('slug', $slug)->exists()) {
             $slug = str()->slug($this->title) . uniqid();
         }
+        if ($this->blogId) {
+            $blog =  BlogPost::find($this->blogId);
+        } else {
 
-        $blog = new BlogPost();
+            $blog = new BlogPost();
+        }
         $blog->title = $this->title;
         $blog->slug = $slug;
         $blog->user_id = Auth::user()->id;
@@ -52,7 +72,13 @@ class BlogCreate extends Component
         $blog->save();
         $blog->categories()->sync($this->categoryId);
         $this->reset();
-        session()->flash('message', 'Blog Successfully added');
+        if ($this->blogId) {
+            session()->flash('message', 'Blog Successfully Updated');
+        } else {
+
+            session()->flash('message', 'Blog Successfully Added');
+        }
+        return redirect()->route('blog.edit');
     }
 
 

@@ -41,4 +41,16 @@ class BlogController extends Controller
         $blogs = BlogPost::with('categories')->select('id', 'thumbnail', 'title', 'short_detail', 'status')->where('status', true)->get();
         return view('backend.blog.blogEdit', compact('blogs'));
     }
+    public function blogItemEdit($id)
+    {
+        $blogId = $id;
+        return view('backend.blog.blogUpdate', compact('blogId'));
+    }
+
+    public function blogDelete($id)
+    {
+        $blog = BlogPost::with('categories')->find($id)->delete();
+        
+        return back();
+    }
 }

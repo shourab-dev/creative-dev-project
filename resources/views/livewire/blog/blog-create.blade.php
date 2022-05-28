@@ -4,8 +4,14 @@
     @endpush
 
     <div class="flex justify-between my-3">
+        @if ($blogId)
+        <x-intro info="Update Blog" />
+        @else
         <x-intro info="Add Blog" />
-        <button class="intro-x btn btn-primary" wire:click="saveBlog">Add Post +</button>
+
+        @endif
+        <button class="intro-x btn btn-primary" wire:click="saveBlog">{{ $blogId ? 'Update Post' : 'Add Post +'
+            }}</button>
     </div>
     <hr>
     @if (session()->has('message'))

@@ -27,14 +27,14 @@
             padding: 15px 20px;
             border-radius: 5px;
             background-color: rgb(31, 91, 255);
-            color: white;
+            color: white !important;
             text-decoration: none;
         }
     </style>
 </head>
 
 <body>
-    <img src="https://creativeitinstitute.com/front/images/logo.png" alt="">
+    <img src="{{ asset('frontend/image/logo.webp') }}" alt="">
     {{-- <h2>{{ config('app.name') }}</h2> --}}
     <p>Hellow There, please check out tomorrow's seminars leed in the attachments. You can also view the full report in
         our website. Click the link below 👇🏻</p>

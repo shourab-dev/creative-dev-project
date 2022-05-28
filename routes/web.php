@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\backend\ContactController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\backend\CourseController;
-use App\Http\Controllers\BlogController;
+use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Role\CustomRegisterController;
 use App\Http\Controllers\Role\RoleManagementController;
-use App\Http\Controllers\SeminarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,4 +143,11 @@ Route::middleware('auth')->name('blog.')->prefix('blog-part/')->group(function (
     Route::GET('/create', [BlogController::class, 'blogCreate'])->name('create')->middleware('can:add blog');
     Route::GET('/approve', [BlogController::class, 'blogApprove'])->name('approve')->middleware('can:approve blog');
     Route::GET('/edit', [BlogController::class, 'blogEdit'])->name('edit')->middleware('can:edit blog');
+    Route::GET('/edit/item/{id}', [BlogController::class, 'blogItemEdit'])->name('edit.item')->middleware('can:edit blog');
+    Route::DELETE('/delete/item/{id}', [BlogController::class, 'blogDelete'])->name('delete.item')->middleware('can:edit blog');
 });
+
+
+// Route::get('/leedsend', function () {
+//     Artisan::call('leedmail:send');
+// });
