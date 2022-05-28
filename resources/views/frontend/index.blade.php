@@ -91,6 +91,7 @@
 
   @endif
   <!-- BANNER SECTION  -->
+  @if ($homeCustomize->banner_stle == 'ctg')
   @if (count($banners) > 0)
   <section id="banner">
     <div class="banner_slider">
@@ -112,21 +113,47 @@
     </div>
   </section>
   @endif
+
+  @elseif ('dhaka')
+  <section id="bannerPart" style="background-image: url({{ asset('frontend/image/banner_hero.webp') }})">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5">
+          <div class="promo ">
+
+            <p> <img src="{{ asset('frontend/image/promoIcon.png') }}" alt="promo"> দেশ সেরা আইটি ট্রেনিং ইনস্টিটিউটে
+            </p>
+          </div>
+          <h2>ক্যারিয়ার শুরু হোক</h2>
+          <h2 class="secondary">দক্ষতার আত্মবিশ্বাসে</h2>
+          <p class="detail">
+            অভিজ্ঞ মেন্টর আর আপডেটেড কারিকুলাম নিয়ে ক্রিয়েটিভ আইটি ইনস্টিটিউট প্রস্তুত আপনার ক্যারিয়ার গড়ার অগ্রযাত্রায়।
+            আমাদের
+            ৩০টিরও বেশি ট্রেন্ডি কোর্স থেকে আজই বেছে নিন আপনার পছন্দের কোর্স।
+          </p>
+          <a href="#"><i class="bi bi-book"></i> ব্রাউজ কোর্স</a>
+          <a href="#"><i class="bi bi-book"></i> জয়েন ফ্রি সেমিনার</a>
+          <div class="iso d-flex align-items-center">
+            <img src="{{ asset('frontend/image/iso.png') }}" alt="iso">
+            <p class="my-0">দেশের অন্যতম ISO সার্টিফাইড আইটি
+              ট্রেনিং ইনস্টিটিউট</p>
+          </div>
+        </div>
+        <div class="col-lg-7 embededVideoLink">
+          <img style="width: 100%" src="https://app.creativeitinstitute.com/wp-content/uploads/2021/12/CIT-13-Years.jpg"
+            alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+  @endif
+
+
+
   <!-- BANNER SECTION END -->
   <!-- ABOUT SECTION STARTS -->
   <section id="about">
-    {{-- <div class="abstract_img">
-      <img class="balls" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/balls.webp') }}" alt="balls"
-        data-aos="fade-up" data-aos-delay="300" />
-      <img class="line" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/line.webp') }}" alt="line"
-        data-aos="fade-up" data-aos-delay="300" />
-      <img class="line" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/line.webp') }}" alt="line"
-        data-aos-delay="300" data-aos="fade-up" />
-      <img class="spiral" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/spiral.webp') }}" alt="spiral"
-        data-aos-delay="300" data-aos="fade-up" />
-      <img class="sprial2" loading="lazy" src="{{ asset('frontend/image/abstract_3d_object/spiral2.webp') }}"
-        alt="spiral" data-aos="fade-down" data-aos-delay="300" />
-    </div> --}}
+
     <div class="container">
       <h1>
         Welcome to <span>Creative IT Institute</span>: Where IT Leaders are

@@ -8,7 +8,9 @@ ol {
 a {
     text-decoration: none;
 }
-
+:root {
+    --gradient: -webkit-linear-gradient(15deg, #ff1e1e 35%, #ff8079);
+}
 .preloader {
     position: fixed;
     inset: 0;
@@ -196,8 +198,9 @@ a {
 }
 
 body {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
+    /* font-family: "Inter", sans-serif; */
+    font-family: "Hind Siliguri", sans-serif;
+    font-weight: 500;
     cursor: url(../image/smallcursor.png), auto;
 }
 
@@ -345,7 +348,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     height: 50px;
     z-index: 999999;
 }
-
+/* banner */
 #banner .slider_cnt {
     min-height: 500px;
     background-position: center !important;
@@ -443,6 +446,65 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     }
 }
 
+#bannerPart {
+    background-position: center;
+    background-size: cover;
+    padding: 100px 0;
+}
+#bannerPart .promo {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+#bannerPart .promo img {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#bannerPart h2 {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+#bannerPart .secondary {
+    -webkit-text-fill-color: transparent;
+    background: #fff;
+    background: -webkit-linear-gradient(15deg, #ff1e1e 35%, #ff8079);
+    background-clip: text;
+    -webkit-background-clip: text;
+    display: block;
+    font-size: 52px;
+    line-height: 54px;
+    padding-top: 10px;
+}
+#bannerPart p.detail {
+    font-size: 18px;
+    line-height: 28px;
+    color: #212529;
+    font-weight: 500;
+    word-spacing: 2px;
+}
+
+#bannerPart a {
+    padding: 15px 20px;
+    background-image: var(--gradient);
+    display: inline-block;
+    margin: 20px 20px 20px 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+}
+#bannerPart .iso {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#bannerPart .embededVideoLink img {
+    aspect-ratio: 16/9;
+    border-radius: 25px;
+}
+/* banner end */
 #about {
     padding: 20px 0 40px;
     text-align: center;

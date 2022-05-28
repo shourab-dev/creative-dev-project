@@ -14,6 +14,8 @@ use App\Models\SuccessStory;
 use Illuminate\Http\Request;
 use App\Models\SuccessDescription;
 use App\Http\Controllers\Controller;
+use App\Models\BannerPart;
+use App\Models\HomeCustomize;
 use Illuminate\Support\Facades\Cache;
 
 class FrontendController extends Controller
@@ -21,9 +23,12 @@ class FrontendController extends Controller
     public function index()
     {
         // banner
-        $banners = Cache::rememberForever('bannerCache', function () {
-            return Banner::where('status', true)->toBase()->get();
-        });
+        $homeCustomize = HomeCustomize::first();
+        if ($homeCustomize->banner_stle == 'ctg') {
+            $banners = Banner::where('status', true)->toBase()->get();
+        } else {
+            $banners = BannerPart::first();
+        }
         // banner end
         // department
         $departments = Department::where('status', true)->get();
@@ -47,7 +52,7 @@ class FrontendController extends Controller
 
         // dd($courses);
 
-        return view('frontend.index', compact('banners', 'departments', 'courses', 'seminars', 'facilities', 'customize'));
+        return view('frontend.index', compact('banners', 'departments', 'courses', 'seminars', 'facilities', 'customize', 'homeCustomize'));
     }
     public function about()
     {
