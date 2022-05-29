@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('features', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('feature_image');
+            $table->string('feature_image')->nullable();
             $table->string('title');
             $table->longText('details');
             $table->boolean('status')->default(true);

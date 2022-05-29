@@ -1,5 +1,5 @@
 <div class="courseDescription">
-   
+
     <div class="flex justify-between align-middle my-3">
         <x-intro info="Add Course" />
         <button class="btn btn-primary intro-y" wire:click="saveCourse">Save Course</button>
@@ -37,6 +37,12 @@
     </div>
 
 
+    <div class="grid md:grid-cols-4 gap-4">
+        <x-input placeholder="Moto" wire:model="moto" />
+        <x-input placeholder="Class Duration" wire:model="duration" />
+        <x-input placeholder="Total Lectures" wire:model="totalClass" />
+        <x-input placeholder="Total Projects" wire:model="project" />
+    </div>
 
     <div class="grid md:grid-cols-2 mt-3 gap-2">
         <div>
@@ -73,6 +79,11 @@
         <span class="text-red-600">{{ $message }}</span>
         @enderror
     </label>
+
+    <label class="my-3 block">
+        <span class="block mb-2">Course Demand</span>
+        <textarea wire:model="demand" class="block w-full h-[200px]" placeholder="Course Demand"></textarea></label>
+
 
     <div class="grid md:grid-cols-3 gap-4">
         <div class="basic">

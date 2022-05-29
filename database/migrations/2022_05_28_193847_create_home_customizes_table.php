@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('banner_stle')->default('ctg');
             $table->boolean('facebook_review')->default(false);
             $table->string('seminar_stle')->default('ctg');
+            $table->string('course_stle')->default('ctg');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\BlogCategory;
 use App\Models\Header;
+use App\Models\HomeCustomize;
 use Illuminate\Support\ServiceProvider;
 
 class HeaderServiceProvider extends ServiceProvider
@@ -30,6 +31,9 @@ class HeaderServiceProvider extends ServiceProvider
         });
         view()->composer('layouts.blogapp', function ($view) {
             $view->with('header', Header::select('id', 'logo', 'phone', 'email')->first())->with('categories', BlogCategory::select('id', 'name', 'status')->toBase()->get());
+        });
+        view()->composer('layouts.backendapp', function ($view) {
+            $view->with('header', HomeCustomize::first());
         });
     }
 }

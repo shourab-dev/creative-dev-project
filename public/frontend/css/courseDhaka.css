@@ -1,0 +1,169 @@
+#courses{
+    padding: 20px 0;
+}
+#courses .primary {
+    padding: 40px 0 0;
+    background-color: #faf9fd;
+    text-align: center;
+    border-radius: 25px;
+    position: relative;
+}
+.primary h2 {
+    font-size: 45px;
+    font-weight: 800;
+}
+.primary > p {
+    font-size: 18px;
+    color: #605f62;
+    line-height: 28px;
+    width: 520px;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+.icons {
+    /* position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); */
+    font-size: 1.5rem;
+}
+.icons {
+    position: absolute;
+    bottom: 15px;
+    z-index: 9999999;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.icons .rightArrow,
+.icons .leftArrow {
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 15px;
+    transition: 0.25s ease;
+}
+.icons > span:hover {
+    background-color: #f00;
+    border-color: red;
+    color: white;
+}
+
+.slick-arrow {
+    display: none !important;
+}
+
+.department__slider {
+    border-bottom: 1px solid #ddd;
+}
+.department__slider .dp__name {
+    padding: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+}
+
+.department__slider .dp__name.slick-current.slick-active {
+    color: #cf0000;
+}
+.department__slider .dp__name.slick-current.slick-active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 30%;
+    transform: translateX(-50%);
+    height: 4px;
+    left: 50%;
+    background-color: #cf0000;
+}
+
+.department_base_course_slider .course_under_department .all__courses {
+    padding: 20px 40px 40px;
+}
+@media (max-width: 950px){
+ .department_base_course_slider .course_under_department .all__courses {
+    padding: 20px 0px 40px;
+}   
+}
+
+.department_base_course_slider .slick-track {
+    padding: 10px 0 20px;
+}
+
+.department_base_course_slider
+    .course_under_department
+    .all__courses
+    .course_card {
+    border-radius: 25px;
+    max-height: 450px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.department_base_course_slider
+    .course_under_department
+    .all__courses
+    .course_card
+    .course_img {
+    height: 300px;
+    overflow: hidden;
+    border-radius: 25px 25px 0 0;
+}
+
+.department_base_course_slider
+    .course_under_department
+    .all__courses
+    .course_card
+    .course_detail {
+    padding: 20px;
+}
+
+.department_base_course_slider
+    .course_under_department
+    .all__courses
+    .course_card
+    .course_detail
+    h3 {
+    font-size: clamp(1.2rem, 5vw, 25px);
+    font-size: 600;
+    color: #1f1e1e;
+}
+
+.department_base_course_slider
+    .course_under_department
+    .all__courses
+    .course_card
+    .course_detail
+    p {
+    font-size: 15px;
+    color: #df6812;
+    float: right;
+}
+
+.department_base_course_slider
+    .course_under_department
+    .all__courses
+    .course_card
+    .course_detail
+    h4 {
+    font-size: 18px;
+    color: #1f1e1e;
+}
+
+.department_base_course_slider
+    .course_under_department
+    .all__courses
+    .course_card
+    .course_img
+    img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}

@@ -112,6 +112,9 @@
       @endforeach
     </div>
   </section>
+  @push('frontendCss')
+  <link rel="stylesheet" href="{{ asset('frontend/css/bannerSlide.css') }}">
+  @endpush
   @endif
 
   @elseif ('dhaka')
@@ -121,18 +124,16 @@
         <div class="col-lg-5">
           <div class="promo ">
 
-            <p> <img src="{{ asset('frontend/image/promoIcon.png') }}" alt="promo"> দেশ সেরা আইটি ট্রেনিং ইনস্টিটিউটে
+            <p> <img src="{{ asset('frontend/image/promoIcon.png') }}" alt="promo"> {{ $banners->slogan }}
             </p>
           </div>
-          <h2>ক্যারিয়ার শুরু হোক</h2>
-          <h2 class="secondary">দক্ষতার আত্মবিশ্বাসে</h2>
+          <h2>{{ $banners->heading }}</h2>
+          <h2 class="secondary">{{ $banners->secondary_heading }}</h2>
           <p class="detail">
-            অভিজ্ঞ মেন্টর আর আপডেটেড কারিকুলাম নিয়ে ক্রিয়েটিভ আইটি ইনস্টিটিউট প্রস্তুত আপনার ক্যারিয়ার গড়ার অগ্রযাত্রায়।
-            আমাদের
-            ৩০টিরও বেশি ট্রেন্ডি কোর্স থেকে আজই বেছে নিন আপনার পছন্দের কোর্স।
+            {{ $banners->detail }}
           </p>
-          <a href="#"><i class="bi bi-book"></i> ব্রাউজ কোর্স</a>
-          <a href="#"><i class="bi bi-book"></i> জয়েন ফ্রি সেমিনার</a>
+          <a href="#course"><i class="bi bi-book"></i> ব্রাউজ কোর্স</a>
+          <a href="#seminar"><i class="bi bi-book"></i> জয়েন ফ্রি সেমিনার</a>
           <div class="iso d-flex align-items-center">
             <img src="{{ asset('frontend/image/iso.png') }}" alt="iso">
             <p class="my-0">দেশের অন্যতম ISO সার্টিফাইড আইটি
@@ -140,12 +141,21 @@
           </div>
         </div>
         <div class="col-lg-7 embededVideoLink">
-          <img style="width: 100%" src="https://app.creativeitinstitute.com/wp-content/uploads/2021/12/CIT-13-Years.jpg"
-            alt="">
+          <div class="youtubeThumb" data-youtube="{{ $banners->iframe }}">
+            <img src="https://img.youtube.com/vi/{{ str()->after($banners->iframe, 'embed/') }}/0.jpg" alt=""
+              title="Yo yo" />
+            <div class="overlay">
+              <img src="{{ asset('frontend/image/play-button-icon.webp') }}" alt="icon" />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
+  @push('frontendCss')
+  <link rel="stylesheet" href="{{ asset('frontend/css/bannerPart.css') }}">
+  @endpush
   @endif
 
 
@@ -185,7 +195,12 @@
     </div>
   </section>
   <!-- ABOUT SECTION END -->
+
   <!-- COURSES SECTION STARTS -->
+
+
+  @if ($homeCustomize->course_stle == 'ctg')
+
   @if (count($courses) > 0)
   <section id="courses">
     <div class="animated__human">
@@ -237,8 +252,73 @@
       </div>
     </div>
   </section>
+  @push('frontendCss')
+  <link rel="stylesheet" href="{{ asset('frontend/css/courseCtg.css') }}">
+  @endpush
   @endif
+
+
+  @elseif ($homeCustomize->course_stle == 'dhaka')
+
+  <section id="courses">
+    <div class="container">
+      <div class="primary">
+        <h2>জনপ্রিয় কোর্সসমূহ</h2>
+        <p>দেশ ও দেশের বাইরে বর্তমানে যে স্কিলগুলোর চাহিদা সবচেয়ে বেশি, সেসব দিয়েই সাজানো হয়েছে আমাদের কোর্স লিস্ট। এখান
+          থেকে আপনার
+          সুবিধামত অনলাইন বা অফলাইনে কোর্সে এনরোল করতে পারবেন যেকোনো সময়।</p>
+
+        <div class="icons">
+          <span class="leftArrow"><i class="bi bi-chevron-left"></i></span>
+          <span class="rightArrow"><i class="bi bi-chevron-right"></i></span>
+        </div>
+        <div class="department__slider">
+          @foreach ($departments as $department)
+          <div class="dp__name">{{ str()->headline($department->name) }}</div>
+          @endforeach
+        </div>
+        <div class="department_base_course_slider">
+          @foreach ($departments as $department)
+          <div class="course_under_department">
+            <div class="all__courses">
+
+              @forelse ($department->Courses as $course)
+              <div class="px-2">
+                <a href="{{ route('course.view', $course->slug) }}">
+                  <div class="course_card">
+                    <div class="course_img">
+                      <img src="{{ $course->thumbnail }}" alt="{{ $course->title }}">
+                    </div>
+                    <div class="course_detail">
+                      <h3>{{ $course->title }}</h3>
+                      <p>ক্লাস সংখ্যা {{ $course->total_class }}</p>
+                      <h4>কোর্সের মেয়াদ {{ $course->duration }}</h4>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              @empty
+              <p class="emptyCouse">নতুন কোর্স খুব সিগ্রই আসছে , চোখ রাখেন আমাদের ওয়েবসাইটে</p>
+              @endforelse
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+  </section>
+  @push('frontendCss')
+  <link rel="stylesheet" href="{{ asset('frontend/css/courseDhaka.css') }}">
+  @endpush
+  @push('frontendJs')
+  <script src="{{ asset('frontend/js/courseSlider.js') }}"></script>
+  @endpush
+  @endif
+
   <!-- COURSES SECTION ENDS -->
+
+
+
   <!-- SEMINAR SECTION STARTS -->
   @if (count($seminars) > 0)
 

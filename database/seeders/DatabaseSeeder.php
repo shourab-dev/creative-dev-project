@@ -25,9 +25,10 @@ class DatabaseSeeder extends Seeder
                 SuccessDescriptionSeeder::class,
                 HeaderSeeder::class,
                 PortfolioSeeder::class,
-                ContactSeeder::class,
+                // ContactSeeder::class,
                 AboutSeeder::class,
                 CustomizeSeeder::class,
+                HomeCustomizerSeeder::class
             ]
         );
     }

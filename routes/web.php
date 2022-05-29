@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Role\CustomRegisterController;
 use App\Http\Controllers\Role\RoleManagementController;
+use App\Http\Livewire\Banner\BannerPart;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,7 @@ Route::GET('/banner', function () {
 Route::GET('/banner/trash', function () {
     return view('backend.banner.bannerTrash');
 })->name('banner.trash')->middleware('auth', 'can:trash banner');
-
+Route::view('/banner-part', 'backend.banner.bannerPart')->name('banner.part.update')->middleware('auth', 'can:add banner');
 // BANNER ends
 
 
@@ -96,6 +97,7 @@ Route::prefix('customize/')->middleware('auth')->name('customize.')->group(funct
     Route::view('footer', 'backend.customize.footer')->name('footer')->middleware('can:manage footer');
     Route::view('social', 'backend.customize.social')->name('social')->middleware('can:manage social');
     Route::view('promo-modal', 'backend.customize.modal')->name('modal')->middleware('can:manage header');
+    Route::view('home-page-customize', 'backend.customize.homeCustomize')->name('home')->middleware('can:manage header');
 });
 
 // MY PORTFOLIO 

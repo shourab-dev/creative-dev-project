@@ -1,0 +1,94 @@
+#bannerPart {
+    background-position: center;
+    background-size: cover;
+    padding: 100px 0;
+}
+#bannerPart .promo {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+#bannerPart .promo img {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#bannerPart h2 {
+    font-size: clamp(2.5rem, 5vw, 50px);
+    font-weight: 700;
+}
+
+#bannerPart .secondary {
+    -webkit-text-fill-color: transparent;
+    background: #fff;
+    background: -webkit-linear-gradient(15deg, #ff1e1e 35%, #ff8079);
+    background-clip: text;
+    -webkit-background-clip: text;
+    display: block;
+    font-size: clamp(2.55rem, 5vw, 52px);
+
+    line-height: 54px;
+    padding-top: 10px;
+}
+#bannerPart p.detail {
+    font-size: 18px;
+    line-height: 28px;
+    color: #212529;
+    font-weight: 500;
+    word-spacing: 2px;
+}
+
+#bannerPart a {
+    padding: 15px 20px;
+    background-image: var(--gradient);
+    display: inline-block;
+    margin: 20px 20px 20px 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    transition: 0.2s ease-in;
+}
+#bannerPart a > i {
+    margin-right: 5px;
+}
+#bannerPart a:hover {
+    transform: scale(0.95);
+}
+#bannerPart .iso {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 700;
+}
+#bannerPart .embededVideoLink .overlay > img {
+    transition: 0.3s ease-out;
+}
+#bannerPart .embededVideoLink:hover .overlay > img {
+    transform: scale(1.5);
+}
+
+#bannerPart .embededVideoLink .youtubeThumb > img,
+#bannerPart .embededVideoLink iframe {
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 25px;
+}
+#bannerPart .youtubeThumb .overlay {
+background-color: transparent;
+}
+
+@media (max-width: 768px) {
+    #bannerPart h2 {
+        text-align: center;
+    }
+    #bannerPart .secondary {
+        padding-top: 0px;
+    }
+    #bannerPart .iso {
+        display: none !important;
+    }
+    #bannerPart a {
+        margin: 5px 0px 20px 0;
+    }
+}

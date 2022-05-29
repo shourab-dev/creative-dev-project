@@ -1,0 +1,173 @@
+#front {
+    padding: 100px 0 130px;
+    background-position: center bottom;
+    background-size: 100% !important ;
+    /* background-attachment: fixed !important; */
+    background-repeat: no-repeat !important;
+}
+
+#front .courseDetails h3 {
+    background: -webkit-linear-gradient(24deg, #ff1e1e 35%, #ff8079);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 22px;
+    font-weight: 600;
+}
+#front .courseDetails h1 {
+    font-size: 45px;
+    font-weight: 600;
+    margin: 20px 0;
+    color: #1f1e1e;
+}
+#front .courseDetails ul {
+    display: flex;
+    gap: 1rem;
+}
+#front .courseDetails ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 140px;
+    height: 100px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid #ddd;
+    transition: 0.25s ease;
+}
+#front .courseDetails ul li > span {
+    display: block;
+    line-height: 0;
+    margin: 20px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+#front .courseDetails ul li:hover {
+    border-color: #ff1e1e;
+    transform: scale(1.05);
+}
+#front .courseDetails ul li:hover span {
+    color: #ff111e;
+}
+
+#front .courseDetails p {
+    color: #212529;
+    line-height: 32px;
+    margin: 20px 0;
+    word-spacing: 2px;
+    text-align: justify;
+    padding-right: 60px;
+}
+
+#front .courseDetails a.join_seminar {
+    background: linear-gradient(214.38deg, #ff8079 -2.24%, #ff1e1e 59.38%);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    /* line-height: 32px; */
+
+    padding: 15px 44px;
+    text-align: center;
+    transition: 0.15s ease-out;
+}
+#front .youtubeThumb {
+    overflow: visible;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+#front .youtubeThumb > img {
+    border: 0;
+    border-radius: 25px;
+}
+#front .courseImage > img {
+    aspect-ratio: 16/9;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+#front .youtubeThumb .overlay {
+    background-color: transparent;
+}
+#front .youtubeThumb .overlay > img {
+    transition: 0.15s ease-in;
+    transform: scale(1.5);
+}
+#front .youtubeThumb:hover .overlay > img {
+    transform: scale(2);
+}
+
+@media (max-width: 575px) {
+    #front .courseDetails p {
+        padding-right: 0px;
+    }
+}
+
+#overview {
+    padding: 0px 0 80px;
+}
+#overview h2 {
+    font-size: 45px;
+    font-weight: 700;
+}
+
+#overview .course_detail p {
+    text-align: justify;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+#overview .course_module .module {
+    padding: 20px;
+    margin: 15px 0;
+    min-height: 100px;
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+#overview .course_module .module h3 {
+    color: #ff1e1e;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 30px;
+    padding: 0 0 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+#overview .course_module .module p {
+    margin: 10px 0;
+    position: relative;
+    margin-left: 15px;
+}
+#overview .course_module .module p::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff1e1e;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    left: -20px;
+}
+#overview .course_module .module .topics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.softwares,
+.marketplaces {
+    padding: 40px 0;
+}
+.marketplaces ul li,
+.softwares ul li {
+    display: inline-block;
+    margin: 20px 15px 20px 0;
+}
+.marketplaces ul li img,
+.softwares ul li img {
+    max-height: 80px;
+    display: block;
+}

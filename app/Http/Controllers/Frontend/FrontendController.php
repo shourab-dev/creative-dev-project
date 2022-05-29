@@ -25,18 +25,34 @@ class FrontendController extends Controller
         // banner
         $homeCustomize = HomeCustomize::first();
         if ($homeCustomize->banner_stle == 'ctg') {
-            $banners = Banner::where('status', true)->toBase()->get();
+            $banners = Cache::rememberForever('bannerCache', function () {
+                return Banner::where('status', true)->toBase()->get();
+            });
         } else {
-            $banners = BannerPart::first();
+            $banners = Cache::rememberForever('bannerPartCache', function () {
+                return BannerPart::first();
+            });
         }
         // banner end
         // department
-        $departments = Department::where('status', true)->get();
+        if ($homeCustomize->course_stle == 'ctg') {
+            $departments = Department::where('status', true)->get();
+        } else if ($homeCustomize->course_stle == 'dhaka') {
+            $departments = Department::with(['Courses' => function ($q) {
+                $q->where('status', true)->select('id', 'title', 'duration', 'thumbnail', 'total_class', 'status', 'department_id', 'slug');
+            }])->where('status', true)->get();
+        }
+
         // department end
         // course
-        $courses = Course::with(['department' => function ($query) {
-            $query->select('id', 'name', 'status')->where('status', true);
-        }])->select('id', 'department_id', 'title', 'slug', 'detail', 'thumbnail', 'status')->where('status', true)->get();
+        if ($homeCustomize->course_stle == 'ctg') {
+            $courses = Course::with(['department' => function ($query) {
+                $query->select('id', 'name', 'status')->where('status', true);
+            }])->select('id', 'department_id', 'title', 'slug', 'detail', 'thumbnail', 'status')->where('status', true)->get();
+        } else {
+            $courses = null;
+        }
+
         // course end
 
         // SEMINAR 
@@ -72,12 +88,15 @@ class FrontendController extends Controller
     }
     public function courseView($slug)
     {
+        $homeCustomize = HomeCustomize::first();
+
         $course = Course::with(['features' => function ($q) {
             $q->where('status', true);
         }])->where('slug', $slug)->where('status', true)->first();
+
         // dd($course);
         if ($course != null) {
-            return view('frontend.courseView', compact('course'));
+            return view('frontend.courseView', compact('course', 'homeCustomize'));
         }
     }
 

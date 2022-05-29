@@ -490,6 +490,7 @@
                         </div>
                     </a>
                     <ul class=" {{ request()->routeIs('banner*') ? 'side-menu__sub-open' : '' }}">
+                        @if ($header->banner_stle == 'ctg')
 
                         <li>
                             <a href="{{ route('banner') }}" class="side-menu">
@@ -514,6 +515,18 @@
                             </a>
                         </li>
                         @endcan
+                        @elseif ('dhaka')
+                        <li>
+                            <a href="{{ route('banner.part.update') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Banner part
+                                </div>
+                            </a>
+                        </li>
+                        @endif
                     </ul>
                 </li>
                 @endcan
@@ -699,6 +712,19 @@
                                 </div>
                                 <div class="side-menu__title">
                                     Promo Modal & Preloader
+                                </div>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('manage header')
+
+                        <li>
+                            <a href="{{ route('customize.home') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Home Page
                                 </div>
                             </a>
                         </li>
@@ -1050,13 +1076,7 @@
 
             {{-- main section here --}}
             <!-- Page Heading -->
-            @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-            @endif
+
             {{ $slot }}
             {{-- main section here --}}
 

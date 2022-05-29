@@ -30,7 +30,11 @@ class CreateCourse extends Component
     public $selectSoftware = [];
     public $basic;
     public $opportunity;
-
+    public $moto;
+    public $project;
+    public $duration;
+    public $demand;
+    public $totalClass;
     // features
     public $featureImg;
     public $featureTitle;
@@ -70,6 +74,12 @@ class CreateCourse extends Component
         $course->softwares = $this->selectSoftware;
         $course->basic = $this->basic;
         $course->carrer = $this->opportunity;
+        $course->moto = $this->moto;
+        $course->demand = $this->demand;
+        $course->projects = $this->project;
+        $course->total_class = $this->totalClass;
+        $course->duration = $this->duration;
+
         $course->save();
         // feature Save
         $feature = new Feature();

@@ -2,6 +2,7 @@
   @push('title')
   {{ $course->title }} -
   @endpush
+  @if ($homeCustomize->course_stle == 'ctg')
   <section class="breadcrum">
     <h2>Course Details</h2>
     <p>
@@ -40,7 +41,10 @@
           <div class="col-lg-4">
             <div class="featureCard">
               <div class="card_header">
+                @if ($feature->feature_image)
                 <img src="{{ $feature->feature_image }}" alt="{{ $feature->title }}" />
+
+                @endif
                 <h4>{{ $feature->title }}</h4>
               </div>
               <div class="card_body">
@@ -92,4 +96,102 @@
       </div>
     </div>
   </section>
+  @elseif ($homeCustomize->course_stle == 'dhaka')
+  <section id="front" style="background: url({{ asset('frontend/image/course_viewBGHero.webp') }})">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 courseDetails">
+          <h3>{{ $course->moto }}</h3>
+          <h1>{{ $course->title }}</h1>
+          <ul>
+            <li>
+              কোর্সের মেয়াদ
+              <span>{{ $course->duration }}</span>
+            </li>
+            <li>
+              লেকচার
+              <span>{{ $course->total_class }}</span>
+            </li>
+            <li>
+              প্রজেক্ট
+              <span>{{ $course->projects }}</span>
+            </li>
+          </ul>
+          <p>
+            {{ $course->demand }}
+          </p>
+          <a href="#" class="join_seminar">ফ্রি সেমিনার</a>
+        </div>
+        <div class="col-lg-7 courseImage">
+          @if ($course->iframe)
+          <div class="youtubeThumb" data-youtube="https://www.youtube.com/embed/IYlvBww0FRg">
+            <img src="https://img.youtube.com/vi/IYlvBww0FRg/0.jpg" alt="" title="Yo yo" />
+            <div class="overlay">
+              <img src="{{ asset('frontend/image/play-button-icon.webp') }}" alt="icon" />
+            </div>
+          </div>
+          @else
+          <img src="{{ $course->image }}" alt="" style="width:100%">
+          @endif
+
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <section id="overview">
+    <div class="container">
+      <div class="course_detail">
+        <h2>কোর্স ওভারভিউ</h2>
+        <p>{!! $course->detail !!}</p>
+      </div>
+
+
+      <div class="course_module">
+        <h2>কোর্স কারিকুলাম</h2>
+        <div class="row justify-content-between">
+          @foreach ($course->features as $feature)
+          <div class="col-lg-6 ">
+            <div class="module">
+              <h3>{{ $feature->title }}</h3>
+              <div class="topics">{!! $feature->details !!}</div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
+
+      <div class="softwares">
+        <h2>যেসব সফটওয়্যার শেখানো হয়</h2>
+        <ul>
+          @foreach (json_decode($course->softwares)->software as $software)
+
+          <li>
+            <img src="{{ $software }}" alt="">
+          </li>
+          @endforeach
+        </ul>
+      </div>
+      <div class="marketplaces">
+        <h2>যেসব মার্কেটপ্লেস শেখানো হয়</h2>
+        <ul>
+          @foreach (json_decode($course->marketplace)->marketPlace as $marketPlace)
+
+          <li>
+            <img src="{{ $marketPlace }}" alt="">
+          </li>
+          @endforeach
+        </ul>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  @push('frontendCss')
+  <link rel="stylesheet" href="{{ asset('frontend/css/courseViewDhaka.css') }}">
+  @endpush
+  @endif
 </x-frontend-app>
