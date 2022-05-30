@@ -3,11 +3,11 @@
   Faculties -
   @endpush
   <section class="breadcrum">
-    <h2>Our Faculties</h2>
+    <h2>আমাদের পরিবারের সদস্য</h2>
     <p>
-      <a href="{{ url('/') }}">Home</a>
+      <a href="{{ url('/') }}">হোম</a>
       <i class="bi bi-chevron-right"></i>
-      <a class="active" href="#">Faculties</a>
+      <a class="active" href="#">আমাদের মেন্টরস</a>
     </p>
   </section>
 
@@ -16,7 +16,7 @@
     <div class="container">
       <div class="faculties_filter">
         <div class="filter_buttons">
-          <button type="button" data-filter="all">All</button>
+          <button type="button" data-filter="all">সকল</button>
           @foreach ($departments as $dp)
           <button type="button" data-filter=".{{ str()->slug($dp->name) }}">{{ str()->headline($dp->name) }}</button>
           @endforeach

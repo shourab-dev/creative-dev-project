@@ -101,37 +101,41 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-5 courseDetails">
-          <h3>{{ $course->moto }}</h3>
-          <h1>{{ $course->title }}</h1>
+          <h3 data-aos="fade-up" data-aos-duration="300">{{ $course->moto }}</h3>
+          <h1 data-aos="fade-up" data-aos-duration="400" data-aos-delay="100">{{ $course->title }}</h1>
           <ul>
-            <li>
+            <li data-aos="zoom-in" data-aos-duration="400" data-aos-delay="200">
               কোর্সের মেয়াদ
               <span>{{ $course->duration }}</span>
             </li>
-            <li>
+            <li data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
               লেকচার
               <span>{{ $course->total_class }}</span>
             </li>
-            <li>
+            <li data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
               প্রজেক্ট
               <span>{{ $course->projects }}</span>
             </li>
           </ul>
-          <p>
+          <p data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">
             {{ $course->demand }}
           </p>
-          <a href="#" class="join_seminar">ফ্রি সেমিনার</a>
+          <a href="{{ url('/') }}#seminar" class="join_seminar" data-aos="fade-up" data-aos-duration="400"
+            data-aos-delay="200">ফ্রি
+            সেমিনার</a>
         </div>
         <div class="col-lg-7 courseImage">
           @if ($course->iframe)
-          <div class="youtubeThumb" data-youtube="https://www.youtube.com/embed/IYlvBww0FRg">
+          <div data-aos="fade-left" data-aos-duration="400" data-aos-delay="200" class="youtubeThumb"
+            data-youtube="https://www.youtube.com/embed/IYlvBww0FRg">
             <img src="https://img.youtube.com/vi/IYlvBww0FRg/0.jpg" alt="" title="Yo yo" />
             <div class="overlay">
               <img src="{{ asset('frontend/image/play-button-icon.webp') }}" alt="icon" />
             </div>
           </div>
           @else
-          <img src="{{ $course->image }}" alt="" style="width:100%">
+          <img data-aos="fade-left" data-aos-duration="400" data-aos-delay="200" src="{{ $course->image }}" alt=""
+            style="width:100%">
           @endif
 
 
@@ -142,48 +146,73 @@
   </section>
   <section id="overview">
     <div class="container">
-      <div class="course_detail">
-        <h2>কোর্স ওভারভিউ</h2>
-        <p>{!! $course->detail !!}</p>
-      </div>
-
-
-      <div class="course_module">
-        <h2>কোর্স কারিকুলাম</h2>
-        <div class="row justify-content-between">
-          @foreach ($course->features as $feature)
-          <div class="col-lg-6 ">
-            <div class="module">
-              <h3>{{ $feature->title }}</h3>
-              <div class="topics">{!! $feature->details !!}</div>
+      <div class="sideBarArea">
+        <div class="leftSideBar">
+          <div class="course_detail">
+            <h2 data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">কোর্স ওভারভিউ</h2>
+            <div data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">
+              <p>{!! $course->detail !!}</p>
             </div>
           </div>
-          @endforeach
+          <div class="course_module">
+            <h2 data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">কোর্স কারিকুলাম</h2>
+            <div class="row justify-content-between">
+              @foreach ($course->features as $feature)
+              <div class="col-lg-6 " data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">
+                <div class="module">
+                  <h3>{{ $feature->title }}</h3>
+                  <div class="topics">{!! $feature->details !!}</div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+          </div>
+          <div class="softwares" data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">
+            <h2>যেসব সফটওয়্যার শেখানো হয়</h2>
+            <ul>
+              @foreach (json_decode($course->softwares)->software as $software)
+              <li>
+                <img src="{{ $software }}" alt="">
+              </li>
+              @endforeach
+            </ul>
+          </div>
+          <div class="marketplaces" data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">
+            <h2>যেসব মার্কেটপ্লেস শেখানো হয়</h2>
+            <ul>
+              @foreach (json_decode($course->marketplace)->marketPlace as $marketPlace)
+              <li>
+                <img src="{{ $marketPlace }}" alt="">
+              </li>
+              @endforeach
+            </ul>
+          </div>
         </div>
-      </div>
+        <div class="rightSideBar">
+          <h3 data-aos="fade-down" data-aos-duration="400" data-aos-delay="200">অন্যান্য কোর্স সমূহ </h3>
+          <hr>
+          @forelse ($relatedCourses as $relate)
 
-      <div class="softwares">
-        <h2>যেসব সফটওয়্যার শেখানো হয়</h2>
-        <ul>
-          @foreach (json_decode($course->softwares)->software as $software)
+          <div class="px-2" data-aos="fade-left" data-aos-duration="400" data-aos-delay="200">
+            <a href="{{ route('course.view', $relate->slug) }}">
+              <div class="course_card">
+                <div class="course_img">
+                  <img src="{{ $relate->thumbnail }}" alt="{{ $relate->title }}">
+                </div>
+                <div class="course_detail">
+                  <h3>{{ $relate->title }}</h3>
+                  <p>ক্লাস সংখ্যা {{ $relate->total_class }}</p>
+                  <h4>কোর্সের মেয়াদ {{ $relate->duration }}</h4>
+                </div>
+            </a>
+          </div>
 
-          <li>
-            <img src="{{ $software }}" alt="">
-          </li>
-          @endforeach
-        </ul>
+        </div>
+        @empty
+        <p>nothing found</p>
+        @endforelse
       </div>
-      <div class="marketplaces">
-        <h2>যেসব মার্কেটপ্লেস শেখানো হয়</h2>
-        <ul>
-          @foreach (json_decode($course->marketplace)->marketPlace as $marketPlace)
-
-          <li>
-            <img src="{{ $marketPlace }}" alt="">
-          </li>
-          @endforeach
-        </ul>
-      </div>
+    </div>
     </div>
 
 

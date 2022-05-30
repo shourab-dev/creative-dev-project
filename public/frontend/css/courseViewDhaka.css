@@ -168,6 +168,58 @@
 }
 .marketplaces ul li img,
 .softwares ul li img {
-    max-height: 80px;
+    max-height: 60px;
     display: block;
+}
+
+
+.course_card {
+   margin: 15px 0;
+    max-width: 400px;
+    border-radius: 25px;
+    max-height: 450px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.course_card .course_img {
+    height: 300px;
+    overflow: hidden;
+    border-radius: 25px 25px 0 0;
+}
+
+.course_card .course_detail {
+    padding: 20px;
+}
+
+.course_card .course_detail h3 {
+    font-size: clamp(1.2rem, 5vw, 25px);
+    font-size: 600;
+    color: #1f1e1e;
+}
+
+.course_card .course_detail p {
+    font-size: 15px;
+    color: #df6812;
+    float: right;
+}
+
+.course_card .course_detail h4 {
+    font-size: 18px;
+    color: #1f1e1e;
+}
+
+.course_card .course_img img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (min-width: 992px) {
+    .sideBarArea {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+    }
 }

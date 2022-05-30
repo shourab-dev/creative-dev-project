@@ -5,10 +5,10 @@
   <!-- breadcrum section starts -->
   <section class="breadcrum">
     <div class="container">
-      <h2>Our Overview</h2>
+      <h2>আমাদের সম্পর্কে</h2>
       <p>
-        <a href="{{ url('/') }}">Home</a><i class="bi bi-chevron-right"></i>
-        <a href="#" class="active">All Courses</a>
+        <a href="{{ url('/') }}">হোম</a><i class="bi bi-chevron-right"></i>
+        <a href="#" class="active">Creative IT</a>
       </p>
     </div>
   </section>

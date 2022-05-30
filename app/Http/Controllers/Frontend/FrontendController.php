@@ -94,9 +94,13 @@ class FrontendController extends Controller
             $q->where('status', true);
         }])->where('slug', $slug)->where('status', true)->first();
 
-        // dd($course);
+        $relatedCourses = Course::where('department_id', $course->department_id)->with(['features' => function ($q) {
+            $q->where('status', true);
+        }])->where('status', true)->where('slug', '!=', $slug)->limit(3)->get();
+
+
         if ($course != null) {
-            return view('frontend.courseView', compact('course', 'homeCustomize'));
+            return view('frontend.courseView', compact('course', 'homeCustomize', 'relatedCourses'));
         }
     }
 

@@ -282,9 +282,9 @@ nav #mycustomNav li:last-child a {
 
 nav #mycustomNav a {
     display: block;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
-    color: #444444c5;
+    color: #1f1e1e;
     padding: 18px 25px;
     position: relative;
     -webkit-transition: 0.25s ease;
@@ -421,9 +421,6 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     font-weight: 500;
 }
 
-
-
-
 #seminar {
     padding: 60px 0;
     position: relative;
@@ -433,7 +430,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-    color: #49596d;
+    color: #1f1e1e;
     text-transform: capitalize;
     margin: auto;
     text-transform: capitalize;
@@ -450,7 +447,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     width: 0px;
     height: 4px;
     border-radius: 25px;
-    background-color: #49596d;
+    background-color: #22222257;
     position: absolute;
     left: 50%;
     bottom: -10px;
@@ -474,8 +471,11 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 
 #seminar .intro p {
     text-align: center;
-    font-size: clamp(1rem, 1.5vw, 1.45rem);
-    margin: 10px 0;
+    font-size: 1.1rem;
+    width: 60%;
+    max-width: 100%;
+    margin: 40px auto 0;
+    color: #575757;
 }
 
 #seminar .table_container table {
@@ -483,6 +483,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     min-width: 800px;
     width: 100%;
     margin-top: 50px;
+    font-family: arial;
 }
 
 #seminar .table_container table tr:nth-child(1) {
@@ -536,6 +537,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
     background-color: #fff;
+    
 }
 
 #seminar .seminar_model .card {
@@ -594,6 +596,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 
 #seminar .seminar_model .card .card-header p {
     margin-right: -5px;
+    font-weight: 600;
 }
 
 #seminar .seminar_model .card .card-body {
@@ -604,9 +607,10 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 }
 
 #seminar .seminar_model .card form label {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 5px 0;
+    color: #333;
 }
 
 #seminar .seminar_model .card form select,
@@ -634,6 +638,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     border-radius: 4px;
     padding: 10px 0;
     color: #fff;
+    font-size: 1.2rem;
 }
 
 #seminar .modalActive {
@@ -862,15 +867,14 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-    color: #49596d;
+    color: #1f1e1e;
     text-transform: capitalize;
     margin: auto;
     text-transform: capitalize;
-    font-weight: 500;
+    font-weight: 700;
     position: relative;
-    font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+    font-size: clamp(1.6rem, 2.8vw, 45rem);
     margin-bottom: 20px;
-    font-weight: 600;
 }
 
 #facilities .intro h2::after,
@@ -879,7 +883,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     width: 0px;
     height: 4px;
     border-radius: 25px;
-    background-color: #49596d;
+    background-color: #1f1e1e70;
     position: absolute;
     left: 50%;
     bottom: -10px;
@@ -904,7 +908,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 #facilities .intro p {
     text-align: center;
     font-size: clamp(1rem, 1.5vw, 1.45rem);
-    margin: 10px 0;
+    margin: 40px auto 0;
 }
 
 #facilities .facilities_cards {
@@ -912,7 +916,6 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 }
 
 #facilities .facility_card {
-    font-family: "Encode Sans", sans-serif;
     margin-bottom: 50px;
     padding: 20px 30px;
     border-radius: 5px;
@@ -928,14 +931,15 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 
 #facilities .facility_card h3 {
     margin: 30px 0;
-    font-weight: 600;
-    color: #49596d;
+    font-weight: 500;
+    color: #222222;
 }
 
 #facilities .facility_card p {
     text-align: justify;
-    font-size: 1rem;
-    line-height: 25px;
+    font-size: 1.2rem;
+    line-height: 28px;
+    color: #555;
 }
 
 footer {
@@ -1509,6 +1513,8 @@ footer .copyright span a {
     overflow: hidden;
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 #faculties .faculties_filter .filter_buttons button::after {
@@ -1538,8 +1544,8 @@ footer .copyright span a {
     .filter_buttons
     button.mixitup-control-active::after,
 #faculties .faculties_filter .filter_buttons button:hover::after {
-    -webkit-transform: translate(-50%, -50%) scale(13);
-    transform: translate(-50%, -50%) scale(13);
+    -webkit-transform: translate(-50%, -50%) scale(15);
+    transform: translate(-50%, -50%) scale(15);
 }
 
 #faculties .filterable_container {

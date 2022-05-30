@@ -117,7 +117,7 @@
   @endpush
   @endif
 
-  @elseif ('dhaka')
+  @elseif ($homeCustomize->banner_stle == 'dhaka')
   <section id="bannerPart" style="background-image: url({{ asset('frontend/image/banner_hero.webp') }})">
     <div class="container">
       <div class="row align-items-center">
@@ -132,7 +132,7 @@
           <p class="detail">
             {{ $banners->detail }}
           </p>
-          <a href="#course"><i class="bi bi-book"></i> ব্রাউজ কোর্স</a>
+          <a href="#courses"><i class="bi bi-book"></i> ব্রাউজ কোর্স</a>
           <a href="#seminar"><i class="bi bi-book"></i> জয়েন ফ্রি সেমিনার</a>
           <div class="iso d-flex align-items-center">
             <img src="{{ asset('frontend/image/iso.png') }}" alt="iso">
@@ -143,7 +143,7 @@
         <div class="col-lg-7 embededVideoLink">
           <div class="youtubeThumb" data-youtube="{{ $banners->iframe }}">
             <img src="https://img.youtube.com/vi/{{ str()->after($banners->iframe, 'embed/') }}/0.jpg" alt=""
-              title="Yo yo" />
+              title="{{ $banners->heading }}" />
             <div class="overlay">
               <img src="{{ asset('frontend/image/play-button-icon.webp') }}" alt="icon" />
             </div>
@@ -330,26 +330,26 @@
             <img src="{{ $footer['logo'] }}" loading="lazy" alt="" />
           </div>
           <div class="card-header px-2">
-            <p class="h5">Join Seminar</p>
+            <p class="h5">জয়েন ফ্রি সেমিনার</p>
             <span class="float-end close__modal position-absolute"><i class="bi bi-x-lg"></i></span>
           </div>
           <div class="card-body">
             <form action="{{ route('seminar.join') }}" method="POST">
               @csrf
               <div class="form-group">
-                <label for="name">Name: -</label>
+                <label for="name">আপনার নাম: -</label>
                 <input required type="text" class="form-control" id="name" name="name" />
               </div>
               <div class="form-group">
-                <label for="phone">Phone: -</label>
+                <label for="phone">আপনার ফোন নাম্বার: -</label>
                 <input required type="number" class="form-control" id="phone" name="phone" />
               </div>
               <div class="form-group">
-                <label for="email">Email: -</label>
+                <label for="email">আপনার ইমেইল: -</label>
                 <input required type="email" class="form-control" id="email" name="email" />
               </div>
               <div class="form-group">
-                <label for="course">Select Seminar: -</label>
+                <label for="course">কোর্স সিলেক্ট করুন: -</label>
                 <select name="seminar_id" id="course" class="form-control">
                   @foreach ($seminars as $seminar)
                   <option value="{{ $seminar->id }}">{{ $seminar->name }}</option>
@@ -357,29 +357,34 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="address">Address: -</label>
+                <label for="address">আপনার ঠিকানা: -</label>
                 <textarea required name="address" id="address" class="form-control"></textarea>
               </div>
-              <button>Join Seminar</button>
+              <button>ফ্রি রেজিস্ট্রেশন করুন</button>
             </form>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="intro">
-          <h2 class="heading" data-aos="fade-up">Still Confused Join</h2>
+          <h2 class="heading" data-aos="fade-up">ফ্রি সেমিনারের সময়সূচি</h2>
           <p data-aos="fade-up" data-aos-delay="150">
-            Join Our Free Seminars & Workshops !
+            কোন কোর্সে ভর্তি হবেন, সেই কোর্সে কাজের সুযোগ কেমন আর ক্রিয়েটিভ আইটি ইন্সটিটিউট -এ ভর্তি হলে কি কি সুবিধা
+            পাবেন- আপনার
+            মনে এমন অসংখ্য প্রশ্ন রয়েছে নিশ্চয়ই? আপনার যেকোনো প্রশ্নের সরাসরি উত্তর দিতে প্রতি সপ্তাহে আমরা আয়োজন করি
+            কোর্সভিত্তিক
+            ফ্রি সেমিনার। এই সেমিনারগুলোতে অংশ নিয়ে আপনি কোর্সের মেন্টরের কাছ থেকে কোর্স বিষয়ক যেকোনো পরামর্শ নিতে
+            পারেন।
           </p>
         </div>
 
         <div data-aos-delay="300" data-aos="fade-up" class="table_container table-responsive-lg">
           <table class="table" valign="center">
             <tr>
-              <th>Topic</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Action</th>
+              <th>টপিক</th>
+              <th>তারিক</th>
+              <th colspan="2">সময়</th>
+              {{-- <th>Action</th> --}}
             </tr>
             @foreach ($seminars as $seminar)
             <tr>
@@ -477,8 +482,8 @@
         <div class="col-lg-5 order-2 order-lg-1">
           <div class="contact_form">
             <h2 class="mt-4 my-lg-0">
-              Get A Free <br />
-              <span>Counselling</span>
+              আমাদের সাথে <br>
+              <span>যোগাযোগ করুন</span>
             </h2>
             <form action="{{ route('counciling.save') }}" method="POST">
               @csrf
@@ -518,10 +523,12 @@
 
   <section id="facilities">
     <div class="container">
-      <div class="intro mb-5">
-        <h2 data-aos="fade-up">Our Facilities</h2>
+      <div class="intro mb-5 primary">
+        <h2 data-aos="fade-up">ক্রিয়েটিভ আইটির বিশেষ সেবা</h2>
         <p data-aos="fade-up" data-aos-delay="300">
-          Explore the weapons of Latest Information Technology!
+          কেবল ক্লাস নয়, ক্রিয়েটিভ আইটি সবসময় প্রস্তুত শিক্ষার্থীদের যেকোনো দরকারে, যেকোনো সময়। তাই উন্নতমানের কোর্সের
+          সাথে আপনি
+          পাচ্ছেন কিছু বোনাস সুবিধা, যা শুধুমাত্র আমরাই দিয়ে থাকি।
         </p>
       </div>
       <div class="facilities_cards" data-aos="fade-up">
