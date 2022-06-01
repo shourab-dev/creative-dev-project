@@ -1,0 +1,113 @@
+#seminar {
+    padding: 60px 0;
+}
+
+/* scroll bar */
+
+/* width */
+#seminar ::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Handle */
+#seminar ::-webkit-scrollbar-thumb {
+    background: #f57872;
+    border-radius: 10px;
+}
+
+/* scroll bar end */
+#seminar .primary > p {
+    width: 100%;
+}
+@media (min-width: 992px) {
+    .allSeminars {
+        max-height: 500px;
+        overflow: auto;
+    }
+}
+
+.allSeminars .seminar {
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    overflow: hidden;
+    font-family: arial;
+    margin: 15px 0;
+}
+.allSeminars .seminar .time {
+    background-color: #ffe9dc;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 10px 10px 20px;
+}
+
+.allSeminars .seminar .time p {
+    margin: 0;
+}
+.allSeminars .seminar .time p:first-child {
+    font-size: 32px;
+    color: #000;
+    font-weight: 600;
+}
+
+.allSeminars .seminar .time p:last-child {
+    color: #ff7e31;
+    font-weight: 600;
+    font-size: 16px;
+}
+.allSeminars .seminar .detail {
+    padding: 20px 15px;
+}
+
+.allSeminars .seminar .detail h4 {
+    color: #1f1e1e;
+    font-size: 24px;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+}
+
+.allSeminars .seminar .detail p {
+    text-align: justify;
+    font-size: 18px;
+    font-weight: 500;
+    color: #1f1e1e;
+    margin: auto;
+}
+.allSeminars .seminar .seminarButton {
+    display: grid;
+    place-items: center;
+}
+.allSeminars .seminar .seminarButton a {
+    color: #cf0000;
+    border-radius: 10px;
+    border: 1px solid #cf0000;
+    display: inline-block;
+    padding: 8px 10px;
+    background-color: transparent;
+    transition: 0.25s ease-in;
+}
+
+.allSeminars .seminar .seminarButton a:hover {
+    background-color: #cf0000;
+    color: white;
+}
+.seminarImg img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .allSeminars .seminar .seminarButton {
+        padding: 10px 0 20px;
+    }
+    .allSeminars .seminar .detail {
+        padding: 20px 28px;
+    }
+}
+
+@media (max-width: 991px) {
+    .seminarImg img {
+        display: none;
+    }
+}

@@ -27,12 +27,12 @@
       <div class="row align-items-center">
         <div class="col-lg-8">
           <div class="mission">
-            <h2>Missions</h2>
+            <h2>উদ্দেশ্য</h2>
             {!! $aboutData->mission !!}
           </div>
 
           <div class="vission">
-            <h2>Vissions</h2>
+            <h2>লক্ষ্য</h2>
             {!! $aboutData->vission !!}
           </div>
         </div>

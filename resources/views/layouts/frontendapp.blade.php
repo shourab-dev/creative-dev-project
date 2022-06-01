@@ -144,14 +144,14 @@
                     </div>
                 </div>
                 <div class="col-lg-4 location">
-                    <h4>Address</h4>
+                    <h4>আমাদের ঠিকানা</h4>
                     <address>
                         {{ $footer['address'] }}
                     </address>
                 </div>
 
                 <div class="col-lg-4 contact">
-                    <h4>Contact</h4>
+                    <h4>যোগাযোগ করুন</h4>
                     <p>
                         @foreach (json_decode($header['email'])->email as $email)
                         <a href="mailto:{{ $email }}">{{ $email }}</a>
