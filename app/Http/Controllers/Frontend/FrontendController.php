@@ -114,4 +114,10 @@ class FrontendController extends Controller
         // dd($faculties);
         return view('frontend.faculties', compact('faculties', 'departments'));
     }
+
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
 }

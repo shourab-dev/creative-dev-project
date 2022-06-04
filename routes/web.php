@@ -30,7 +30,10 @@ Route::GET('/course/{slug}', [FrontendController::class, 'courseView'])->name('c
 Route::GET('/our-faculties', [FrontendController::class, 'faculties'])->name('faculties.view');
 Route::GET('/blog', [BlogController::class, 'blogIndex'])->name('blog');
 Route::GET('our-blog/{category}/{slug}', [BlogController::class, 'blogView'])->name('blog.view');
+Route::GET('our-blogs/{category}', [BlogController::class, 'categoryView'])->name('blog.category.view');
+Route::GET('/search/our-blogs', [BlogController::class, 'searchView'])->name('blog.search.view');
 
+Route::GET('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 
 
@@ -146,6 +149,7 @@ Route::middleware('auth')->name('blog.')->prefix('blog-part/')->group(function (
     Route::GET('/approve', [BlogController::class, 'blogApprove'])->name('approve')->middleware('can:approve blog');
     Route::GET('/edit', [BlogController::class, 'blogEdit'])->name('edit')->middleware('can:edit blog');
     Route::GET('/edit/item/{id}', [BlogController::class, 'blogItemEdit'])->name('edit.item')->middleware('can:edit blog');
+    Route::GET('/trending/item/{id}', [BlogController::class, 'blogTrending'])->name('trending.item')->middleware('can:edit blog');
     Route::DELETE('/delete/item/{id}', [BlogController::class, 'blogDelete'])->name('delete.item')->middleware('can:edit blog');
 });
 

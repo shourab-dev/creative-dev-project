@@ -1059,6 +1059,10 @@ select {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -1078,10 +1082,6 @@ select {
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-}
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
 }
 .mx-3 {
   margin-left: 0.75rem;
@@ -1302,14 +1302,14 @@ select {
 .max-h-\[300px\] {
   max-height: 300px;
 }
+.max-h-20 {
+  max-height: 5rem;
+}
 .max-h-\[30rem\] {
   max-height: 30rem;
 }
 .max-h-\[15rem\] {
   max-height: 15rem;
-}
-.max-h-20 {
-  max-height: 5rem;
 }
 .min-h-screen {
   min-height: 100vh;

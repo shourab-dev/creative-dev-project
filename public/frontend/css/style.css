@@ -807,7 +807,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 #blog .success_card .card_text button:hover {
     background-color: #cf1a10;
 }
-
+#blog .btn__read_more,
 #blog .view__more {
     width: -webkit-fit-content;
     width: -moz-fit-content;
@@ -827,6 +827,7 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
 #blog .view__more:hover {
     background-color: #cf1a10;
 }
+
 
 #contact {
     padding: 80px 0;

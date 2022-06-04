@@ -119,7 +119,7 @@
                         <a class="nav-link" aria-current="page" href="{{ route('blog') }}">ব্লগস</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">যোগাযোগ</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('contact') }}">যোগাযোগ</a>
                     </li>
 
                     <li class="nav-item">

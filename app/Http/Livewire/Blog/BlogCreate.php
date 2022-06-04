@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Blog;
 use Livewire\Component;
 use App\Models\BlogPost;
 use App\Models\BlogCategory;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class BlogCreate extends Component
@@ -45,9 +46,11 @@ class BlogCreate extends Component
 
     public function saveBlog()
     {
+
         $this->validate([
             'title' => 'required',
             'detail' => 'required',
+            'categoryId' => 'required',
             'thumbnail' => 'required',
             'featureImg' => 'required',
         ]);
@@ -60,6 +63,20 @@ class BlogCreate extends Component
         } else {
 
             $blog = new BlogPost();
+        }
+
+        $user =  User::whereHas('roles', function ($q) {
+            $q->whereHas('permissions', function ($query) {
+                $query->where('name', 'manage seminar');
+            });
+        })->find(
+            Auth::user()->id,
+            ['id']
+        );
+
+
+        if ($user != null) {
+            $blog->status = true;
         }
         $blog->title = $this->title;
         $blog->slug = $slug;
