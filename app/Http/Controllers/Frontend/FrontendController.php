@@ -120,4 +120,11 @@ class FrontendController extends Controller
     {
         return view('frontend.contact');
     }
+
+
+
+    public function discount()
+    {
+        return view('frontend.discount.discountModal');
+    }
 }

@@ -828,7 +828,6 @@ nav #mycustomNav li.searchBarIcon .searchOption input {
     background-color: #cf1a10;
 }
 
-
 #contact {
     padding: 80px 0;
 }
@@ -1908,3 +1907,41 @@ footer .copyright span a {
     color: #222222;
     margin: 5px 0;
 }
+
+/* discount modal */
+.disCountModal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999999;
+    display: grid;
+    place-items: center;
+    background-color: rgba(142, 142, 142, 0.402);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+.activeModalDiscount {
+    opacity: 1;
+    transition: 0.3s;
+    visibility: visible;
+}
+.disCountModal .modalCnt {
+    position: relative;
+}
+.disCountModal span {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: 15px;
+
+    font-size: 2rem;
+    color: #000;
+}
+.disCountModal img {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* discount modal ends */

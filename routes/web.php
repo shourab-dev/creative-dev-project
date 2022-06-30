@@ -7,10 +7,27 @@ use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\backend\CourseController;
 use App\Http\Controllers\backend\ContactController;
+use App\Http\Controllers\DiscountCourseController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Role\CustomRegisterController;
 use App\Http\Controllers\Role\RoleManagementController;
 use App\Http\Livewire\Banner\BannerPart;
+
+// Route::get('/leedsend', function () {
+//     Artisan::call('leedmail:send');
+// });
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate:fresh');
+    Artisan::call('db:seed');
+});
+Route::get('/storage', function () {
+    Artisan::call('storage:link');
+});
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +49,16 @@ Route::GET('/blog', [BlogController::class, 'blogIndex'])->name('blog');
 Route::GET('our-blog/{category}/{slug}', [BlogController::class, 'blogView'])->name('blog.view');
 Route::GET('our-blogs/{category}', [BlogController::class, 'categoryView'])->name('blog.category.view');
 Route::GET('/search/our-blogs', [BlogController::class, 'searchView'])->name('blog.search.view');
-
 Route::GET('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 
+Route::GET('/discount-offer', [FrontendController::class, 'discount'])->name('course.discount');
+Route::POST('/discount-offer', [DiscountCourseController::class, 'sendOpt'])->name('otp.send');
+Route::GET('/send-otp', [DiscountCourseController::class, 'resendOTP'])->name('otp.resend');
+Route::POST('/confirm-otp', [DiscountCourseController::class, 'confirmOTP'])->name('otp.confirm');
+Route::POST('/wheel/final/shot', [DiscountCourseController::class, 'successSpin'])->name('wheel.success');
+
+// FRONTEND ROUTES ENDS
 
 // BACKEND ALL ROUTES
 Route::middleware([
@@ -53,6 +76,9 @@ Route::middleware([
 Route::GET('/file-manager', function () {
     return view('backend.file.fileManager');
 })->name('filemanager')->middleware(['auth', 'can:file management']);
+Route::GET('/lucky-wheel', function () {
+    return view('backend.wheel.luckyWheel');
+})->name('luckywheel')->middleware(['auth', 'can:counciling']);
 
 // File manager ends
 

@@ -3,6 +3,18 @@
   Home -
   @endpush
   {{-- PROMO MODAL --}}
+  {{-- discount modal --}}
+  <div class="disCountModal activeModalDiscount" id="disCountModal">
+    <div class="modalCnt">
+      <span id="closeDiscountModal"><i class="bi bi-x-lg"></i></span>
+      <a href="{{ route('course.discount') }}">
+        <img src="{{ asset('frontend/image/discountPic.png') }}" alt="Discount Image">
+      </a>
+    </div>
+  </div>
+  {{-- discount modal ends --}}
+
+
   @if ($customize->promo_modal == true)
   @push('frontendCss')
   <style>
