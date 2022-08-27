@@ -121,10 +121,25 @@ class FrontendController extends Controller
         return view('frontend.contact');
     }
 
-
-
     public function discount()
     {
         return view('frontend.discount.discountModal');
+    }
+
+
+
+    // FRONTEND CERTIFICATE VERIFY
+    public function verifyCertificate(){
+        return view('frontend.verify-certificate');
+    }
+
+    public function verifiedCertificate(Request $request){
+        $request->validate([
+            'certificate_id' => 'required'
+        ],[
+            'certificate_id.required' => 'Please Give your Certificate ID',
+        ]);
+        $user = 'shourab';
+        return view('frontend.verify-certificate', compact('user'));
     }
 }

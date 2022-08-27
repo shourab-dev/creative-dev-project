@@ -490,7 +490,7 @@
                         </div>
                     </a>
                     <ul class=" {{ request()->routeIs('banner*') ? 'side-menu__sub-open' : '' }}">
-
+                        @if ($header->banner_stle == 'ctg')
                         <li>
                             <a href="{{ route('banner') }}" class="side-menu">
                                 <div class="side-menu__icon">
@@ -514,6 +514,18 @@
                             </a>
                         </li>
                         @endcan
+                        @else
+                        <li>
+                            <a href="{{ route('banner.part.update') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Banner Part
+                                </div>
+                            </a>
+                        </li>
+                        @endif
                     </ul>
                 </li>
                 @endcan
@@ -699,6 +711,16 @@
                                 </div>
                                 <div class="side-menu__title">
                                     Promo Modal & Preloader
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customize.home') }}" class="side-menu">
+                                <div class="side-menu__icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="side-menu__title">
+                                    Home Page
                                 </div>
                             </a>
                         </li>

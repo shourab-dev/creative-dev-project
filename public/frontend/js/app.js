@@ -81,9 +81,9 @@ $(function () {
     seminarJoinButton.click(function (e) {
         e.preventDefault();
         let propValue = $(this).attr("data-id");
-
         $(".seminar_model").addClass("modalActive");
         let optionsNode = $(".seminar_model .card select option");
+        optionsNode.removeAttr("selected");
         let options = optionsNode.toArray();
         options.map((item) => {
             let value = item.value;

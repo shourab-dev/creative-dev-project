@@ -38,7 +38,7 @@ class LuckyWheel extends Component
 
     public function download()
     {
-        return Excel::download(new LuckyWheelExport($this->fromDate, $this->toDate), "LuckyWheel-leeds-" . Carbon::today()->format('d-m-Y M') . ".xlsx");
+        return Excel::download(new LuckyWheelExport($this->fromDate, $this->toDate), "LuckyWheel-leeds-" . Carbon::now()->format('d-m-Y M g:ia') . ".xlsx");
     }
     public function render()
     {

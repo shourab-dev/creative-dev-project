@@ -10,7 +10,7 @@
             <div class="from_date">
                 <label>
                     From Date
-                    <x-input type="date" wire:model="fromDate" />
+                    <x-input type="datetime-local" wire:model="fromDate" />
                 </label>
             </div>
             <div class="to_date">
@@ -58,7 +58,7 @@
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {{ $contact->name }}
                             </td>
-                           
+
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 <a href="tel:{{ $contact->phone }}">{{ $contact->phone }}</a>
                             </td>

@@ -33,7 +33,7 @@ class DiscountCourseController extends Controller
                 "sms_data" => [
                     [
                         "recipient" => $request->phone,
-                        "mask" => "Creative IT Institute",
+                        "mask" => "Creative IT",
                         "message" => $message
                     ]
                 ]

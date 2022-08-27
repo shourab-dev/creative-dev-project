@@ -17,13 +17,13 @@ use App\Http\Livewire\Banner\BannerPart;
 //     Artisan::call('leedmail:send');
 // });
 
-Route::get('/migrate', function () {
-    Artisan::call('migrate:fresh');
-    Artisan::call('db:seed');
-});
-Route::get('/storage', function () {
-    Artisan::call('storage:link');
-});
+// Route::get('/migrate', function () {
+//     Artisan::call('migrate:fresh');
+//     Artisan::call('db:seed');
+// });
+// Route::get('/storage', function () {
+//     Artisan::call('storage:link');
+// });
 
 
 
@@ -50,7 +50,8 @@ Route::GET('our-blog/{category}/{slug}', [BlogController::class, 'blogView'])->n
 Route::GET('our-blogs/{category}', [BlogController::class, 'categoryView'])->name('blog.category.view');
 Route::GET('/search/our-blogs', [BlogController::class, 'searchView'])->name('blog.search.view');
 Route::GET('/contact', [FrontendController::class, 'contact'])->name('contact');
-
+Route::GET('/verify-certificate', [FrontendController::class, 'verifyCertificate'])->name('verify-certificate');
+Route::POST('/verify-certificate', [FrontendController::class, 'verifiedCertificate'])->name('verified-certificate');
 
 Route::GET('/discount-offer', [FrontendController::class, 'discount'])->name('course.discount');
 Route::POST('/discount-offer', [DiscountCourseController::class, 'sendOpt'])->name('otp.send');
