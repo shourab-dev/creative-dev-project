@@ -3,11 +3,11 @@
   Success Stories -
   @endpush
   <section class="breadcrum">
-    <h2>Freelancing Success Stories</h2>
+    <h2>আমাদের কিছু সাফল্যের গল্প</h2>
     <p>
-      <a href="{{ url('/') }}">Home</a>
+      <a href="{{ url('/') }}">হোম</a>
       <i class="bi bi-chevron-right"></i>
-      <a class="active" href="#">Success Stories</a>
+      <a class="active" href="#">সাফল্যের গল্প</a>
     </p>
   </section>
   <section id="stories">

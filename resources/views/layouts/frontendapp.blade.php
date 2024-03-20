@@ -100,31 +100,30 @@
                 <ul class="navbar-nav d-lg-flex justify-content-lg-between">
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page"
-                            href="{{ url('/') }}">Home</a>
+                            href="{{ url('/') }}">হোম</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" aria-current="page"
-                            href="{{ route('about') }}">About Us</a>
+                            href="{{ route('about') }}">আমাদের সম্পর্কে</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('frontend.success.story') ? 'active' : '' }}"
-                            aria-current="page" href="{{ route('frontend.success.story') }}">Success
-                            Stories</a>
+                            aria-current="page" href="{{ route('frontend.success.story') }}">সাফল্যের গল্প</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('faculties.view') ? 'active' : '' }}"
-                            aria-current="page" href="{{ route('faculties.view') }}">Our Faculties</a>
+                            aria-current="page" href="{{ route('faculties.view') }}">আমাদের মেন্টরস</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('blog') }}">ব্লগস</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Dhaka Branch</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('contact') }}">যোগাযোগ</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ url('/') }}#seminar">Seminar</a>
+                        <a class="nav-link" aria-current="page" href="{{ url('/') }}#seminar">ফ্রি সেমিনার</a>
                     </li>
                 </ul>
             </div>
@@ -145,14 +144,14 @@
                     </div>
                 </div>
                 <div class="col-lg-4 location">
-                    <h4>Address</h4>
+                    <h4>আমাদের ঠিকানা</h4>
                     <address>
                         {{ $footer['address'] }}
                     </address>
                 </div>
 
                 <div class="col-lg-4 contact">
-                    <h4>Contact</h4>
+                    <h4>যোগাযোগ করুন</h4>
                     <p>
                         @foreach (json_decode($header['email'])->email as $email)
                         <a href="mailto:{{ $email }}">{{ $email }}</a>

@@ -23,9 +23,10 @@
         <aside>
           <h4>Search Here</h4>
           <div class="search">
-            <form action="" method="POST">
-              <input type="text" placeholder="Type Here">
-              <button>Search</button>
+            <form action="{{ route('blog.search.view') }}" method="GET">
+              @csrf
+              <input type="text" placeholder="Type Here" name="search">
+              <button type="submit">Search</button>
             </form>
           </div>
           <div class="related_blog">

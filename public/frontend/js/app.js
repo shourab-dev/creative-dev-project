@@ -81,9 +81,9 @@ $(function () {
     seminarJoinButton.click(function (e) {
         e.preventDefault();
         let propValue = $(this).attr("data-id");
-
         $(".seminar_model").addClass("modalActive");
         let optionsNode = $(".seminar_model .card select option");
+        optionsNode.removeAttr("selected");
         let options = optionsNode.toArray();
         options.map((item) => {
             let value = item.value;
@@ -157,4 +157,18 @@ $(function () {
     smallSearchButton.click(function () {
         $(this).siblings("form").fadeToggle(100);
     });
+
+    // modal hide
+    $("#closeDiscountModal").click(function () {
+        $(".disCountModal").removeClass("activeModalDiscount");
+    });
+    $(window).on("click", discountModalClose);
+
+    // CLOSE MODAL FOR DISCOUNT
+    function discountModalClose(e) {
+        let idValue = e.target.id;
+        if (idValue === "disCountModal") {
+            e.target.classList.remove("activeModalDiscount");
+        }
+    }
 });

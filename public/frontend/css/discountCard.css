@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: grid;
+    height: 100vh;
+    place-items: center;
+}
+.discountCardPage {
+    min-width: 350px;
+    width: 35%;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.discountCardPage .cardHeader {
+    font-size: 1.5rem;
+    padding-top: 30px;
+    text-align: center;
+}
+.discountCardPage .imgLogo {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    background-color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -40px;
+    margin: auto;
+    position: absolute;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+}
+.discountCardPage .imgLogo img {
+    width: 100%;
+}
+.discountCardPage .cardBody input {
+    margin: 12px 0;
+}

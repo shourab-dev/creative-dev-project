@@ -1,0 +1,42 @@
+@media (min-width: 992px){
+    .primary{
+        width: 50%;
+    }
+}
+
+.primary h2 {
+ 
+    -webkit-text-fill-color: transparent;
+    background: #fff;
+    background: -webkit-linear-gradient(6deg, #ff1e1e 3%, #ff8079);
+    background-clip: text;
+    -webkit-background-clip: text;
+    display: block;
+    font-size: clamp(2.55rem, 5vw, 52px);
+    line-height: 54px;
+    padding-top: 10px;
+    font-weight: 700;
+
+}
+.primary p{
+    text-align: justify ;
+    font-size: 18px;
+    
+}
+.mapPart{
+    margin-top: 50px;
+}
+.mapPart .detail h3{
+    font-weight: 600;
+    color: #ff1e1e;
+    
+}
+
+
+.mapPart .detail a{
+    color: #212529;
+}
+
+.mapPart .detail h4{
+    font-size: 22px;
+}

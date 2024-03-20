@@ -19,8 +19,14 @@
                 <td>{{ $blog->title }}</td>
                 <td>{{ $blog->short_detail }}</td>
                 <td>
-                    <a href="{{ route('blog.edit.item' , $blog->id  ) }}" class="btn btn-sm btn-primary">Edit</a>
-                    <span data-id="{{ $blog->id }}" class="btn btn-sm btn-danger btn__delete">Delete</span>
+                    <a href="{{ route('blog.edit.item' , $blog->id  ) }}" class="btn btn-sm btn-primary my-1">Edit</a>
+                    <a href="{{ route('blog.trending.item', $blog->id) }}" data-id="{{ $blog->id }}"
+                        class="btn btn-sm btn-warning  my-1">
+                        
+                        {{ $blog->trending == 0 ? "Set Trending" : 'Trending' }}
+                    </a>
+                    <span data-id="{{ $blog->id }}" class="btn btn-sm btn-danger btn__delete my-1">Delete</span>
+
                     <form action="{{ route('blog.delete.item', $blog->id) }}" method="POST">
                         @csrf
                         @method('DELETE')

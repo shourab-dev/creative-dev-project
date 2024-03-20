@@ -94,9 +94,13 @@ class FrontendController extends Controller
             $q->where('status', true);
         }])->where('slug', $slug)->where('status', true)->first();
 
-        // dd($course);
+        $relatedCourses = Course::where('department_id', $course->department_id)->with(['features' => function ($q) {
+            $q->where('status', true);
+        }])->where('status', true)->where('slug', '!=', $slug)->limit(3)->get();
+
+
         if ($course != null) {
-            return view('frontend.courseView', compact('course', 'homeCustomize'));
+            return view('frontend.courseView', compact('course', 'homeCustomize', 'relatedCourses'));
         }
     }
 
@@ -109,5 +113,33 @@ class FrontendController extends Controller
         $departments = Department::select('id', 'name')->where('status', true)->toBase()->get();
         // dd($faculties);
         return view('frontend.faculties', compact('faculties', 'departments'));
+    }
+
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+
+    public function discount()
+    {
+        return view('frontend.discount.discountModal');
+    }
+
+
+
+    // FRONTEND CERTIFICATE VERIFY
+    public function verifyCertificate(){
+        return view('frontend.verify-certificate');
+    }
+
+    public function verifiedCertificate(Request $request){
+        $request->validate([
+            'certificate_id' => 'required'
+        ],[
+            'certificate_id.required' => 'Please Give your Certificate ID',
+        ]);
+        $user = 'shourab';
+        return view('frontend.verify-certificate', compact('user'));
     }
 }

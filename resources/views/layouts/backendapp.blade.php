@@ -491,7 +491,6 @@
                     </a>
                     <ul class=" {{ request()->routeIs('banner*') ? 'side-menu__sub-open' : '' }}">
                         @if ($header->banner_stle == 'ctg')
-
                         <li>
                             <a href="{{ route('banner') }}" class="side-menu">
                                 <div class="side-menu__icon">
@@ -515,14 +514,14 @@
                             </a>
                         </li>
                         @endcan
-                        @elseif ('dhaka')
+                        @else
                         <li>
                             <a href="{{ route('banner.part.update') }}" class="side-menu">
                                 <div class="side-menu__icon">
                                     <i data-lucide="activity"></i>
                                 </div>
                                 <div class="side-menu__title">
-                                    Banner part
+                                    Banner Part
                                 </div>
                             </a>
                         </li>
@@ -715,9 +714,6 @@
                                 </div>
                             </a>
                         </li>
-                        @endcan
-                        @can('manage header')
-
                         <li>
                             <a href="{{ route('customize.home') }}" class="side-menu">
                                 <div class="side-menu__icon">
@@ -769,6 +765,24 @@
                         </div>
                         <div class="side-menu__title">
                             Counciling
+                        </div>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="{{ route('luckywheel') }}"
+                        class="side-menu {{ request()->routeIs('luckywheel*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide block mx-auto">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <circle cx="12" cy="12" r="6"></circle>
+                                <circle cx="12" cy="12" r="2"></circle>
+                            </svg>
+                        </div>
+                        <div class="side-menu__title">
+                            Lucky Wheel
                         </div>
                     </a>
 
@@ -1076,7 +1090,13 @@
 
             {{-- main section here --}}
             <!-- Page Heading -->
-
+            @if (isset($newheader))
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $newheader }}
+                </div>
+            </header>
+            @endif
             {{ $slot }}
             {{-- main section here --}}
 

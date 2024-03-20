@@ -3,6 +3,18 @@
   Home -
   @endpush
   {{-- PROMO MODAL --}}
+  {{-- discount modal --}}
+  <div class="disCountModal activeModalDiscount" id="disCountModal">
+    <div class="modalCnt">
+      <span id="closeDiscountModal"><i class="bi bi-x-lg"></i></span>
+      <a href="{{ route('course.discount') }}">
+        <img src="{{ asset('frontend/image/discountPic.png') }}" alt="Discount Image">
+      </a>
+    </div>
+  </div>
+  {{-- discount modal ends --}}
+
+
   @if ($customize->promo_modal == true)
   @push('frontendCss')
   <style>
@@ -117,7 +129,7 @@
   @endpush
   @endif
 
-  @elseif ('dhaka')
+  @elseif ($homeCustomize->banner_stle == 'dhaka')
   <section id="bannerPart" style="background-image: url({{ asset('frontend/image/banner_hero.webp') }})">
     <div class="container">
       <div class="row align-items-center">
@@ -132,7 +144,7 @@
           <p class="detail">
             {{ $banners->detail }}
           </p>
-          <a href="#course"><i class="bi bi-book"></i> ব্রাউজ কোর্স</a>
+          <a href="#courses"><i class="bi bi-book"></i> ব্রাউজ কোর্স</a>
           <a href="#seminar"><i class="bi bi-book"></i> জয়েন ফ্রি সেমিনার</a>
           <div class="iso d-flex align-items-center">
             <img src="{{ asset('frontend/image/iso.png') }}" alt="iso">
@@ -143,7 +155,7 @@
         <div class="col-lg-7 embededVideoLink">
           <div class="youtubeThumb" data-youtube="{{ $banners->iframe }}">
             <img src="https://img.youtube.com/vi/{{ str()->after($banners->iframe, 'embed/') }}/0.jpg" alt=""
-              title="Yo yo" />
+              title="{{ $banners->heading }}" />
             <div class="overlay">
               <img src="{{ asset('frontend/image/play-button-icon.webp') }}" alt="icon" />
             </div>
@@ -320,8 +332,8 @@
 
 
   <!-- SEMINAR SECTION STARTS -->
+  @if ($homeCustomize->seminar_stle == 'ctg')
   @if (count($seminars) > 0)
-
   <section id="seminar">
     <div class="container">
       <div class="seminar_model">
@@ -330,26 +342,26 @@
             <img src="{{ $footer['logo'] }}" loading="lazy" alt="" />
           </div>
           <div class="card-header px-2">
-            <p class="h5">Join Seminar</p>
+            <p class="h5">জয়েন ফ্রি সেমিনার</p>
             <span class="float-end close__modal position-absolute"><i class="bi bi-x-lg"></i></span>
           </div>
           <div class="card-body">
             <form action="{{ route('seminar.join') }}" method="POST">
               @csrf
               <div class="form-group">
-                <label for="name">Name: -</label>
+                <label for="name">আপনার নাম: -</label>
                 <input required type="text" class="form-control" id="name" name="name" />
               </div>
               <div class="form-group">
-                <label for="phone">Phone: -</label>
+                <label for="phone">আপনার ফোন নাম্বার: -</label>
                 <input required type="number" class="form-control" id="phone" name="phone" />
               </div>
               <div class="form-group">
-                <label for="email">Email: -</label>
+                <label for="email">আপনার ইমেইল: -</label>
                 <input required type="email" class="form-control" id="email" name="email" />
               </div>
               <div class="form-group">
-                <label for="course">Select Seminar: -</label>
+                <label for="course">কোর্স সিলেক্ট করুন: -</label>
                 <select name="seminar_id" id="course" class="form-control">
                   @foreach ($seminars as $seminar)
                   <option value="{{ $seminar->id }}">{{ $seminar->name }}</option>
@@ -357,29 +369,34 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="address">Address: -</label>
+                <label for="address">আপনার ঠিকানা: -</label>
                 <textarea required name="address" id="address" class="form-control"></textarea>
               </div>
-              <button>Join Seminar</button>
+              <button>ফ্রি রেজিস্ট্রেশন করুন</button>
             </form>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="intro">
-          <h2 class="heading" data-aos="fade-up">Still Confused Join</h2>
+          <h2 class="heading" data-aos="fade-up">ফ্রি সেমিনারের সময়সূচি</h2>
           <p data-aos="fade-up" data-aos-delay="150">
-            Join Our Free Seminars & Workshops !
+            কোন কোর্সে ভর্তি হবেন, সেই কোর্সে কাজের সুযোগ কেমন আর ক্রিয়েটিভ আইটি ইন্সটিটিউট -এ ভর্তি হলে কি কি সুবিধা
+            পাবেন- আপনার
+            মনে এমন অসংখ্য প্রশ্ন রয়েছে নিশ্চয়ই? আপনার যেকোনো প্রশ্নের সরাসরি উত্তর দিতে প্রতি সপ্তাহে আমরা আয়োজন করি
+            কোর্সভিত্তিক
+            ফ্রি সেমিনার। এই সেমিনারগুলোতে অংশ নিয়ে আপনি কোর্সের মেন্টরের কাছ থেকে কোর্স বিষয়ক যেকোনো পরামর্শ নিতে
+            পারেন।
           </p>
         </div>
 
         <div data-aos-delay="300" data-aos="fade-up" class="table_container table-responsive-lg">
           <table class="table" valign="center">
             <tr>
-              <th>Topic</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Action</th>
+              <th>টপিক</th>
+              <th>তারিক</th>
+              <th colspan="2">সময়</th>
+              {{-- <th>Action</th> --}}
             </tr>
             @foreach ($seminars as $seminar)
             <tr>
@@ -397,6 +414,130 @@
       </div>
     </div>
   </section>
+  @endif
+
+  @elseif ($homeCustomize->seminar_stle == 'dhaka')
+
+  @if (count($seminars) > 0)
+  <section id="seminar">
+    <div class="container">
+      <div class="seminar_model">
+        <div class="card">
+          <div class="logo">
+            <img src="{{ $footer['logo'] }}" loading="lazy" alt="" />
+          </div>
+          <div class="card-header px-2">
+            <p class="h5">জয়েন ফ্রি সেমিনার</p>
+            <span class="float-end close__modal position-absolute"><i class="bi bi-x-lg"></i></span>
+          </div>
+          <div class="card-body">
+            <form action="{{ route('seminar.join') }}" method="POST">
+              @csrf
+              <div class="form-group">
+                <label for="name">আপনার নাম: -</label>
+                <input required type="text" class="form-control" id="name" name="name" />
+              </div>
+              <div class="form-group">
+                <label for="phone">আপনার ফোন নাম্বার: -</label>
+                <input required type="number" class="form-control" id="phone" name="phone" />
+              </div>
+              <div class="form-group">
+                <label for="email">আপনার ইমেইল: -</label>
+                <input required type="email" class="form-control" id="email" name="email" />
+              </div>
+              <div class="form-group">
+                <label for="course">কোর্স সিলেক্ট করুন: -</label>
+                <select name="seminar_id" id="course" class="form-control">
+                  @foreach ($seminars as $seminar)
+                  <option value="{{ $seminar->id }}">{{ $seminar->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="address">আপনার ঠিকানা: -</label>
+                <textarea required name="address" id="address" class="form-control"></textarea>
+              </div>
+              <button>ফ্রি রেজিস্ট্রেশন করুন</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="primary">
+            <h2>অংশ নিন ফ্রি সেমিনারে</h2>
+            <p>ফ্রিল্যান্সিং-এর জন্য কোন কোর্স করবেন, সিদ্ধান্ত নিতে পারছেন না? জয়েন করুন আমাদের ফ্রি সেমিনারে।
+              বিষয়ভিত্তিক
+              এই
+              সেমিনারগুলোতে প্রতিটি কোর্সের সম্ভাবনা সম্পর্কে জানতে পারবেন। তাছাড়া সেমিনারে উপস্থিত এক্সপার্ট
+              কাউন্সেলরের
+              সঙ্গে কথা
+              বলে আপনি যথাযথ কোর্স বেছে নেওয়ার সিদ্ধান্ত নিতে পারবেন সহজেই।</p>
+            <h3>আপকামিং ফ্রি সেমিনার</h3>
+          </div>
+
+          <div class="allSeminars">
+            @foreach ($seminars as $seminar)
+
+            <div class="seminar">
+              <div class="row ">
+                <div class="time col-md-2">
+                  <p>{{ Carbon\Carbon::parse($seminar->date)->format('d') }}</p>
+                  <p>{{ Carbon\Carbon::parse($seminar->date)->format('M, Y') }}</p>
+                </div>
+                <div class="detail col-md-7">
+                  <h4>{{ $seminar->name }}</h4>
+                  <p>Time {{ Carbon\Carbon::parse($seminar->time)->format('g:i A') }}</p>
+                </div>
+                <div class="col-md-3 seminarButton">
+                  <a style="cursor: pointer" data-id="{{ $seminar->id }}" class="join__seminar__btn">Join Now</a>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          </div>
+        </div>
+        <div class="col-lg-6 seminarImg" data-aos="fade-left">
+          <img src="https://app.creativeitinstitute.com/wp-content/uploads/2022/04/Project-list.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+  @push('frontendCss')
+  <link rel="stylesheet" href="{{ asset('frontend/css/seminarDhaka.css') }}">
+  @endpush
+  @endif
+
+
+  @endif
+
+  @if ($homeCustomize->facebook_review == true)
+  <section id="facebookReview">
+    <div class="container">
+      <div class="primary">
+        <h2>মন্তব্য</h2>
+        <p>আমরা বিশ্বাস করি আমাদের প্রতিটি শিক্ষার্থী ক্রিয়েটিভ আইটি পরিবারের সদস্য। তাই শিক্ষার্থীদের যেকোনো গঠনমূলক
+          মন্তব্য
+          আমাদের ভুল-ত্রুটি শুধরে সামনে এগিয়ে চলার পথে প্রেরণা যোগায়।</p>
+      </div>
+      <div class="allReviews">
+        <div class="review">
+          <iframe
+            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fyasinashraf.yasinashraf.378%2Fposts%2F1232526093942539&show_text=true&width=500"
+            width="500" height="188" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  @push('frontendCss')
+  <link rel="stylesheet" href="{{ asset('frontend/css/facebookReview.css') }}">
+  @endpush
+  @push('frontendJs')
+  <script src="{{ asset('frontend/js/facebookReview.js') }}"></script>
+  @endpush
   @endif
   <!-- SEMINAR SECTION ENDS -->
 
@@ -477,27 +618,27 @@
         <div class="col-lg-5 order-2 order-lg-1">
           <div class="contact_form">
             <h2 class="mt-4 my-lg-0">
-              Get A Free <br />
-              <span>Counselling</span>
+              আমাদের সাথে <br>
+              <span>যোগাযোগ করুন</span>
             </h2>
             <form action="{{ route('counciling.save') }}" method="POST">
               @csrf
-              <input type="text" class="form-control" placeholder="Enter Your Name" name="name" data-aos="fade-up" />
+              <input type="text" class="form-control" placeholder="আপনার নাম" name="name" data-aos="fade-up" />
               @error('name')
               <span class="text-danger">{{ $message }}</span>
               @enderror
-              <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="phone"
-                data-aos="fade-up" data-aos-delay="200" />
+              <input type="text" class="form-control" placeholder="আপনার ফোন নাম্বার" name="phone" data-aos="fade-up"
+                data-aos-delay="200" />
               @error('phone')
               <span class="text-danger">{{ $message }}</span>
               @enderror
-              <input type="text" class="form-control" placeholder="Enter Your Email Address" name="email"
-                data-aos="fade-up" data-aos-delay="300" />
+              <input type="text" class="form-control" placeholder="আপনার ইমেইল" name="email" data-aos="fade-up"
+                data-aos-delay="300" />
               @error('email')
               <span class="text-danger">{{ $message }}</span>
               @enderror
               <button type="submit" data-aos="fade-up" data-aos-delay="400">
-                Submit
+                সাবমিট
               </button>
             </form>
 
@@ -518,10 +659,12 @@
 
   <section id="facilities">
     <div class="container">
-      <div class="intro mb-5">
-        <h2 data-aos="fade-up">Our Facilities</h2>
+      <div class="intro mb-5 primary">
+        <h2 data-aos="fade-up">ক্রিয়েটিভ আইটির বিশেষ সেবা</h2>
         <p data-aos="fade-up" data-aos-delay="300">
-          Explore the weapons of Latest Information Technology!
+          কেবল ক্লাস নয়, ক্রিয়েটিভ আইটি সবসময় প্রস্তুত শিক্ষার্থীদের যেকোনো দরকারে, যেকোনো সময়। তাই উন্নতমানের কোর্সের
+          সাথে আপনি
+          পাচ্ছেন কিছু বোনাস সুবিধা, যা শুধুমাত্র আমরাই দিয়ে থাকি।
         </p>
       </div>
       <div class="facilities_cards" data-aos="fade-up">

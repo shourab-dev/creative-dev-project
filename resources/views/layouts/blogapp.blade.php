@@ -96,7 +96,8 @@
                     </li>
                     @foreach ($categories as $category)
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ url('/') }}">{{
+                        <a class="nav-link" aria-current="page"
+                            href="{{ route('blog.category.view', $category->name) }}">{{
                             str()->headline($category->name) }}</a>
                     </li>
                     @endforeach
@@ -107,8 +108,9 @@
                             <i class="bi bi-x-lg closeIcon"></i>
                         </a>
                         <div class="searchOption">
-                            <form action="blog.ddd" method="post">
-                                <input type="text" placeholder="Search Here...">
+                            <form action="{{ route('blog.search.view') }}" method="GET">
+                                @csrf
+                                <input type="text" placeholder="Search Here..." name="search">
                             </form>
                         </div>
                     </li>
