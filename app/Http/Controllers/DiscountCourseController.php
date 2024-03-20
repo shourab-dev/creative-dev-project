@@ -23,7 +23,7 @@ class DiscountCourseController extends Controller
             $newOTP = rand(10000, 999999);
             Session::put('OTP', $newOTP);
             $message = "Your OTP is $newOTP. Please dont share it with anyone else.";
-            $response = HTTP::post($this->apiUrl, [
+            $data = [
                 "auth" => [
                     "username" => "citctg",
                     "api_key" => $this->key,
@@ -37,7 +37,20 @@ class DiscountCourseController extends Controller
                         "message" => $message
                     ]
                 ]
-            ]);
+            ];
+            // $response = HTTP::post($this->apiUrl, json_encode($data));
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->apiUrl);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: text/plain'
+            ));
+            $response = curl_exec($ch);
+            curl_close($ch);
+            dd($response);
         }
 
         $phone = $request->phone;
@@ -94,7 +107,8 @@ class DiscountCourseController extends Controller
             if ($wheel) {
                 $data = "অভিনন্দন! আপনি ক্রিয়েটিভ আইটির প্রফেশনাল কোর্সে $wheel->discount স্পেশাল ডিস্কাউন্টটি পেয়েছেন। খুব শীঘ্রই আপনাকে কল করে বিস্তারিত জানিয়ে দেয়া হবে। আপনি চাইলে আমাদের অফিসিয়াল পেইজে নক করতে পারেন- m.me/CITI.Chattogram অফারটি পেতে আপনার ফোনে পাঠানো মেসেজটি সংরক্ষণ করুন।";
                 Session::forget('OTP');
-                $response = HTTP::post($this->apiUrl, [
+                // $response = HTTP::post($this->apiUrl, );
+                $data_sms = [
                     "auth" => [
                         "username" => "citctg",
                         "api_key" => $this->key,
@@ -104,11 +118,23 @@ class DiscountCourseController extends Controller
                     "sms_data" => [
                         [
                             "recipient" => $request->get('session_value'),
-                            "mask" => "Creative IT Institute",
+                            "mask" => "Creative IT",
                             "message" => $data
                         ]
                     ]
-                ]);
+                ];
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $this->apiUrl);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data_sms));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: text/plain'
+                ));
+                $response = curl_exec($ch);
+                curl_close($ch);
                 return $data;
             }
         }
